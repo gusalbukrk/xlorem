@@ -1,0 +1,40 @@
+{
+  "name": "get-wikipedia-article",
+  "author": "gusalbukrk",
+  "version": "0.0.0",
+  "description": "Fetch Wikipedia article.",
+  "license": "MIT",
+  "keywords": [
+    "wikipedia"
+  ],
+  "type": "module",
+  "types": "dist/index.d.ts",
+  "main": "dist/bundle.cjs.js",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    "import": "./dist/bundle.esm.js",
+    "require": "./dist/bundle.cjs.js"
+  },
+  "files": [
+    "dist",
+    "src",
+    "!src/**/__tests__",
+    "!src/**/*.{test,spec}.{js,jsx,ts,tsx}"
+  ],
+  "scripts": {
+    "build": "rollup -c ../../rollup.config.js",
+    "lint": "eslint src/ --fix",
+    "postbuild": "replace-in-file --configFile=../../.replace-in-file.cjs && eslint dist/index.d.ts --fix",
+    "postpublish": "../../node_modules/rimraf/bin.js dist/",
+    "prepublishOnly": "npm run build",
+    "test": "jest --passWithNoTests"
+  },
+  "dependencies": {
+    "@xlorem/common": "0.0.0"
+  }
+}

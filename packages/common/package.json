@@ -1,0 +1,28 @@
+{
+  "name": "@xlorem/common",
+  "author": "gusalbukrk",
+  "version": "0.0.0",
+  "description": "Common files for xlorem.",
+  "license": "MIT",
+  "keywords": [],
+  "type": "module",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "",
+  "files": [
+    "src",
+    "!src/**/__tests__",
+    "!src/**/*.{test,spec}.{js,jsx,ts,tsx}"
+  ],
+  "scripts": {
+    "lint": "eslint src/ --fix",
+    "postbuild": "replace-in-file --configFile=../../.replace-in-file.cjs && eslint dist/index.d.ts --fix",
+    "postpublish": "../../node_modules/rimraf/bin.js dist/",
+    "prepublishOnly": "npm run build",
+    "test": "jest --passWithNoTests"
+  }
+}

@@ -8,11 +8,14 @@
   "private": true,
   "type": "module",
   "main": "src/index.ts",
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "scripts": {
     "build": "tsc && webpack --node-env production --config webpack.prod.js",
     "lint": "eslint src/ --fix",
     "start": "webpack serve --node-env development --config webpack.dev.js",
-    "test": "jest"
+    "test": "jest --passWithNoTests"
   },
   "dependencies": {
     "core-js": "^3.12.1",

@@ -1,0 +1,23 @@
+{
+  "name": "@xlorem/front-end",
+  "author": "gusalbukrk",
+  "version": "0.0.0",
+  "description": "Front-End for xlorem.",
+  "license": "MIT",
+  "keywords": [],
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "tsc && webpack --node-env production --config webpack.prod.js",
+    "lint": "eslint src/ --fix",
+    "start": "webpack serve --node-env development --config webpack.dev.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "core-js": "^3.12.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "styled-components": "^5.2.3"
+  }
+}

@@ -56,10 +56,11 @@ async function xlorem({
     breakdownMerged
   ) as string;
 
-  console.log({ title, body, wordsToEmphasize });
-  console.log(wordsArray);
-  console.log(freqMap);
-  console.log(text);
+  // debug
+  // console.log({ title, body, wordsToEmphasize });
+  // console.log(wordsArray);
+  // console.log(freqMap);
+  // console.log(text);
 
   const output = { title, body: text };
   return output;
@@ -67,6 +68,6 @@ async function xlorem({
 
 export default xlorem;
 
-xlorem({ queryOrArticle: 'harry potter' })
-  .then()
-  .catch((e) => console.log(e));
+// xlorem({ queryOrArticle: 'harry potter' })
+//   .then()
+//   .catch((e) => console.log(e));

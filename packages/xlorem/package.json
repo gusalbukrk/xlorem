@@ -44,6 +44,7 @@
   "dependencies": {
     "@xlorem/common": "0.0.0",
     "@xlorem/input-validator": "0.0.0",
+    "cross-fetch": "^3.1.4",
     "generate-random-text": "0.0.0",
     "generate-words-freqmap": "0.0.0",
     "get-wikipedia-article": "0.0.0",

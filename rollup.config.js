@@ -45,7 +45,7 @@ export default [
         format: 'cjs',
       },
       {
-        name: 'myLibrary',
+        name: 'xlorem',
         file: 'dist/bundle.umd.js',
         format: 'umd',
         plugins: [terser()],
@@ -53,7 +53,7 @@ export default [
     ],
   },
   {
-    input: 'dist/types/index.d.ts',
+    input: 'dist/types/src/index.d.ts',
     output: [{ file: 'dist/index.d.ts', format: 'es' }],
     plugins: [
       dts(),

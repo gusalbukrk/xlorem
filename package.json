@@ -9,6 +9,7 @@
     "build": "lerna run build",
     "clean:bootstrap": "rimraf node_modules/ packages/*/node_modules/",
     "clean:build": "rimraf packages/*/dist",
+    "create": "func() { cp -r templates/\"$1\" packages/\"$2\"; }; func",
     "lint": "npm run lint:config; prettier **/*.{md,json} --write --loglevel warn; npm run lint:src",
     "lint:config": "eslint . --fix --ext .js,.cjs,.json --ignore-pattern '!.*' --ignore-pattern 'src/'",
     "lint:src": "lerna run lint",

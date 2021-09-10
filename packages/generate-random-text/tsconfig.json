@@ -1,6 +1,17 @@
 {
   "extends": "../../tsconfig.json",
 
+  // make sure that declaration file will be at `dist/types/index.d.ts`
+  // otherwise, ts will create a declaration file for each .ts file
+  "files": ["src/index.ts"],
+
+  // otherwise, run eslint in this file (at `postbuild` script) would error
+  // `Parsing error: "parserOptions.project" has been set for @typescript-eslint/parser.
+  // The file does not match your project config`
+  "include": ["dist/index.d.ts"],
+  // if add to `files` instead of `include`, will error
+  // because ts will expect `dist/index.d.ts` to always exist
+
   "compilerOptions": {
     "declarationDir": "dist/types"
   }

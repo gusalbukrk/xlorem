@@ -33,6 +33,6 @@
     "test": "jest --passWithNoTests"
   },
   "dependencies": {
-    "weighted-randomness": "0.0.0"
+    "weighted-randomness": "file:../weighted-randomness"
   }
 }

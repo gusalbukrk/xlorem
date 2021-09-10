@@ -35,6 +35,6 @@
     "test": "jest --passWithNoTests"
   },
   "dependencies": {
-    "@xlorem/common": "0.0.0"
+    "@xlorem/common": "file:../common"
   }
 }

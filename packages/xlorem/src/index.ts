@@ -8,7 +8,7 @@ import {
 import inputValidator from '@xlorem/input-validator/src/';
 import generateText from 'generate-random-text/src/';
 import generateFreqMap from 'generate-words-freqmap/src/';
-import getArticle from 'get-wikipedia-article/src/index';
+import getArticle from 'get-wikipedia-article/src/';
 import tokenizeWords from 'tokenize-words/src/';
 
 interface param {

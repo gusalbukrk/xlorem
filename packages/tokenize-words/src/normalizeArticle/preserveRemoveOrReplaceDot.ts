@@ -1,5 +1,5 @@
 import { isNumeric, escapeRegExp } from '@xlorem/common/src/utils';
-import { isStopword } from 'stopwords-utils/src';
+import { isStopword } from 'stopwords-utils/src/';
 
 import getCorrectWordCase from './getCorrectWordCase';
 

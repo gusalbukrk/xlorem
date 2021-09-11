@@ -1,4 +1,4 @@
-import { isStopword } from 'stopwords-utils/src/index';
+import { isStopword } from 'stopwords-utils/src/';
 
 function removeSpacingBetweenInitials(initials: string) {
   return ` ${initials.replace(/\s/g, '')} `;

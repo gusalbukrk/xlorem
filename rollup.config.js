@@ -1,13 +1,49 @@
+import path from 'path';
+import { fileURLToPath } from 'url';
+
 import { DEFAULT_EXTENSIONS } from '@babel/core';
 import { babel } from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import eslint from '@rollup/plugin-eslint';
 import json from '@rollup/plugin-json';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
+import includePaths from 'gusalbukrk-rollup-plugin-includepaths';
 import del from 'rollup-plugin-delete';
 import dts from 'rollup-plugin-dts';
 import { terser } from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
+
+// eslint-disable-next-line no-underscore-dangle
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const abspath = (relpath) => path.join(__dirname, relpath);
+
+// otherwise error:
+// `Plugin node-resolve: Could not resolve import ... in ... using exports defined in ...`package.json`
+// you could fix this by deleting any export key (main, exports) in the imported module `package.json`
+// which shouldn't be done in most packages because it would make importing less practical
+// e.g. @xlorem/common is not declare in here because its package.json doesn't contain any export key
+const includePathOptions = {
+  extensions: ['.ts'],
+  include: {
+    '@xlorem/input-validator/src/': abspath(
+      'packages/input-validator/src/index.ts'
+    ),
+    'generate-random-text/src/': abspath(
+      'packages/generate-random-text/src/index.ts'
+    ),
+    'generate-words-freqmap/src/': abspath(
+      'packages/generate-words-freqmap/src/index.ts'
+    ),
+    'get-wikipedia-article/src/': abspath(
+      'packages/get-wikipedia-article/src/index.ts'
+    ),
+    'tokenize-words/src/': abspath('packages/tokenize-words/src/index.ts'),
+    'weighted-randomness/src/': abspath(
+      'packages/weighted-randomness/src/index.ts'
+    ),
+    'stopwords-utils/src/': abspath('packages/stopwords-utils/src/index.ts'),
+  },
+};
 
 export default [
   {
@@ -17,6 +53,7 @@ export default [
         targets: 'dist',
         runOnce: true,
       }),
+      includePaths(includePathOptions),
       nodeResolve(),
       commonjs(),
       eslint({
@@ -43,6 +80,7 @@ export default [
       {
         file: 'dist/bundle.cjs.js',
         format: 'cjs',
+        exports: 'auto',
       },
       {
         name: 'xlorem',

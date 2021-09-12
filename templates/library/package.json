@@ -1,8 +1,8 @@
 {
-  "name": "@xlorem/library",
+  "name": "",
   "author": "gusalbukrk",
   "version": "0.0.0",
-  "description": "Library starter.",
+  "description": "",
   "license": "MIT",
   "keywords": [],
   "type": "module",
@@ -32,8 +32,5 @@
     "prepublishOnly": "npm run build",
     "test": "jest --passWithNoTests"
   },
-  "dependencies": {
-    "@types/lodash-es": "^4.17.4",
-    "lodash-es": "^4.17.21"
-  }
+  "dependencies": {}
 }

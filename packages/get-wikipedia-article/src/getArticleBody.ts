@@ -1,4 +1,4 @@
-import getErrorMessage from '@xlorem/common/src/getErrorMessage';
+import { articleIsDisambiguation } from '@xlorem/common/src/errorMessages';
 
 import { apiBase } from './constants';
 
@@ -30,7 +30,7 @@ async function getArticleBody(title: string): Promise<string[]> {
     articles[articleID].pageprops &&
     'disambiguation' in articles[articleID].pageprops
   ) {
-    throw new Error(getErrorMessage('article-is-disambiguation'));
+    throw new Error(articleIsDisambiguation);
   }
 
   // action=opensearch API at `getArticleTitle` may return title with incorrect wording and case

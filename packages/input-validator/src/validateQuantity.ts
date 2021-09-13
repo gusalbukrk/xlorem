@@ -1,5 +1,8 @@
 import { breakdownDefault } from '@xlorem/common/src/constants';
-import getErrorMessage from '@xlorem/common/src/getErrorMessage';
+import {
+  quantityNotNumber,
+  quantityTooSmall,
+} from '@xlorem/common/src/errorMessages';
 import { unitType } from '@xlorem/common/src/types';
 
 const { sentencesPerParagraphMin, wordsPerSentenceMin } = breakdownDefault;
@@ -14,7 +17,7 @@ function validateQuantity(quantity: number, unit: unitType): string[] {
   const type = getType(quantity);
 
   if (type !== 'number') {
-    errors.push(getErrorMessage('quantity-not-number'));
+    errors.push(quantityNotNumber);
   }
 
   if (type === 'number' && (unit === 'words' || unit === 'paragraphs')) {
@@ -22,7 +25,7 @@ function validateQuantity(quantity: number, unit: unitType): string[] {
     const minimumQuantityAllowed = unit === 'words' ? wordsPerParagraphMin : 1;
 
     if (quantity < minimumQuantityAllowed) {
-      errors.push(getErrorMessage('quantity-too-small'));
+      errors.push(quantityTooSmall);
     }
   }
 

@@ -1,11 +1,11 @@
-import getErrorMessage from '@xlorem/common/src/getErrorMessage';
+import { invalidFormat } from '@xlorem/common/src/errorMessages';
 import { formatType } from '@xlorem/common/src/types';
 
 function validateFormat(format: formatType): string[] {
   const errors: string[] = [];
 
   if (!(format === 'plain' || format === 'html')) {
-    errors.push(getErrorMessage('invalid-format'));
+    errors.push(invalidFormat);
   }
 
   return errors;

@@ -1,4 +1,4 @@
-import getErrorMessage from '@xlorem/common/src/getErrorMessage';
+import { articleNotFound } from '@xlorem/common/src/errorMessages';
 
 import { apiBase } from './constants';
 
@@ -13,7 +13,7 @@ async function getArticleTitle(query: string): Promise<string> {
   const title = json[1]?.[0];
 
   if (title === undefined) {
-    throw new Error(getErrorMessage('article-not-found'));
+    throw new Error(articleNotFound);
   }
 
   return title;

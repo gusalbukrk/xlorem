@@ -1,5 +1,5 @@
 import { breakdownDefault } from '@xlorem/common/src/constants';
-import getErrorMessage from '@xlorem/common/src/getErrorMessage';
+import * as errorMessages from '@xlorem/common/src/errorMessages';
 import {
   queryOrArticleType,
   unitType,
@@ -41,10 +41,10 @@ describe('throw error messages correctly', () => {
     const z = () =>
       inputValidator({ queryOrArticle: { title: 'test', body: '' } });
 
-    expect(w).toThrow(getErrorMessage('neither-string-nor-article'));
-    expect(x).toThrow(getErrorMessage('neither-string-nor-article'));
-    expect(y).toThrow(getErrorMessage('empty-query-string'));
-    expect(z).toThrow(getErrorMessage('text-too-short'));
+    expect(w).toThrow(errorMessages.neitherStringNorArticle);
+    expect(x).toThrow(errorMessages.neitherStringNorArticle);
+    expect(y).toThrow(errorMessages.emptyQueryString);
+    expect(z).toThrow(errorMessages.textTooShort);
   });
 
   it('unit argument', () => {
@@ -55,8 +55,8 @@ describe('throw error messages correctly', () => {
     // @ts-expect-error: test
     const y = () => inputValidator({ unit: 'abcde' });
 
-    expect(x).toThrow(getErrorMessage('invalid-unit'));
-    expect(y).toThrow(getErrorMessage('invalid-unit'));
+    expect(x).toThrow(errorMessages.invalidUnit);
+    expect(y).toThrow(errorMessages.invalidUnit);
   });
 
   it('quantity argument', () => {
@@ -66,8 +66,8 @@ describe('throw error messages correctly', () => {
     const x = () => inputValidator({ quantity: '...' });
     const y = () => inputValidator({ quantity: 0 });
 
-    expect(x).toThrow(getErrorMessage('quantity-not-number'));
-    expect(y).toThrow(getErrorMessage('quantity-too-small'));
+    expect(x).toThrow(errorMessages.quantityNotNumber);
+    expect(y).toThrow(errorMessages.quantityTooSmall);
   });
 
   it('format argument', () => {
@@ -78,8 +78,8 @@ describe('throw error messages correctly', () => {
     // @ts-expect-error: test
     const y = () => inputValidator({ format: 'abcde' });
 
-    expect(x).toThrow(getErrorMessage('invalid-format'));
-    expect(y).toThrow(getErrorMessage('invalid-format'));
+    expect(x).toThrow(errorMessages.invalidFormat);
+    expect(y).toThrow(errorMessages.invalidFormat);
   });
 
   it('breakdown argument', () => {
@@ -111,11 +111,9 @@ describe('throw error messages correctly', () => {
         },
       });
 
-    expect(w).toThrow(getErrorMessage('invalid-breakdown'));
-    expect(x).toThrow(getErrorMessage('breakdown-values-too-small'));
-    expect(y).toThrow(
-      getErrorMessage('invalid-breakdown-sentencesPerParagraph')
-    );
-    expect(z).toThrow(getErrorMessage('invalid-breakdown-wordsPerSentence'));
+    expect(w).toThrow(errorMessages.invalidBreakdown);
+    expect(x).toThrow(errorMessages.breakdownValuesTooSmall);
+    expect(y).toThrow(errorMessages.invalidBreakdownSentencesPerParagraph);
+    expect(z).toThrow(errorMessages.invalidBreakdownWordsPerSentence);
   });
 });

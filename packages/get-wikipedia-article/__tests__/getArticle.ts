@@ -1,6 +1,9 @@
 import 'cross-fetch/polyfill';
 
-import getErrorMessage from '@xlorem/common/src/getErrorMessage';
+import {
+  articleNotFound,
+  articleIsDisambiguation,
+} from '@xlorem/common/src/errorMessages';
 
 import getArticle from '../src';
 
@@ -23,16 +26,12 @@ describe('throw error message correctly', () => {
   it('article-not-found', async () => {
     expect.assertions(1);
 
-    await expect(getArticle('adfexqa')).rejects.toThrow(
-      getErrorMessage('article-not-found')
-    );
+    await expect(getArticle('adfexqa')).rejects.toThrow(articleNotFound);
   });
 
   it('article-is-disambiguation', async () => {
     expect.assertions(1);
 
-    await expect(getArticle('seo')).rejects.toThrow(
-      getErrorMessage('article-is-disambiguation')
-    );
+    await expect(getArticle('seo')).rejects.toThrow(articleIsDisambiguation);
   });
 });

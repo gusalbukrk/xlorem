@@ -1,4 +1,8 @@
-import getErrorMessage from '@xlorem/common/src/getErrorMessage';
+import {
+  neitherStringNorArticle,
+  emptyQueryString,
+  textTooShort,
+} from '@xlorem/common/src/errorMessages';
 import { queryOrArticleType, articleType } from '@xlorem/common/src/types';
 
 function validateQueryOrArticle(queryOrArticle: queryOrArticleType): string[] {
@@ -13,11 +17,11 @@ function validateQueryOrArticle(queryOrArticle: queryOrArticleType): string[] {
     typeof queryOrArticle.body === 'string';
 
   if (!(isString || isArticle)) {
-    errors.push(getErrorMessage('neither-string-nor-article'));
+    errors.push(neitherStringNorArticle);
   }
 
   if (isString && queryOrArticle === '') {
-    errors.push(getErrorMessage('empty-query-string'));
+    errors.push(emptyQueryString);
   }
 
   if (isArticle) {
@@ -27,7 +31,7 @@ function validateQueryOrArticle(queryOrArticle: queryOrArticleType): string[] {
     ).length;
 
     if (wordsQuantity < wordsQuantityMinRequired) {
-      errors.push(getErrorMessage('text-too-short'));
+      errors.push(textTooShort);
     }
   }
 

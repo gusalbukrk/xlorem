@@ -1,4 +1,4 @@
-import getErrorMessage from '@xlorem/common/src/getErrorMessage';
+import { notEnoughKeywords } from '@xlorem/common/src/errorMessages';
 
 import tokenizeWordsBase from '../src';
 
@@ -163,8 +163,6 @@ describe('throw error message correctly', () => {
   it('not-enough-keywords', () => {
     expect.assertions(1);
 
-    expect(() => tokenizeWordsBase('')).toThrow(
-      getErrorMessage('not-enough-keywords')
-    );
+    expect(() => tokenizeWordsBase('')).toThrow(notEnoughKeywords);
   });
 });

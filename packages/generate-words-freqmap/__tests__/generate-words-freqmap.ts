@@ -1,4 +1,4 @@
-import getErrorMessage from '@xlorem/common/src/getErrorMessage';
+import { notEnoughKeywords } from '@xlorem/common/src/errorMessages';
 
 import tokenizeWordsBase from '../../tokenize-words/src';
 import generateFreqMapBase from '../src';
@@ -26,8 +26,6 @@ describe('throw error message correctly', () => {
   it('not-enough-keywords', () => {
     expect.assertions(1);
 
-    expect(() => generateFreqMapBase([], [], 13)).toThrow(
-      getErrorMessage('not-enough-keywords')
-    );
+    expect(() => generateFreqMapBase([], [], 13)).toThrow(notEnoughKeywords);
   });
 });

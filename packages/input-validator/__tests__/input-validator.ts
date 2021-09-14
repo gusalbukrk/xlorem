@@ -10,13 +10,13 @@ import { paramsToObjParam } from '@xlorem/common/src/utils';
 
 import inputValidatorBase from '../src';
 
-interface inputValidatorInterface {
+type inputValidatorInterface = {
   queryOrArticle: queryOrArticleType;
   unit: unitType;
   quantity: number;
   format: formatType;
   breakdown: breakdownType;
-}
+};
 
 const defaults: inputValidatorInterface = {
   queryOrArticle: '...',

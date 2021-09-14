@@ -3,21 +3,22 @@ import { articleIsDisambiguation } from '@xlorem/common/src/errorMessages';
 import { fetchResource } from './common/utils';
 
 type response = {
+  title: string;
   extract: string;
-  pageprops?: {
+  pageprops: {
     disambiguation: string;
   };
 };
 
 /**
- * Fetch Wikipedia article body.
+ * Fetch Wikipedia article summary.
  * @param title Wikipedia article title.
  * @param format Which one of the 2 formats available in the Wikipedia API.
  * @param related Wikipedia related articles titles (to recommend in case of error).
  * @throws Error if title points to a disambiguation page.
  * @returns Wikipedia article body.
  */
-async function getArticleBody(
+async function getArticleSummary(
   title: string,
   format: 'html' | 'plaintext',
   related: string[]
@@ -26,8 +27,9 @@ async function getArticleBody(
     action: 'query',
     prop: 'extracts|pageprops',
     ppprop: 'disambiguation',
-    ...(format === 'plaintext' && { explaintext: undefined }),
+    exintro: undefined,
     redirects: undefined,
+    ...(format === 'plaintext' && { explaintext: undefined }),
     titles: encodeURIComponent(title),
   };
 
@@ -36,9 +38,9 @@ async function getArticleBody(
   if (resp.pageprops?.disambiguation !== undefined)
     throw new Error(articleIsDisambiguation(related));
 
-  const body = resp.extract;
+  const summary = resp.extract;
 
-  return body;
+  return summary;
 }
 
-export default getArticleBody;
+export default getArticleSummary;

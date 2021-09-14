@@ -11,18 +11,18 @@ import generateFreqMap from 'generate-words-freqmap/src/';
 import getArticle from 'get-wikipedia-article/src/';
 import tokenizeWords from 'tokenize-words/src/';
 
-interface param {
+type param = {
   queryOrArticle: queryOrArticleType;
   unit?: unitType;
   quantity?: number;
   format?: formatType;
   breakdown?: Partial<breakdownType>;
-}
+};
 
-interface output {
+type output = {
   title: string;
   body: string;
-}
+};
 
 async function xlorem({
   queryOrArticle,
@@ -35,16 +35,19 @@ async function xlorem({
 
   inputValidator(queryOrArticle, unit, quantity, format, breakdownMerged);
 
-  const { title, body, wordsToEmphasize } =
-    typeof queryOrArticle === 'string'
-      ? await getArticle(queryOrArticle)
-      : { ...queryOrArticle, wordsToEmphasize: [] };
+  const {
+    title,
+    body,
+    related: wordsToEmphasize,
+  } = typeof queryOrArticle === 'string'
+    ? await getArticle(queryOrArticle, ['title', 'body', 'related'])
+    : { ...queryOrArticle, related: [] };
 
-  const wordsArray = tokenizeWords(body);
+  const wordsArray = tokenizeWords(body!);
 
   const freqMap = generateFreqMap(
     wordsArray,
-    wordsToEmphasize,
+    wordsToEmphasize || [],
     breakdownMerged.wordsPerSentenceMax
   );
 
@@ -62,7 +65,7 @@ async function xlorem({
   // console.log(freqMap);
   // console.log(text);
 
-  const output = { title, body: text };
+  const output = { title: title!, body: text };
   return output;
 }
 

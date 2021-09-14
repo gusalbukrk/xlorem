@@ -1,53 +1,41 @@
-import { apiBase } from './constants';
+import { queriesType } from './common/types';
+import { fetchResource } from './common/utils';
 
-interface getArticleLinksJSON {
-  continue: {
-    plcontinue: string;
-  };
-  query: {
-    pages: {
-      [key: string]: {
-        links: { title: string }[];
-      };
-    };
-  };
+type response = {
+  links: { title: string }[];
+  plcontinue: string;
+};
+
+async function getLinksRecursively(queries: queriesType): Promise<string[]> {
+  const resp = (await fetchResource(queries)) as unknown as response;
+
+  const links = resp.links.map((obj) => obj.title);
+
+  return !('plcontinue' in resp)
+    ? links
+    : links.concat(
+        await getLinksRecursively({ ...queries, plcontinue: resp.plcontinue })
+      );
 }
 
+/**
+ * Fetch all Wikipedia articles that are linked in the given article.
+ * @param title Wikipedia article title.
+ * @returns Array of Wikipedia articles titles.
+ */
 async function getArticleLinks(title: string): Promise<string[]> {
-  const escapedTitle = encodeURIComponent(title);
-  const requestURL = `${apiBase}&action=query&prop=links&pllimit=500&plnamespace=0&titles=${escapedTitle}`;
+  const queries = {
+    action: 'query',
+    prop: 'links',
+    redirects: undefined,
+    pllimit: 'max',
+    plnamespace: '0',
+    titles: encodeURIComponent(title),
+  };
 
-  const links: string[] = [];
+  const links = await getLinksRecursively(queries);
 
-  let plcontinue: string | undefined;
-
-  /* eslint-disable no-await-in-loop */
-  do {
-    const url =
-      plcontinue === undefined
-        ? requestURL
-        : `${requestURL}&plcontinue=${plcontinue}`;
-
-    const resp = await fetch(url);
-    const json = (await resp.json()) as getArticleLinksJSON;
-
-    links.push(
-      ...json.query.pages[Object.keys(json.query.pages)[0]].links.map(
-        (obj) => obj.title
-      )
-    );
-
-    plcontinue =
-      json.continue === undefined ? undefined : json.continue.plcontinue;
-  } while (plcontinue !== undefined);
-  /* eslint-enable no-await-in-loop */
-
-  const linksTokenization = links
-    .map((linkTitle) => linkTitle.replace(/["()[\]{}<>,;:?!=]+/g, ''))
-    .join(' ')
-    .split(' ');
-
-  return linksTokenization;
+  return links;
 }
 
 export default getArticleLinks;

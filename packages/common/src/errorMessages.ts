@@ -25,10 +25,14 @@ export const invalidBreakdownSentencesPerParagraph =
 export const invalidBreakdownWordsPerSentence =
   'Expected `breakdown.wordsPerSentenceMax` argument to be at least (wordsPerSentenceMin * 2 - 1).';
 
-//
 export const articleNotFound =
   'Wikipedia does not have an article with this exact title. Try again using a different query.';
-export const articleIsDisambiguation =
-  "This query points to a Wikipedia disambiguation page. You've got to be more specific.";
 export const notEnoughKeywords =
   "Text doesn't contain enough keywords (words that aren't stop words). Use another query/article.";
+
+export const articleIsDisambiguation = (suggestions: string[]): string =>
+  `This query points to a Wikipedia disambiguation page. You've got to be more specific.${
+    suggestions.length > 0
+      ? ` Query suggestions:\n- ${suggestions.splice(0, 10).join('\n- ')}.`
+      : ` No query suggestions were found.`
+  }`;

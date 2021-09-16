@@ -30,6 +30,19 @@ module.exports = {
     'prettier/prettier': 'error',
     'json/*': ['error', 'allowComments'],
 
+    'max-len': [
+      'warn',
+      {
+        code: 80, // must be the same as prettierrc's printWidth
+        comments: 100,
+        ignoreTrailingComments: true,
+        ignoreUrls: true,
+        ignoreStrings: true,
+        ignoreTemplateLiterals: true,
+        ignoreRegExpLiterals: true,
+      },
+    ],
+
     'import/order': [
       'error',
       {

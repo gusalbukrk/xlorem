@@ -1,16 +1,20 @@
 import { notEnoughKeywords } from '@xlorem/common/src/errorMessages';
 
-import normalizeArticle from './normalizeArticle';
+import normalizeText from './normalizeText';
 
-function tokenizeWords(article: string, isTest = false): string[] {
+/**
+ * Break down text string into array of words.
+ * @param text
+ * @param isTest If true, doesn't error when return is empty. Defaults to false.
+ * @returns Array of strings.
+ */
+function tokenizeWords(text: string, isTest = false): string[] {
   const wordsArray =
-    normalizeArticle(article)
+    normalizeText(text)
       .match(/\S+/g)
-      ?.filter((w) => /\w/.test(w)) || [];
+      ?.filter((word) => /\w/.test(word)) || []; // filterOutWordsNotContainingAlphanumericChars
 
-  if (!isTest && wordsArray.length === 0) {
-    throw new Error(notEnoughKeywords);
-  }
+  if (!isTest && wordsArray.length === 0) throw new Error(notEnoughKeywords);
 
   return wordsArray;
 }

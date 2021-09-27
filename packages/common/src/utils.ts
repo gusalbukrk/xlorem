@@ -20,7 +20,7 @@ export function getRandomArrayElement<T>(arr: T[]): T {
 }
 
 export function isNumeric(word: string): boolean {
-  return /^[\d.:%$]+$/.test(word);
+  return /^[\d.,:%$]+$/.test(word) && /\d/.test(word);
 }
 
 export function escapeRegExp(regexpString: string): string {
@@ -37,4 +37,15 @@ export function paramsToObjParam<I, T extends unknown[], RT>(
   return function fnWrapper(args: Partial<I> = {}) {
     return fn(...(Object.values({ ...defaults, ...args }) as T));
   };
+}
+
+/**
+ * Apply `functions` to `input` left to right.
+ * @param input
+ * @param functions Array of functions.
+ *  Function only argument and return value must be of the same type as `input`.
+ * @returns Value of the same type as `input`.
+ */
+export function reduce<T>(input: T, functions: ((input: T) => T)[]): T {
+  return functions.reduce((acc, fn) => fn(acc), input);
 }

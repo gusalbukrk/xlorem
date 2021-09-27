@@ -27,6 +27,7 @@ export const invalidBreakdownWordsPerSentence =
 
 export const articleNotFound =
   'Wikipedia does not have an article with this exact title. Try again using a different query.';
+
 export const notEnoughKeywords =
   "Text doesn't contain enough keywords (words that aren't stop words). Use another query/article.";
 

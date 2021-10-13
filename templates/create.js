@@ -34,4 +34,6 @@ import fse from 'fs-extra';
   // edit README.md
   const readmePath = join(packagePath, 'README.md');
   fs.writeFileSync(readmePath, `# ${packageName}\n`);
-})().catch((error) => console.error(error));
+})().catch(
+  (error) => console.error(error) /* eslint-disable-line no-console */
+);

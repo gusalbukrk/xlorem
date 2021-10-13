@@ -18,10 +18,10 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const abspath = (relpath) => path.join(__dirname, relpath);
 
 // otherwise error:
-// `Plugin node-resolve: Could not resolve import ... in ... using exports defined in ...`package.json`
-// you could fix this by deleting any export key (main, exports) in the imported module `package.json`
+// `Plugin node-resolve: Could not resolve import … in … using exports defined in … package.json`
+// possible fix is to delete any export key (main, exports) in the imported module `package.json`
 // which shouldn't be done in most packages because it would make importing less practical
-// e.g. @xlorem/common is not declare in here because its package.json doesn't contain any export key
+// @xlorem/common is not declare in here because its package.json doesn't contain any export key
 const includePathOptions = {
   extensions: ['.ts'],
   include: {

@@ -27,7 +27,7 @@
     "!src/**/*.{test,spec}.{js,jsx,ts,tsx}"
   ],
   "scripts": {
-    "build": "rollup -c ../../rollup.config.js",
+    "build": "rollup -c rollup.config.js",
     "lint": "eslint src/ --fix",
     "postbuild": "replace-in-file --configFile=../../.replace-in-file.cjs && eslint dist/index.d.ts --fix --no-ignore",
     "postpublish": "../../node_modules/rimraf/bin.js dist/",

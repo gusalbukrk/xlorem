@@ -5,13 +5,6 @@ import tokenizeWordsBase from '../src';
 const tokenizeWords = (str: string) => tokenizeWordsBase(str, true);
 
 describe('removeUselessStuff', () => {
-  it('text sections', () => {
-    expect.assertions(1);
-
-    const x = tokenizeWords('foo == == References == bar == See also == baz.');
-    expect(x).toStrictEqual(['foo']);
-  });
-
   it('punctuations', () => {
     expect.assertions(3);
 
@@ -63,7 +56,7 @@ describe('removeUselessStuff', () => {
   });
 });
 
-describe("handleCapitalizedLetterPrecededByDotOrStringBeginning", () => {
+describe('handleCapitalizedLetterPrecededByDotOrStringBeginning', () => {
   it("preserve capitalization if there's no other occurrence", () => {
     expect.assertions(1);
 

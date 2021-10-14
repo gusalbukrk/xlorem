@@ -2,12 +2,6 @@ import { isStopword } from 'stopwords-utils/src/';
 
 function removeUselessStuff(string: string): string {
   const removed = string
-    // remove useless sections
-    .replace(
-      /==\s(Notes|References|Further\sreading|See\salso|Sources|External\slinks|Citations)\s==.*/s,
-      ''
-    )
-
     // remove useless punctuation
     .replace(/["()[\]{}<>–—;?!\n=]+/g, ' ')
     .replace(/(\D):(\D)/g, '$1$2') // preserve colon in numbers

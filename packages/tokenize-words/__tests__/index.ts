@@ -8,7 +8,7 @@ describe('removeUselessStuff', () => {
   it('punctuations', () => {
     expect.assertions(3);
 
-    const punctuationsToBeRemoved = `"()[]{}<>,;:?!\n=–—`; // any other symbol will be preserved
+    const punctuationsToBeRemoved = `"()[]{}<>–—,;:?!\n`; // any other symbol will be preserved
 
     // symbols below will only be preserved if inside word (at any location);
     // if alone or together with other non-alphanumeric symbols, will be removed

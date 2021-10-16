@@ -4,7 +4,10 @@ import { isStopword } from 'stopwords-utils/src/';
 import { getCorrectWordCase } from '../../common/utils';
 
 /** Preserve or remove leading dot. */
-function handleLeadingDot(wordContainingLeadingDot: string, text: string) {
+function handleLeadingDot(
+  wordContainingLeadingDot: string,
+  text: string
+): string {
   const wordWithoutDot = wordContainingLeadingDot.substring(1);
 
   if (isStopword(wordWithoutDot)) return '';

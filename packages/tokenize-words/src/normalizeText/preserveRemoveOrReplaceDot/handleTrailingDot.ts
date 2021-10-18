@@ -44,7 +44,10 @@ function shouldPreserveTrailingDot(
   );
 }
 
-/** Preserve or remove trailing dot. */
+/**
+ * Preserve dot if word containing trailing dot happens more than once
+ * and more often than word without trailing dot.
+ */
 function handleTrailingDot(
   wordContainingTrailingDot: string,
   text: string

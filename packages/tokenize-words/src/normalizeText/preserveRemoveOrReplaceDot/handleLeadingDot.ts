@@ -3,7 +3,9 @@ import { isStopword } from 'stopwords-utils/src/';
 
 import { getCorrectWordCase } from '../../common/utils';
 
-/** Preserve or remove leading dot. */
+/**
+ * Preserve dot if word containing leading dot occurs more than once.
+ */
 function handleLeadingDot(
   wordContainingLeadingDot: string,
   text: string

@@ -18,7 +18,8 @@ export function getCorrectWordCase(
   if (!/[A-Z]/.test(wordCapitalized[0])) return wordCapitalized;
 
   const capitalizedRE = new RegExp(
-    `[^.\\s]\\s+${escapeAndMakeDotOptional(wordCapitalized)}`
+    // `[^.\\s]\\s+${escapeAndMakeDotOptional(wordCapitalized)}`
+    `(^|[^.\\s]\\s+)${escapeAndMakeDotOptional(wordCapitalized)}(\\s|\\.|$)`
   );
   const textHasCapitalizedWordNotPrecededByDot = capitalizedRE.test(text);
 
@@ -29,9 +30,9 @@ export function getCorrectWordCase(
   const textContainLowercaseWord = lowercaseRE.test(text);
 
   const correctCase =
-    textHasCapitalizedWordNotPrecededByDot || !textContainLowercaseWord
-      ? wordCapitalized
-      : wordLowercase;
+    textContainLowercaseWord && !textHasCapitalizedWordNotPrecededByDot
+      ? wordLowercase
+      : wordCapitalized;
 
   return correctCase;
 }

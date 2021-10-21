@@ -1,5 +1,8 @@
 import removeUselessStuff from './removeUselessStuff';
 
+// trim and collapse whitespace
+const trim = (str: string) => str.trim().replace(/\s+/g, ' ');
+
 describe('removeUselessStuff', () => {
   it('remove most punctuations', () => {
     expect.assertions(1);
@@ -14,25 +17,29 @@ describe('removeUselessStuff', () => {
   it("preserve commas & colons only when they're surrounded by numbers", () => {
     expect.assertions(2);
 
-    const a = removeUselessStuff(':81 a:b 7:1 7: Foo:Bar 13:20 :7 foo:bar :5');
-    expect(a).toBe('81 ab 7:1 7 FooBar 13:20 7 foobar 5');
+    const a = trim(
+      removeUselessStuff(':81 x:y 7:1 7: Foo:Bar 13:20 :7 foo:bar :5')
+    );
+    expect(a).toBe('81 x y 7:1 7 Foo Bar 13:20 7 foo bar 5');
 
-    const b = removeUselessStuff(',31 a,b 7, 7,1 Foo,Bar 13,20 ,7 foo,bar 9,');
-    expect(b).toBe('31 ab 7 7,1 FooBar 13,20 7 foobar 9');
+    const b = trim(
+      removeUselessStuff(',31 x,y 7, 7,1 Foo,Bar 13,20 ,7 foo,bar 9,')
+    );
+    expect(b).toBe('31 x y 7 7,1 Foo Bar 13,20 7 foo bar 9');
   });
 
   it('remove multiple dots and ellipse char', () => {
     expect.assertions(1);
 
-    const a = removeUselessStuff('foo... bar… ..baz');
-    expect(a).toBe('foo  bar   baz');
+    const a = trim(removeUselessStuff('foo... bar… ..baz'));
+    expect(a).toBe('foo bar baz');
   });
 
   it('remove newlines', () => {
     expect.assertions(1);
 
-    const a = removeUselessStuff('\n \n\n');
-    expect(a).toBe('   ');
+    const a = trim(removeUselessStuff('\n \n\n'));
+    expect(a).toBe('');
   });
 
   it('remove stopwords', () => {
@@ -46,7 +53,7 @@ describe('removeUselessStuff', () => {
     expect.assertions(1);
 
     // initials are returned surrounded by space
-    const a = removeUselessStuff('J. K.  J. R. R.');
-    expect(a).toBe(' J.K.  J.R.R. ');
+    const a = trim(removeUselessStuff('J. K.  J. R. R.'));
+    expect(a).toBe('J.K. J.R.R.');
   });
 });

@@ -11,7 +11,7 @@ function preserveCommaOrColonIfSurroundedByNumbers(
   );
 
   const preserved = before + commaOrColon;
-  const removed = before;
+  const removed = `${before} `;
 
   return isCommaOrColonSurroundedByNumbers ? preserved : removed;
 }

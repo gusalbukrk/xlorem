@@ -1,7 +1,8 @@
 import removeUselessStuff from './removeUselessStuff';
 
 // trim and collapse whitespace
-const trim = (str: string) => str.trim().replace(/\s+/g, ' ');
+const trim = (str: string, replaceBy = ' ') =>
+  str.trim().replace(/\s+/g, replaceBy);
 
 describe('removeUselessStuff', () => {
   it('remove most punctuations', () => {
@@ -17,15 +18,11 @@ describe('removeUselessStuff', () => {
   it("preserve commas & colons only when they're surrounded by numbers", () => {
     expect.assertions(2);
 
-    const a = trim(
-      removeUselessStuff(':81 x:y 7:1 7: Foo:Bar 13:20 :7 foo:bar :5')
-    );
-    expect(a).toBe('81 x y 7:1 7 Foo Bar 13:20 7 foo bar 5');
+    const a = trim(removeUselessStuff(':81 x:y 7:1 Foo:Bar 13:20 foo:bar 5:'));
+    expect(a).toBe('81 x y 7:1 Foo Bar 13:20 foo bar 5');
 
-    const b = trim(
-      removeUselessStuff(',31 x,y 7, 7,1 Foo,Bar 13,20 ,7 foo,bar 9,')
-    );
-    expect(b).toBe('31 x y 7 7,1 Foo Bar 13,20 7 foo bar 9');
+    const b = trim(removeUselessStuff(',31 x,y 7,1 Foo,Bar 13,20 foo,bar 9,'));
+    expect(b).toBe('31 x y 7,1 Foo Bar 13,20 foo bar 9');
   });
 
   it('remove multiple dots and ellipse char', () => {
@@ -52,7 +49,6 @@ describe('removeUselessStuff', () => {
   it('remove space between initials', () => {
     expect.assertions(1);
 
-    // initials are returned surrounded by space
     const a = trim(removeUselessStuff('J. K.  J. R. R.'));
     expect(a).toBe('J.K. J.R.R.');
   });

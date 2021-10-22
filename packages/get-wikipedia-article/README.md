@@ -1,12 +1,8 @@
 # get-wikipedia-article
 
-## Installation
+Fetch Wikipedia article's resources (e.g. title, body, links...).
 
-- `npm i get-wikipedia-article`
-
-## How to use
-
-### Basic usage
+## Basic Usage
 
 ```js
 import getWikipediaArticle from 'get-wikipedia-article';

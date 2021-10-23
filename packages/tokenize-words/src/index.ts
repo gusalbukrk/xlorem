@@ -9,10 +9,7 @@ import normalizeText from './normalizeText';
  * @returns Array of strings.
  */
 function tokenizeWords(text: string, isTest = false): string[] {
-  const wordsArray =
-    normalizeText(text)
-      .match(/\S+/g)
-      ?.filter((word) => /\w/.test(word)) || []; // filterOutWordsNotContainingAlphanumericChars
+  const wordsArray = normalizeText(text).match(/\S+/g) || [];
 
   if (!isTest && wordsArray.length === 0) throw new Error(notEnoughKeywords);
 

@@ -1,16 +1,22 @@
 import { escapeRegExp } from '@xlorem/common/src/utils';
 import { isStopword } from 'stopwords-utils/src/';
 
-function isWordContainingDotMoreCommon(
-  wordContainingDot: string,
-  wordWithoutDot: string,
+function shouldPreserveTrailingDot(
+  wordContainingTrailingDot: string,
   text: string
 ) {
+  const wordWithoutDot = wordContainingTrailingDot.replace(/\.$/, '');
+
   const wordWithDotNumberOfOccurrences = (
     text.match(
-      new RegExp(`(^|\\s)${escapeRegExp(wordContainingDot)}(?=\\s|$)`, 'g')
+      new RegExp(
+        `(^|\\s)${escapeRegExp(wordContainingTrailingDot)}(?=\\s|$)`,
+        'g'
+      )
     ) || []
   ).length;
+
+  if (wordWithDotNumberOfOccurrences === 1) return false;
 
   const wordWithoutDotNumberOfOccurrences = (
     text.match(
@@ -21,32 +27,9 @@ function isWordContainingDotMoreCommon(
   return wordWithDotNumberOfOccurrences > wordWithoutDotNumberOfOccurrences;
 }
 
-function shouldPreserveTrailingDot(
-  wordContainingTrailingDot: string,
-  text: string
-) {
-  const wordWithoutDot = wordContainingTrailingDot.replace(/\.$/, '');
-
-  const wordContainingTrailingDotOccursMoreThanOnce =
-    text.indexOf(wordContainingTrailingDot) !==
-    text.lastIndexOf(wordContainingTrailingDot);
-
-  const isWordContainingTrailingDotMoreCommon = () =>
-    isWordContainingDotMoreCommon(
-      wordContainingTrailingDot,
-      wordWithoutDot,
-      text
-    );
-
-  return (
-    wordContainingTrailingDotOccursMoreThanOnce &&
-    isWordContainingTrailingDotMoreCommon()
-  );
-}
-
 /**
- * Preserve dot if word containing trailing dot happens more than once
- * and more often than word without trailing dot.
+ * Preserve dot if word containing trailing dot happens more
+ * than once and more often than word without trailing dot.
  */
 function handleTrailingDot(
   wordContainingTrailingDot: string,

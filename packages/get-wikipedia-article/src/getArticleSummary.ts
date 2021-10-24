@@ -1,13 +1,8 @@
-import { articleIsDisambiguation } from '@xlorem/common/src/errorMessages';
-
+import { optionsType } from './common/types';
 import { fetchResource } from './common/utils';
 
 type response = {
-  title: string;
   extract: string;
-  pageprops: {
-    disambiguation: string;
-  };
 };
 
 /**
@@ -20,23 +15,18 @@ type response = {
  */
 async function getArticleSummary(
   title: string,
-  format: 'html' | 'plaintext',
-  related: string[]
+  format: optionsType['bodyFormat']
 ): Promise<string> {
   const queries = {
     action: 'query',
-    prop: 'extracts|pageprops',
-    ppprop: 'disambiguation',
+    prop: 'extracts',
     exintro: undefined,
     redirects: undefined,
-    ...(format === 'plaintext' && { explaintext: undefined }),
+    ...(format === 'plain' && { explaintext: undefined }),
     titles: encodeURIComponent(title),
   };
 
   const resp = (await fetchResource(queries)) as unknown as response;
-
-  if (resp.pageprops?.disambiguation !== undefined)
-    throw new Error(articleIsDisambiguation(related));
 
   const summary = resp.extract;
 

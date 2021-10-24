@@ -16,7 +16,7 @@ function extractSummaryFromBody(
 ): string | undefined {
   const plaintextRE = /^[\s\S]*?(?=\n\n\n==)/;
   const htmlRE = /^[\s\S]*?(?=\n\n<h2>)/;
-  const RE = bodyFormat === 'plaintext' ? plaintextRE : htmlRE;
+  const RE = bodyFormat === 'plain' ? plaintextRE : htmlRE;
 
   const summary = RE.exec(body)?.[0];
 

@@ -1,3 +1,5 @@
+import { articleIsDisambiguation } from '@xlorem/common/src/errorMessages';
+
 import {
   articleType,
   includeType,
@@ -11,11 +13,12 @@ import getArticleLinks from './getArticleLinks';
 import getArticleSummary from './getArticleSummary';
 import getArticleTerms from './getArticleTerms';
 import getMatchingArticlesTitles from './getMatchingArticlesTitles';
+import queryPointsToADisambiguationPage from './queryPointsToADisambiguationPage';
 
 const includeDefault: includeType = ['title', 'body'];
 
 const optionsDefaults: optionsType = {
-  bodyFormat: 'plaintext',
+  bodyFormat: 'plain',
 };
 
 /**
@@ -35,6 +38,7 @@ async function getWikipediaArticle(
 
   const article: articleType = {};
 
+  // fetch title, related
   if (include.includes('title') && include.includes('related')) {
     const [title, ...related] = await getMatchingArticlesTitles(query);
     article.title = title;
@@ -51,36 +55,35 @@ async function getWikipediaArticle(
   // are allowed because `redirects` parameter is being used
   const titleQuery = article.title || query;
 
-  if (include.includes('body')) {
-    article.body = await getArticleBody(
-      titleQuery,
-      options.bodyFormat,
-      article.related || []
+  if (await queryPointsToADisambiguationPage(titleQuery)) {
+    throw new Error(
+      articleIsDisambiguation(article.related || [] /* suggestions */)
     );
   }
 
+  // fetch body
+  if (include.includes('body')) {
+    article.body = await getArticleBody(titleQuery, options.bodyFormat);
+  }
+
+  // fetch summary
   if (include.includes('summary')) {
-    const summary = article.body
+    article.summary = article.body
       ? extractSummaryFromBody(article.body, options.bodyFormat)
-      : await getArticleSummary(
-          titleQuery,
-          options.bodyFormat,
-          article.related || []
-        );
-
-    article.summary = summary;
+      : await getArticleSummary(titleQuery, options.bodyFormat);
   }
 
+  // fetch categories
   if (include.includes('categories')) {
-    const categories = await getArticleCategories(titleQuery);
-    article.categories = categories;
+    article.categories = await getArticleCategories(titleQuery);
   }
 
+  // fetch links
   if (include.includes('links')) {
-    const links = await getArticleLinks(titleQuery);
-    article.links = links;
+    article.links = await getArticleLinks(titleQuery);
   }
 
+  // fetch terms
   const termsToInclude = (
     ['alias', 'label', 'description'] as (keyof termsType)[]
   ).filter((term) => include.includes(term));

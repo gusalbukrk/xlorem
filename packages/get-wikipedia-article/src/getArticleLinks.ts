@@ -14,7 +14,10 @@ async function getLinksRecursively(queries: queriesType): Promise<string[]> {
   return !('plcontinue' in resp)
     ? links
     : links.concat(
-        await getLinksRecursively({ ...queries, plcontinue: resp.plcontinue })
+        await getLinksRecursively({
+          ...queries,
+          plcontinue: encodeURIComponent(resp.plcontinue),
+        })
       );
 }
 

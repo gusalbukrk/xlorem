@@ -18,7 +18,7 @@ export type articleType = Partial<
 export type includeType = Array<keyof articleType>;
 
 export type optionsType = {
-  bodyFormat: 'html' | 'plaintext';
+  bodyFormat: 'html' | 'plain';
 };
 
 export type queriesType = {

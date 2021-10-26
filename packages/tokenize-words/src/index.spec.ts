@@ -13,16 +13,18 @@ describe('tokenizeWords (main function)', () => {
     expect.assertions(1);
 
     const x = tokenizeWords(
-      'The quux. on .NET foo.\nFoo, which qux, and quux. or foobar.By - G. A. (example.com)'
+      "The foo, baz. and bar.\nFoo is on baz. and qux.Foo 7.5% isn't .foobar! - G. A. (example.com)"
     );
 
     expect(x).toStrictEqual([
-      'quux.',
-      'NET',
       'foo',
+      'baz.',
+      'bar',
       'foo',
+      'baz.',
       'qux',
-      'quux.',
+      'foo',
+      '7.5%',
       'foobar',
       'G.A.',
       'example.com',

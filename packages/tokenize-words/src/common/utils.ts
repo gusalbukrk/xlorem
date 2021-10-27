@@ -6,8 +6,9 @@ const escapeAndMakeDotOptional = (str: string) =>
 /* eslint-disable import/prefer-default-export */
 
 /**
- * Preserve capitalization if capitalized word exists in text not being
- * preceded by dot or if text doesn't contain word in lowercase.
+ * Convert to lowercase if both are true:
+ * - text contain word in lowercase
+ * - all capitalized occurrences are preceded by dot or string beginning
  */
 export function getCorrectWordCase(
   wordCapitalized: string,
@@ -18,10 +19,10 @@ export function getCorrectWordCase(
   if (!/[A-Z]/.test(wordCapitalized[0])) return wordCapitalized;
 
   const capitalizedRE = new RegExp(
-    // `[^.\\s]\\s+${escapeAndMakeDotOptional(wordCapitalized)}`
-    `(^|[^.\\s]\\s+)${escapeAndMakeDotOptional(wordCapitalized)}(\\s|\\.|$)`
+    `[^.\\s]\\s+${escapeAndMakeDotOptional(wordCapitalized)}(\\s|\\.|$)`
   );
-  const textHasCapitalizedWordNotPrecededByDot = capitalizedRE.test(text);
+  const textHasCapitalizedWordNotPrecededByDotOrStringBeginning =
+    capitalizedRE.test(text);
 
   const wordLowercase = wordCapitalized.toLowerCase();
   const lowercaseRE = new RegExp(
@@ -30,7 +31,8 @@ export function getCorrectWordCase(
   const textContainLowercaseWord = lowercaseRE.test(text);
 
   const correctCase =
-    textContainLowercaseWord && !textHasCapitalizedWordNotPrecededByDot
+    textContainLowercaseWord &&
+    !textHasCapitalizedWordNotPrecededByDotOrStringBeginning
       ? wordLowercase
       : wordCapitalized;
 

@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 
-export interface freqMapWordAsKeyType {
+export type freqMapWordAsKeyType = {
   [key: string]: number;
-}
+};
 
 /* eslint-enable import/prefer-default-export */

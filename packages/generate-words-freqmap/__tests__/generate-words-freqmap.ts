@@ -1,13 +1,10 @@
 import { notEnoughKeywords } from '@xlorem/common/src/errorMessages';
 
-import tokenizeWordsBase from '../../tokenize-words/src';
-import generateFreqMapBase from '../src';
-
-const generateFreqMap = (words: string[]) =>
-  generateFreqMapBase(words, [], 0, true);
-const tokenizeWords = (str: string) => tokenizeWordsBase(str, true);
+import tokenizeWords from '../../tokenize-words/src';
+import generateFreqMap from '../src';
 
 describe('generateFreqMap', () => {
+  // test function with no optional argument
   it('freqMap is generated correctly', () => {
     expect.assertions(1);
 
@@ -17,15 +14,21 @@ describe('generateFreqMap', () => {
       .fill('qux')
       .join(' ')}`;
 
-    const x = generateFreqMap(tokenizeWords(text) || []);
+    const x = generateFreqMap(tokenizeWords(text) || [], [], {
+      tierValueMin: 3,
+    });
     expect(x).toStrictEqual({ 3: ['foo'], 20: ['qux'] });
   });
-});
 
-describe('throw error message correctly', () => {
-  it('not-enough-keywords', () => {
+  // test every `options` argument
+  // test default `options`
+  // test options.emphasizeBy is decimal (not an integer)
+
+  it('not-enough-keywords error', () => {
     expect.assertions(1);
 
-    expect(() => generateFreqMapBase([], [], 13)).toThrow(notEnoughKeywords);
+    expect(() => generateFreqMap([], [], { wordsQuantityMin: 1 })).toThrow(
+      notEnoughKeywords
+    );
   });
 });

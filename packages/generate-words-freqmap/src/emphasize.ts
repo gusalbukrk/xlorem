@@ -1,13 +1,14 @@
-import { freqMapWordAsKeyType } from './types';
+import { freqMapWordAsKeyType } from './common/types';
 
 function emphasize(
   freqMapWordAsKey: freqMapWordAsKeyType,
-  wordsToEmphasize: string[]
+  wordsToEmphasize: string[],
+  emphasizeBy: number,
 ): freqMapWordAsKeyType {
   const freqMap = { ...freqMapWordAsKey };
 
   Object.keys(freqMap).forEach((word) => {
-    if (wordsToEmphasize.includes(word)) freqMap[word] *= 2;
+    if (wordsToEmphasize.includes(word)) Math.round(freqMap[word] *= emphasizeBy);
   });
 
   return freqMap;

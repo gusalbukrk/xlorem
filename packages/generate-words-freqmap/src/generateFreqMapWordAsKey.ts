@@ -1,4 +1,4 @@
-import { freqMapWordAsKeyType } from './types';
+import { freqMapWordAsKeyType } from './common/types';
 
 function generateFreqMapWordAsKey(wordsArray: string[]): freqMapWordAsKeyType {
   const freqMap: freqMapWordAsKeyType = {};

@@ -1,6 +1,6 @@
 import { freqMapType } from '@xlorem/common/src/types';
 
-import { freqMapWordAsKeyType } from './types';
+import { freqMapWordAsKeyType } from './common/types';
 
 function generateFreqMapWeightAsKey(
   freqMapWordAsKey: freqMapWordAsKeyType

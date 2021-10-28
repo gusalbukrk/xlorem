@@ -1,12 +1,12 @@
 import { freqMapType } from '@xlorem/common/src/types';
 
-function shortenFreqMap(freqMap: freqMapType): freqMapType {
+function shortenFreqMap(freqMap: freqMapType, tierValueMin: number): freqMapType {
   const freqMapShorten: freqMapType = {};
 
   Object.keys(freqMap)
     .map((weight) => Number(weight))
     .forEach((weight) => {
-      if (weight < 3) return;
+      if (weight < tierValueMin) return;
 
       if (weight <= 20) {
         freqMapShorten[weight] = freqMap[weight];

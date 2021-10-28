@@ -15,7 +15,8 @@ describe('generateFreqMap', () => {
       .join(' ')}`;
 
     const x = generateFreqMap(tokenizeWords(text) || [], [], {
-      tierValueMin: 3,
+      tierWeightMin: 3,
+      mergePosteriorTiersAt: 20,
     });
     expect(x).toStrictEqual({ 3: ['foo'], 20: ['qux'] });
   });

@@ -9,19 +9,25 @@ import shortenFreqMap from './shortenFreqMap';
 
 /**
  * @property emphasizeBy `wordsToEmphasize` will have their weight multiplied by this number.
- * @property wordsQuantityMin Returned freqMap should have at least this quantity of words.
- * @property tierValueMin Returned freqMap won't have any tier which value is less than this number.
+ * @property wordsQuantityMin Return should have at least this quantity of words, otherwise error.
+ * @property tierWeightMin Filter out from return any tier which weight is less than this number.
+ * @property tierWeightMax Filter out from return any tier which weight is more than this number.
+ * @property mergePosteriorTiersAt Merge at this tier all posterior tiers (tiers w/ higher weight).
  */
 type optionsType = {
   emphasizeBy: number;
   wordsQuantityMin: number;
-  tierValueMin: number;
+  tierWeightMin: number;
+  tierWeightMax: number;
+  mergePosteriorTiersAt: number;
 };
 
 const optionsDefault: optionsType = {
   emphasizeBy: 2, // double weight of any word in `wordsToEmphasize`
   wordsQuantityMin: 0, // don't throw error even if freqMap doesn't contain any word
-  tierValueMin: 1, // don't filter out any tier
+  tierWeightMin: 1, // don't filter out any tier
+  tierWeightMax: -1, // disable option
+  mergePosteriorTiersAt: -1, // disable option
 };
 
 function generateFreqMap(
@@ -36,8 +42,15 @@ function generateFreqMap(
     wordsToEmphasize || [],
     options.emphasizeBy
   );
+
   const freqMapWeightAsKey = generateFreqMapWeightAsKey(freqMapWordAsKey);
-  const freqMapShortened = shortenFreqMap(freqMapWeightAsKey, options.tierValueMin);
+
+  const freqMapShortened = shortenFreqMap(
+    freqMapWeightAsKey,
+    options.tierWeightMin,
+    options.tierWeightMax,
+    options.mergePosteriorTiersAt
+  );
 
   if (isFreqMapTooShort(freqMapShortened, options.wordsQuantityMin))
     throw new Error(notEnoughKeywords);

@@ -5,13 +5,13 @@ import normalizeText from './normalizeText';
 /**
  * Break down text string into array of words.
  * @param text
- * @param isTest If true, doesn't error when return is empty. Defaults to false.
- * @returns Array of strings.
+ * @throws Error if tokenization results in an empty array.
+ * @returns Array of words.
  */
-function tokenizeWords(text: string, isTest = false): string[] {
+function tokenizeWords(text: string): string[] {
   const wordsArray = normalizeText(text).match(/\S+/g) || [];
 
-  if (!isTest && wordsArray.length === 0) throw new Error(notEnoughKeywords());
+  if (wordsArray.length === 0) throw new Error(notEnoughKeywords());
 
   return wordsArray;
 }

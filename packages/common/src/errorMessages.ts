@@ -28,8 +28,15 @@ export const invalidBreakdownWordsPerSentence =
 export const articleNotFound =
   'Wikipedia does not have an article with this exact title. Try again using a different query.';
 
-export const notEnoughKeywords =
-  "Text doesn't contain enough keywords (words that aren't stop words). Use another query/article.";
+export const notEnoughKeywords = (
+  minimum?: number,
+  received?: number
+): string =>
+  `Text doesn't contain enough keywords (words that aren't stop words). ${
+    minimum !== undefined && received !== undefined
+      ? `Minimum number of keywords required: ${minimum}. Number of keywords received: ${received}.`
+      : ``
+  }`;
 
 export const articleIsDisambiguation = (suggestions: string[]): string =>
   `This query points to a Wikipedia disambiguation page. You've got to be more specific.${

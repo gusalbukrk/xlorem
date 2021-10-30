@@ -1,5 +1,3 @@
-import { notEnoughKeywords } from '@xlorem/common/src/errorMessages';
-
 import tokenizeWords from '../../tokenize-words/src';
 import generateFreqMap from '../src';
 
@@ -29,7 +27,7 @@ describe('generateFreqMap', () => {
     expect.assertions(1);
 
     expect(() => generateFreqMap([], [], { wordsQuantityMin: 1 })).toThrow(
-      notEnoughKeywords
+      "Text doesn't contain enough keywords (words that aren't stop words)."
     );
   });
 });

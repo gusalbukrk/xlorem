@@ -1,15 +1,12 @@
 import { freqMapType } from '@xlorem/common/src/types';
 
-function isFreqMapTooShort(
-  freqMap: freqMapType,
-  wordsQuantityMin: number
-): boolean {
+function getFreqMapWordsQuantity(freqMap: freqMapType): number {
   const wordsQuantity = Object.values(freqMap).reduce(
     (acc, cur) => acc + cur.length,
     0
   );
 
-  return wordsQuantity < wordsQuantityMin;
+  return wordsQuantity;
 }
 
-export default isFreqMapTooShort;
+export default getFreqMapWordsQuantity;

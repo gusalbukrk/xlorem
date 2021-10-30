@@ -11,7 +11,7 @@ import normalizeText from './normalizeText';
 function tokenizeWords(text: string, isTest = false): string[] {
   const wordsArray = normalizeText(text).match(/\S+/g) || [];
 
-  if (!isTest && wordsArray.length === 0) throw new Error(notEnoughKeywords);
+  if (!isTest && wordsArray.length === 0) throw new Error(notEnoughKeywords());
 
   return wordsArray;
 }

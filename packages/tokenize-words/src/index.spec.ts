@@ -1,12 +1,12 @@
-import { notEnoughKeywords } from '@xlorem/common/src/errorMessages';
-
 import tokenizeWords from '.';
 
 describe('tokenizeWords (main function)', () => {
   it('throw error `not-enough-keywords`', () => {
     expect.assertions(1);
 
-    expect(() => tokenizeWords('')).toThrow(notEnoughKeywords);
+    expect(() => tokenizeWords('')).toThrow(
+      "Text doesn't contain enough keywords (words that aren't stop words)."
+    );
   });
 
   it('integration test', () => {

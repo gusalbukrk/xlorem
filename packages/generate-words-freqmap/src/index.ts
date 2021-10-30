@@ -4,7 +4,7 @@ import { freqMapType } from '@xlorem/common/src/types';
 import emphasize from './emphasize';
 import generateFreqMapWeightAsKey from './generateFreqMapWeightAsKey';
 import generateFreqMapWordAsKey from './generateFreqMapWordAsKey';
-import isFreqMapTooShort from './isFreqMapTooShort';
+import getFreqMapWordsQuantity from './isFreqMapTooShort';
 import shortenFreqMap from './shortenFreqMap';
 
 /**
@@ -52,8 +52,13 @@ function generateFreqMap(
     options.mergePosteriorTiersAt
   );
 
-  if (isFreqMapTooShort(freqMapShortened, options.wordsQuantityMin))
-    throw new Error(notEnoughKeywords);
+  const freqMapWordsQuantity = getFreqMapWordsQuantity(freqMapShortened);
+
+  if (freqMapWordsQuantity < options.wordsQuantityMin) {
+    throw new Error(
+      notEnoughKeywords(options.wordsQuantityMin, freqMapWordsQuantity)
+    );
+  }
 
   return freqMapShortened;
 }

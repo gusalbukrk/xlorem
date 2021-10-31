@@ -4,7 +4,7 @@ import { freqMapType } from '@xlorem/common/src/types';
 import emphasize from './emphasize';
 import generateFreqMapWeightAsKey from './generateFreqMapWeightAsKey';
 import generateFreqMapWordAsKey from './generateFreqMapWordAsKey';
-import getFreqMapWordsQuantity from './isFreqMapTooShort';
+import getFreqMapWordsQuantity from './getFreqMapWordsQuantity';
 import shortenFreqMap from './shortenFreqMap';
 
 /**
@@ -30,6 +30,14 @@ const optionsDefault: optionsType = {
   mergePosteriorTiersAt: -1, // disable option
 };
 
+/**
+ * Generate `freqMap` from `wordsArray`.
+ * @param wordsArray
+ * @param wordsToEmphasize Subset of `wordsArray` to emphasize.
+ * @param optionsArg Miscellaneous options. See more at {@link optionsType}.
+ * @throws Error if `freqMap` has less words than expected.
+ * @returns freqMap.
+ */
 function generateFreqMap(
   wordsArray: string[],
   wordsToEmphasize?: string[],
@@ -43,16 +51,14 @@ function generateFreqMap(
     options.emphasizeBy
   );
 
-  const freqMapWeightAsKey = generateFreqMapWeightAsKey(freqMapWordAsKey);
-
-  const freqMapShortened = shortenFreqMap(
-    freqMapWeightAsKey,
+  const freqMap = shortenFreqMap(
+    generateFreqMapWeightAsKey(freqMapWordAsKey),
     options.tierWeightMin,
     options.tierWeightMax,
     options.mergePosteriorTiersAt
   );
 
-  const freqMapWordsQuantity = getFreqMapWordsQuantity(freqMapShortened);
+  const freqMapWordsQuantity = getFreqMapWordsQuantity(freqMap);
 
   if (freqMapWordsQuantity < options.wordsQuantityMin) {
     throw new Error(
@@ -60,7 +66,7 @@ function generateFreqMap(
     );
   }
 
-  return freqMapShortened;
+  return freqMap;
 }
 
 export default generateFreqMap;

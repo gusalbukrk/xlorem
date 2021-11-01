@@ -23,8 +23,7 @@
   "files": [
     "dist",
     "src",
-    "!src/**/__tests__",
-    "!src/**/*.{test,spec}.{js,jsx,ts,tsx}"
+    "!src/**/*.spec.ts"
   ],
   "scripts": {
     "build": "rollup -c ../../rollup.config.js",
@@ -33,6 +32,9 @@
     "postpublish": "../../node_modules/rimraf/bin.js dist/",
     "prepublishOnly": "npm run build",
     "test": "jest --passWithNoTests"
+  },
+  "devDependencies": {
+    "tokenize-words": "file:../tokenize-words"
   },
   "dependencies": {
     "@xlorem/common": "file:../common"

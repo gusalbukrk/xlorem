@@ -1,5 +1,6 @@
-import tokenizeWords from '../../tokenize-words/src';
-import generateFreqMap from '../src';
+import tokenizeWords from 'tokenize-words/src';
+
+import generateFreqMap from '.';
 
 describe('generateFreqMap', () => {
   // test function with no optional argument

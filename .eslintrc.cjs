@@ -116,12 +116,14 @@ module.exports = {
     },
     {
       files: ['./*.{js,cjs}'], // root config files
-      // goal of this rule is to prevent MODULE_NOT_FOUND errors after `npm publish`
-      // production files can import only other production files & dependencies/peerDependencies
-      // production files = all in `files` field at `package.json`; anything not in `.npmignore`
-      // you can only import `devDependencies` in files that won't be published
-      // i.e. files not in `files` field at `package.json` or files in `.npmignore`
       rules: {
+        // goal of this rule is to prevent MODULE_NOT_FOUND errors after `npm publish`
+        // production files can import only other production files & dependencies/peerDependencies
+        // production files = all in `files` field at `package.json`; anything not in `.npmignore`
+        // you can only import `devDependencies` in files that won't be published
+        // NOTE: `eslint-plugin-node` don't expand braces, which can result in false positive errors
+        // https://github.com/mysticatea/eslint-plugin-node/issues/199
+        // if this happen, edit `package.json`'s `files` field to not use braces in globs
         'node/no-unpublished-import': ['off'],
       },
     },

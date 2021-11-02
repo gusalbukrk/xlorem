@@ -12,7 +12,7 @@ function emphasize(
 
   Object.keys(freqMap).forEach((word) => {
     if (wordsToEmphasize.includes(word))
-      Math.round((freqMap[word] *= emphasizeBy));
+      freqMap[word] = Math.round(freqMap[word] * emphasizeBy);
   });
 
   return freqMap;

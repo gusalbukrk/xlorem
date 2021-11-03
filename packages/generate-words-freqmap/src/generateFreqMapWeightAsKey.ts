@@ -2,21 +2,15 @@ import { freqMapType } from '@xlorem/common/src/types';
 
 import { freqMapWordAsKeyType } from './common/types';
 
-/** **freqMapWeightAsKey** example: `{ 1: ['foo', 'bar'], 3: ['baz'] }` */
+/** freqMapWeightAsKey** example: `{ 1: ['foo', 'bar'], 3: ['baz'] }` */
 function generateFreqMapWeightAsKey(
   freqMapWordAsKey: freqMapWordAsKeyType
 ): freqMapType {
-  const freqMap: freqMapType = {};
-
-  Object.keys(freqMapWordAsKey).forEach((word) => {
+  return Object.keys(freqMapWordAsKey).reduce((freqMap, word) => {
     const weight = freqMapWordAsKey[word];
 
-    if (freqMap[weight] === undefined) freqMap[weight] = [];
-
-    freqMap[weight].push(word);
-  });
-
-  return freqMap;
+    return { ...freqMap, [weight]: (freqMap[weight] || []).concat(word) };
+  }, {} as freqMapType);
 }
 
 export default generateFreqMapWeightAsKey;

@@ -8,14 +8,16 @@ function emphasize(
   wordsToEmphasize: string[],
   emphasizeBy: number
 ): freqMapWordAsKeyType {
-  const freqMap = { ...freqMapWordAsKey };
-
-  Object.keys(freqMap).forEach((word) => {
-    if (wordsToEmphasize.includes(word))
-      freqMap[word] = Math.round(freqMap[word] * emphasizeBy);
-  });
-
-  return freqMap;
+  return wordsToEmphasize.reduce(
+    (freqMap, word) =>
+      freqMap[word] === undefined
+        ? freqMap
+        : {
+            ...freqMap,
+            [word]: Math.round(freqMap[word] * emphasizeBy),
+          },
+    freqMapWordAsKey
+  );
 }
 
 export default emphasize;

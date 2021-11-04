@@ -1,8 +1,6 @@
 import { freqMapType } from '@xlorem/common/src/types';
 
-/**
- * If required by `options` (last 3 arguments), reduce the quantity of tiers in `freqMap`.
- */
+/** If required by `options`, reduce the quantity of tiers in `freqMap`. */
 function shortenFreqMap(
   freqMap: freqMapType,
   tierWeightMin: number,
@@ -22,8 +20,8 @@ function shortenFreqMap(
       return shortened;
     }
 
-    // if current weight is more than mergePosteriorTiersAt,
-    // merge current tier in mergePosteriorTiersAt tier
+    // if current weight is more than mergePosteriorTiersAt
+    // merge current tier into mergePosteriorTiersAt tier
     if (
       mergePosteriorTiersAt !== -1 && // -1 would indicate that `mergePosteriorTiersAt` functionality is disabled
       weight > mergePosteriorTiersAt

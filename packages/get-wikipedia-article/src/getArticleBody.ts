@@ -10,7 +10,6 @@ type response = {
  * @param title Wikipedia article title.
  * @param format Which one of the 2 formats available in the Wikipedia API.
  * @param related Wikipedia related articles titles (to recommend in case of error).
- * @throws Error if title points to a disambiguation page.
  * @returns Wikipedia article body.
  */
 async function getArticleBody(

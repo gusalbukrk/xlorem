@@ -26,6 +26,8 @@ const optionsDefaults: optionsType = {
  * @param query Search string.
  * @param include Which resources to include in the return object.
  * @param options
+ * @throws Error if `query` doesn't return any results.
+ * @throws Error if `article.title` points to a disambiguation page.
  * @returns Object containing requested resources.
  */
 async function getWikipediaArticle(
@@ -40,6 +42,7 @@ async function getWikipediaArticle(
 
   // fetch title, related
   if (include.includes('title') && include.includes('related')) {
+    // first result will be selected as the article to be fetched
     const [title, ...related] = await getMatchingArticlesTitles(query);
     article.title = title;
     article.related = related;
@@ -55,6 +58,8 @@ async function getWikipediaArticle(
   // are allowed because `redirects` parameter is being used
   const titleQuery = article.title || query;
 
+  // the only option other than to make a separate request at main function checking if page is
+  // disambiguation, would be to check if page is disambiguation at every resource request
   if (await queryPointsToADisambiguationPage(titleQuery)) {
     throw new Error(
       articleIsDisambiguation(article.related || [] /* suggestions */)

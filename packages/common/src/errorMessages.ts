@@ -28,19 +28,15 @@ export const invalidBreakdownWordsPerSentence =
 export const articleNotFound =
   'Wikipedia does not have an article with this exact title. Try again using a different query.';
 
-export const notEnoughKeywords = (
-  minimum?: number,
-  received?: number
-): string =>
-  `Text doesn't contain enough keywords (words that aren't stop words). ${
-    minimum !== undefined && received !== undefined
-      ? `Minimum number of keywords required: ${minimum}. Number of keywords received: ${received}.`
-      : ``
-  }`;
-
 export const articleIsDisambiguation = (suggestions: string[]): string =>
   `This query points to a Wikipedia disambiguation page. You've got to be more specific.${
     suggestions.length > 0
       ? ` Query suggestions:\n- ${suggestions.splice(0, 10).join('\n- ')}.`
       : ` No query suggestions were found.`
   }`;
+
+export const notEnoughWordsInWordsArray = (minimum: number, received: number) =>
+  `Given \`text\` doesn't have enough keywords to construct \`wordsArray\` containing the minimum quantity of words required. Minimum number of words required: ${minimum}. Number of words received: ${received}.`;
+
+export const notEnoughWordsInFreqMap = (minimum: number, received: number) =>
+  `Given \`wordsArray\` doesn't have enough words to construct \`freqMap\` containing the minimum quantity of words required. Minimum number of words required: ${minimum}. Number of words received: ${received}.`;

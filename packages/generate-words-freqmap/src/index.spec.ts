@@ -88,11 +88,11 @@ describe('generateFreqMap returns correctly', () => {
 });
 
 describe('generateFreqMap throws errors correctly', () => {
-  it('`not-enough-keywords` error', () => {
+  it('`notEnoughWordsInFreqMap` error', () => {
     expect.assertions(1);
 
     expect(() => generateFreqMap([], [], { wordsQuantityMin: 1 })).toThrow(
-      "Text doesn't contain enough keywords (words that aren't stop words)."
+      "Given `wordsArray` doesn't have enough words to construct `freqMap` containing the minimum quantity of words required."
     );
   });
 });

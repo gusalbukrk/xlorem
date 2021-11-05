@@ -1,4 +1,4 @@
-import { notEnoughKeywords } from '@xlorem/common/src/errorMessages';
+import { notEnoughWordsInFreqMap } from '@xlorem/common/src/errorMessages';
 import { freqMapType } from '@xlorem/common/src/types';
 
 import emphasize from './emphasize';
@@ -62,7 +62,7 @@ function generateFreqMap(
 
   if (freqMapWordsQuantity < options.wordsQuantityMin) {
     throw new Error(
-      notEnoughKeywords(options.wordsQuantityMin, freqMapWordsQuantity)
+      notEnoughWordsInFreqMap(options.wordsQuantityMin, freqMapWordsQuantity)
     );
   }
 

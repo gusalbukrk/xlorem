@@ -1,22 +1,23 @@
 import tokenizeWords from '.';
 
 describe('tokenizeWords (main function)', () => {
-  it('throw error `not-enough-keywords`', () => {
+  it('`notEnoughWordsInWordsArray` error', () => {
     expect.assertions(1);
 
-    expect(() => tokenizeWords('')).toThrow(
-      "Text doesn't contain enough keywords (words that aren't stop words)."
+    const a = () => tokenizeWords('', { lengthMin: 1 });
+    expect(a).toThrow(
+      "Given `text` doesn't have enough keywords to construct `wordsArray` containing the minimum quantity of words required."
     );
   });
 
   it('integration test', () => {
     expect.assertions(1);
 
-    const x = tokenizeWords(
+    const a = tokenizeWords(
       "The foo, baz. and bar.\nFoo is on baz. and qux.Foo 7.5% isn't .foobar! - G. A. (example.com)"
     );
 
-    expect(x).toStrictEqual([
+    expect(a).toStrictEqual([
       'foo',
       'baz.',
       'bar',

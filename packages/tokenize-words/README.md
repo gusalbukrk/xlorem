@@ -1,6 +1,6 @@
 # tokenize-words
 
-Break down string into array of words.
+Break down text into array of words.
 
 ## Basic Usage
 

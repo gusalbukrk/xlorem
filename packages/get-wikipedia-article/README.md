@@ -1,6 +1,6 @@
 # get-wikipedia-article
 
-Fetch Wikipedia article's resources (e.g. title, body, links...).
+Fetch Wikipedia article resources (e.g. title, body, links...).
 
 ## Basic Usage
 
@@ -22,12 +22,9 @@ import getWikipediaArticle from 'get-wikipedia-article';
 - `options` = object containing miscellaneous options
   - `bodyFormat` = `plain` (default) or `html`
 
-## Known Issues
-
 ## Todo
 
 - replace all `encodeURIComponent` calls with `URL` constructor
 - implement warnings about:
   - progress (warning when starting to fetch each resource)
   - getArticleTerms doesn't return all terms requested
-- add language option

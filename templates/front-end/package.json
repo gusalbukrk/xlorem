@@ -13,7 +13,7 @@
   },
   "scripts": {
     "build": "tsc && webpack --node-env production --config webpack.prod.js",
-    "lint": "eslint src/ --fix",
+    "lint": "eslint src/ --fix; cspell \"**\" -c ../../cspell.config.cjs --no-progress",
     "start": "webpack serve --node-env development --config webpack.dev.js",
     "test": "jest --passWithNoTests"
   },

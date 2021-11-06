@@ -5,7 +5,6 @@ module.exports = {
 
   ignorePaths: [
     'cspell.config.cjs', // otherwise, would've to be included in every `overrides.filename`
-    // 'packages/xlorem/tests/article.json', // ignore because it contains latin words
   ],
 
   overrides: [

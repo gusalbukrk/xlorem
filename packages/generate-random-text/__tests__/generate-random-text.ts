@@ -17,18 +17,18 @@ import { isStopword } from 'stopwords-utils/src/';
 
 import generateTextBase from '../src';
 
-interface generateTextInterface {
+type generateTextInterface = {
   freqMap: freqMapType;
   unit: unitType;
   quantity: number;
   format: formatType;
   breakdown: breakdownType;
   isTest: boolean | undefined;
-}
+};
 
 const defaults: generateTextInterface = {
   freqMap: {
-    3: ['dolor', 'sit', 'amet'],
+    3: ['dolor', 'sit', 'est'],
     7: ['placeholder', 'publishing', 'design', '1914'],
     10: ['filler', 'text', 'latin', '1960'],
     20: ['lorem', 'ipsum'],

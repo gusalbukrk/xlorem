@@ -74,7 +74,7 @@ describe('main function throws errors correctly', () => {
   it('articleNotFound', async () => {
     expect.assertions(1);
 
-    await expect(getWikipediaArticle('bbyyzzaa')).rejects.toThrow(
+    await expect(getWikipediaArticle('xxyyzz')).rejects.toThrow(
       articleNotFound
     );
   });

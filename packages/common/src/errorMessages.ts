@@ -35,8 +35,14 @@ export const articleIsDisambiguation = (suggestions: string[]): string =>
       : ` No query suggestions were found.`
   }`;
 
-export const notEnoughWordsInWordsArray = (minimum: number, received: number) =>
+export const notEnoughWordsInWordsArray = (
+  minimum: number,
+  received: number
+): string =>
   `Given \`text\` doesn't have enough keywords to construct \`wordsArray\` containing the minimum quantity of words required. Minimum number of words required: ${minimum}. Number of words received: ${received}.`;
 
-export const notEnoughWordsInFreqMap = (minimum: number, received: number) =>
+export const notEnoughWordsInFreqMap = (
+  minimum: number,
+  received: number
+): string =>
   `Given \`wordsArray\` doesn't have enough words to construct \`freqMap\` containing the minimum quantity of words required. Minimum number of words required: ${minimum}. Number of words received: ${received}.`;

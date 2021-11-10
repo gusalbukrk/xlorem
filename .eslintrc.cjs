@@ -3,7 +3,7 @@ module.exports = {
 
   ignorePatterns: ['dist/'],
 
-  plugins: ['prettier', 'jest', 'promise'],
+  plugins: ['prettier', 'jest', 'promise', 'jest-formatting'],
 
   env: {
     browser: true,
@@ -24,6 +24,7 @@ module.exports = {
     'plugin:json/recommended',
     'plugin:promise/recommended',
     'plugin:node/recommended',
+    'plugin:jest-formatting/recommended',
   ],
 
   rules: {

@@ -93,6 +93,7 @@
   "dependencies": {
     "@xlorem/common": "file:packages/common",
     "@xlorem/input-validator": "file:packages/input-validator",
+    "eslint-plugin-jest-formatting": "^3.0.0",
     "generate-random-text": "file:packages/generate-random-text",
     "generate-words-freqmap": "file:packages/generate-words-freqmap",
     "get-wikipedia-article": "file:packages/get-wikipedia-article",

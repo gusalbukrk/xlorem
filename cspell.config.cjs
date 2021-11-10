@@ -5,23 +5,32 @@ module.exports = {
 
   ignorePaths: [
     'cspell.config.cjs', // otherwise, would've to be included in every `overrides.filename`
+    '.gitignore',
+    '.git/',
+    '.husky/_/',
   ],
 
   overrides: [
     {
-      filename: './ISSUES.md',
-      words: ['includepaths'],
+      filename: [
+        '.babelrc.cjs',
+        '.eslintrc.cjs',
+        'package.json',
+        'rollup.config.js',
+        'ISSUES.md',
+      ], // config files
+      words: [
+        'npmignore',
+        'corejs',
+        'includepaths',
+        'stylelint',
+        'abspath',
+        'relpath',
+        'loglevel',
+      ],
     },
     {
-      filename: './package.json',
-      words: ['loglevel', 'includepaths', 'stylelint'],
-    },
-    {
-      filename: './rollup.config.js',
-      words: ['includepaths', 'abspath', 'relpath'],
-    },
-    {
-      filename: 'packages/get-wikipedia-article/**/*',
+      filename: 'packages/get-wikipedia-article/',
       words: [
         'exintro',
         'explaintext',

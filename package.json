@@ -10,7 +10,7 @@
     "clean:bootstrap": "rimraf node_modules/ packages/*/node_modules/",
     "clean:build": "rimraf packages/*/dist",
     "create": "node templates/create.js",
-    "cspell": "cspell \"**\" -c cspell.config.cjs",
+    "cspell": "cspell \"{**,**/.*,**/.*/**}\" -c cspell.config.cjs",
     "lint": "npm run lint:config; prettier **/*.{md,json} --write --loglevel warn; npm run lint:src",
     "lint:config": "eslint . --fix --ext .js,.cjs,.json --ignore-pattern '!.*' --ignore-pattern 'src/'",
     "lint:src": "lerna run lint",

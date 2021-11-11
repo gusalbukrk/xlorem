@@ -8,7 +8,7 @@ import {
 } from '@xlorem/common/src/types';
 import { paramsToObjParam } from '@xlorem/common/src/utils';
 
-import inputValidatorBase from '../src';
+import inputValidatorBase from '.';
 
 type inputValidatorInterface = {
   queryOrArticle: queryOrArticleType;

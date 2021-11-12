@@ -1,3 +1,4 @@
+import CustomError from '@xlorem/common/src/CustomError';
 import {
   queryOrArticleType,
   unitType,
@@ -26,7 +27,8 @@ function inputValidator(
     validateBreakdown(breakdown)
   );
 
-  if (errors.length > 0) throw errors;
+  if (errors.length > 0)
+    throw new CustomError(`[ ${errors.join(', ')} ]`, 'input-validator');
 }
 
 export default inputValidator;

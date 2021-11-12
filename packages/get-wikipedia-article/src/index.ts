@@ -1,3 +1,4 @@
+import CustomError from '@xlorem/common/src/CustomError';
 import { articleIsDisambiguation } from '@xlorem/common/src/errorMessages';
 
 import {
@@ -61,8 +62,9 @@ async function getWikipediaArticle(
   // the only option other than to make a separate request at main function checking if page is
   // disambiguation, would be to check if page is disambiguation at every resource request
   if (await queryPointsToADisambiguationPage(titleQuery)) {
-    throw new Error(
-      articleIsDisambiguation(article.related || [] /* suggestions */)
+    throw new CustomError(
+      articleIsDisambiguation(article.related || [] /* suggestions */),
+      'get-wikipedia-article'
     );
   }
 

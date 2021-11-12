@@ -1,3 +1,4 @@
+import CustomError from '@xlorem/common/src/CustomError';
 import { notEnoughWordsInFreqMap } from '@xlorem/common/src/errorMessages';
 import { freqMapType } from '@xlorem/common/src/types';
 
@@ -61,8 +62,9 @@ function generateFreqMap(
   const freqMapWordsQuantity = getFreqMapWordsQuantity(freqMap);
 
   if (freqMapWordsQuantity < options.wordsQuantityMin) {
-    throw new Error(
-      notEnoughWordsInFreqMap(options.wordsQuantityMin, freqMapWordsQuantity)
+    throw new CustomError(
+      notEnoughWordsInFreqMap(options.wordsQuantityMin, freqMapWordsQuantity),
+      'generate-words-freqmap'
     );
   }
 

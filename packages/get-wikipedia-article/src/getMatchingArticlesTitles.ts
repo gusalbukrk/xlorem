@@ -1,3 +1,4 @@
+import CustomError from '@xlorem/common/src/CustomError';
 import { articleNotFound } from '@xlorem/common/src/errorMessages';
 
 import { generateRequestURL } from './common/utils';
@@ -30,7 +31,8 @@ async function getMatchingArticlesTitles(
   const json = (await resp.json()) as string[][];
   const titles = json[1];
 
-  if (titles.length === 0) throw new Error(articleNotFound);
+  if (titles.length === 0)
+    throw new CustomError(articleNotFound, 'get-wikipedia-article');
 
   return titles;
 }

@@ -1,3 +1,4 @@
+import CustomError from '@xlorem/common/src/CustomError';
 import { notEnoughWordsInWordsArray } from '@xlorem/common/src/errorMessages';
 
 import normalizeText from './normalizeText';
@@ -25,8 +26,9 @@ function tokenizeWords(text: string, optionsArg?: optionsType): string[] {
   const wordsArrayLength = wordsArray.length;
 
   if (wordsArrayLength < options.lengthMin) {
-    throw new Error(
-      notEnoughWordsInWordsArray(options.lengthMin, wordsArrayLength)
+    throw new CustomError(
+      notEnoughWordsInWordsArray(options.lengthMin, wordsArrayLength),
+      'tokenize-words'
     );
   }
 

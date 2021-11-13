@@ -1,6 +1,5 @@
 [
   "a",
-  "a's",
   "able",
   "about",
   "above",
@@ -53,7 +52,6 @@
   "available",
   "away",
   "awfully",
-
   "be",
   "became",
   "because",
@@ -77,9 +75,6 @@
   "brief",
   "but",
   "by",
-
-  "c'mon",
-  "c's",
   "came",
   "can",
   "can't",
@@ -91,8 +86,6 @@
   "certainly",
   "changes",
   "clearly",
-  "co",
-  "com",
   "come",
   "comes",
   "concerning",
@@ -107,7 +100,6 @@
   "couldn't",
   "course",
   "currently",
-
   "definitely",
   "described",
   "despite",
@@ -123,9 +115,8 @@
   "down",
   "downwards",
   "during",
-
   "each",
-  "edu",
+  "e.g.",
   "eg",
   "eight",
   "either",
@@ -134,7 +125,6 @@
   "enough",
   "entirely",
   "especially",
-  "et",
   "etc",
   "even",
   "ever",
@@ -147,7 +137,6 @@
   "exactly",
   "example",
   "except",
-
   "far",
   "few",
   "fifth",
@@ -164,7 +153,6 @@
   "from",
   "further",
   "furthermore",
-
   "get",
   "gets",
   "getting",
@@ -177,7 +165,6 @@
   "got",
   "gotten",
   "greetings",
-
   "had",
   "hadn't",
   "happens",
@@ -208,20 +195,18 @@
   "hither",
   "hopefully",
   "how",
-  "howbeit",
   "however",
   "i",
   "i'd",
   "i'll",
   "i'm",
   "i've",
+  "i.e.",
   "ie",
   "if",
   "ignored",
   "immediate",
   "in",
-  "inasmuch",
-  "inc",
   "indeed",
   "indicate",
   "indicated",
@@ -239,16 +224,13 @@
   "it's",
   "its",
   "itself",
-
   "just",
-
   "keep",
   "keeps",
   "kept",
   "know",
   "known",
   "knows",
-
   "last",
   "lately",
   "later",
@@ -267,7 +249,6 @@
   "looking",
   "looks",
   "ltd",
-
   "mainly",
   "many",
   "may",
@@ -285,10 +266,8 @@
   "must",
   "my",
   "myself",
-
   "name",
   "namely",
-  "nd",
   "near",
   "nearly",
   "necessary",
@@ -311,7 +290,6 @@
   "novel",
   "now",
   "nowhere",
-
   "obviously",
   "of",
   "off",
@@ -339,7 +317,6 @@
   "over",
   "overall",
   "own",
-
   "particular",
   "particularly",
   "per",
@@ -351,14 +328,9 @@
   "presumably",
   "probably",
   "provides",
-
-  "que",
   "quite",
-  "qv",
-
   "rather",
   "rd",
-  "re",
   "really",
   "reasonably",
   "regarding",
@@ -367,7 +339,6 @@
   "relatively",
   "respectively",
   "right",
-
   "said",
   "same",
   "saw",
@@ -415,10 +386,7 @@
   "still",
   "sub",
   "such",
-  "sup",
   "sure",
-
-  "t's",
   "take",
   "taken",
   "tell",
@@ -476,8 +444,6 @@
   "trying",
   "twice",
   "two",
-
-  "un",
   "under",
   "unfortunately",
   "unless",
@@ -493,14 +459,11 @@
   "uses",
   "using",
   "usually",
-
   "value",
   "various",
   "very",
   "via",
-  "viz",
   "vs",
-
   "want",
   "wants",
   "was",
@@ -551,7 +514,6 @@
   "wonder",
   "would",
   "wouldn't",
-
   "yes",
   "yet",
   "you",
@@ -563,6 +525,5 @@
   "yours",
   "yourself",
   "yourselves",
-
   "zero"
 ]

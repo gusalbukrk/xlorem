@@ -1,4 +1,4 @@
-import isStopword from '../src/isStopword';
+import { isStopword } from './index';
 
 describe('isStopword', () => {
   it('case insensitive', () => {

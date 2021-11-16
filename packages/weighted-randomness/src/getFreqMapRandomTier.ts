@@ -1,7 +1,16 @@
 import { freqMapType } from '@xlorem/common/src/types';
 import { last, getRandomNumber } from '@xlorem/common/src/utils';
 
-import getRangeRespectiveFreqMapWeight from './getRangeRespectiveFreqMapWeight';
+function getRangeRespectiveFreqMapWeight(
+  range: number,
+  ranges: number[],
+  weights: number[]
+): number {
+  const index = ranges.findIndex((r) => r >= range);
+  const weight = weights[index];
+
+  return weight;
+}
 
 function getFreqMapRandomTier(
   freqMap: freqMapType,
@@ -9,10 +18,12 @@ function getFreqMapRandomTier(
   ranges: number[]
 ): string[] {
   const range = getRandomNumber(1, last(ranges));
-  const weight = getRangeRespectiveFreqMapWeight(range, weights, ranges);
+  const weight = getRangeRespectiveFreqMapWeight(range, ranges, weights);
   const tier = freqMap[weight];
 
   return tier;
 }
+
+export { getRangeRespectiveFreqMapWeight }; // for testing purposes
 
 export default getFreqMapRandomTier;

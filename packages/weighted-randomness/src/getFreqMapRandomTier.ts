@@ -12,6 +12,7 @@ function getRangeRespectiveFreqMapWeight(
   return weight;
 }
 
+/** Using weighted randomness, select one of the freqMap's tier. */
 function getFreqMapRandomTier(
   freqMap: freqMapType,
   weights: number[],
@@ -19,6 +20,7 @@ function getFreqMapRandomTier(
 ): string[] {
   const range = getRandomNumber(1, last(ranges));
   const weight = getRangeRespectiveFreqMapWeight(range, ranges, weights);
+
   const tier = freqMap[weight];
 
   return tier;

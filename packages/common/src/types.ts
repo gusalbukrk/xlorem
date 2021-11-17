@@ -1,7 +1,7 @@
 type tier = string[];
 /** e.g.: `{ 1: ['foo', 'bar'], 3: ['baz'] }` */
 export type freqMapType = {
-  // `weight` is an integer in a string (JS object keys can only be strings and symbols)
+  // `weight` is a string containing an integer (JS object keys can only be strings and symbols)
   [weight: string]: tier;
 };
 

@@ -3,8 +3,8 @@ import { last, getRandomNumber } from '@xlorem/common/src/utils';
 
 function getRangeRespectiveFreqMapWeight(
   range: number,
-  ranges: number[],
-  weights: number[]
+  weights: number[],
+  ranges: number[]
 ): number {
   const index = ranges.findIndex((r) => r >= range);
   const weight = weights[index];
@@ -19,7 +19,7 @@ function getFreqMapRandomTier(
   ranges: number[]
 ): string[] {
   const range = getRandomNumber(1, last(ranges));
-  const weight = getRangeRespectiveFreqMapWeight(range, ranges, weights);
+  const weight = getRangeRespectiveFreqMapWeight(range, weights, ranges);
 
   const tier = freqMap[weight];
 

@@ -6,7 +6,7 @@ describe('weightedRandomness helper functions', () => {
   it('getWeightsAndRangesFromFreqMap', () => {
     expect.assertions(1);
 
-    const freqMap = { 1: ['foo'], 2: ['bar'], 3: ['baz'], 4: ['qux'] };
+    const freqMap = { 1: ['foo'], 2: ['bar'], 3: ['baz'], 4: ['qux', 'quux'] };
 
     const x = getWeightsAndRangesFromFreqMap(freqMap);
     expect(x).toStrictEqual([
@@ -18,7 +18,7 @@ describe('weightedRandomness helper functions', () => {
   it('getRangeRespectiveFreqMapWeight', () => {
     expect.assertions(1);
 
-    const x = getRangeRespectiveFreqMapWeight(3, [1, 3, 6], [1, 2, 3]);
-    expect(x).toBe(2);
+    const x = getRangeRespectiveFreqMapWeight(5, [1, 2, 3], [1, 3, 6]);
+    expect(x).toBe(3);
   });
 });

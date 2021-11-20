@@ -2,7 +2,7 @@
   "name": "stopwords-utils",
   "author": "gusalbukrk",
   "version": "0.0.0",
-  "description": "Utilities for process English stopwords.",
+  "description": "Utilities for working with English stopwords.",
   "license": "MIT",
   "keywords": [],
   "type": "module",

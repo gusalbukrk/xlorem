@@ -15,7 +15,7 @@ function generateText(
   quantity: number,
   format: formatType,
   breakdown: breakdownType,
-  isTest = false // not exposed in main function, only for tests
+  isTest = false
 ): string | string[][][] {
   const wordsDistribution = distributeWords(unit, quantity, breakdown);
 

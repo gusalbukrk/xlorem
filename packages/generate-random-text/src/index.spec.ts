@@ -15,7 +15,7 @@ import {
 } from '@xlorem/common/src/utils';
 import { isStopword } from 'stopwords-utils/src/';
 
-import generateTextBase from '../src';
+import generateTextBase from '.';
 
 type generateTextInterface = {
   freqMap: freqMapType;

@@ -40,7 +40,8 @@ function getRandomWord(
       // doesn't allow more than 3 subsequent non-stopwords
       (sentence.length >= 3 &&
         sentence.slice(-3).every((word) => !isStopword(word))) ||
-      // the 3 words before last word in sentence mustn't be all non-stopwords (because last word must be a stopword)
+      // the 3 words before last word in sentence mustn't be all non-stopwords
+      // because last word must be a stopword
       (sentenceIntendedLength - sentence.length === 2 &&
         sentence.slice(-2).every((word) => !isStopword(word)))
     ) {

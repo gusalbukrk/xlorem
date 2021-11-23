@@ -1,75 +1,61 @@
 import { breakdownDefault } from '@xlorem/common/src/constants';
-import {
-  freqMapType,
-  unitType,
-  formatType,
-  breakdownType,
-} from '@xlorem/common/src/types';
+import { freqMapType } from '@xlorem/common/src/types';
 import {
   capitalize,
   isLowercase,
   isNumeric,
   getRandomNumber,
   last,
-  paramsToObjParam,
 } from '@xlorem/common/src/utils';
 import { isStopword } from 'stopwords-utils/src/';
 
-import generateTextBase from '.';
+import generateText from '.';
 
-type generateTextInterface = {
-  freqMap: freqMapType;
-  unit: unitType;
-  quantity: number;
-  format: formatType;
-  breakdown: breakdownType;
-  isTest: boolean | undefined;
-};
-
-const defaults: generateTextInterface = {
-  freqMap: {
-    3: ['dolor', 'sit', 'est'],
-    7: ['placeholder', 'publishing', 'design', '1914'],
-    10: ['filler', 'text', 'latin', '1960'],
-    20: ['lorem', 'ipsum'],
-  },
-  unit: 'paragraphs',
-  quantity: 5,
-  format: 'plain',
-  breakdown: breakdownDefault,
-  isTest: true,
-};
-
-const generateText = paramsToObjParam(generateTextBase, defaults);
+const {
+  sentencesPerParagraphMin,
+  sentencesPerParagraphMax,
+  wordsPerSentenceMin,
+  wordsPerSentenceMax,
+} = breakdownDefault;
 
 const removePunctuation = (word: string) =>
   word.replace(/[.!?,:;()[\]"—\s]/g, '');
 
-describe('generateText returns correct number of paragraphs, sentences and words', () => {
-  const paragraphsUnitTestTable = Array.from({ length: 10 }, () => [
-    getRandomNumber(1, 20),
-  ]);
+const freqMapDefault: freqMapType = {
+  3: ['dolor', 'sit', 'est'],
+  7: ['placeholder', 'publishing', 'design', '1914'],
+  10: ['filler', 'text', 'latin', '1960'],
+  20: ['lorem', 'ipsum'],
+};
 
-  const wordsUnitTestTable = Array.from({ length: 10 }, () => [
-    getRandomNumber(
-      breakdownDefault.sentencesPerParagraphMin *
-        breakdownDefault.wordsPerSentenceMin,
-      500
-    ),
-  ]);
+describe('`generateText` returns correct number of paragraphs, sentences and words', () => {
+  it.each(Array.from({ length: 10 }, () => [getRandomNumber(1, 20)]))(
+    'paragraphs',
+    (quantity) => {
+      expect.assertions(1);
 
-  it.each(paragraphsUnitTestTable)('paragraphs unit', (quantity) => {
+      const textArray = generateText(freqMapDefault, { quantity }, true);
+      expect(textArray).toHaveLength(quantity);
+    }
+  );
+
+  const wordsPerParagraphMin = sentencesPerParagraphMin * wordsPerSentenceMin;
+
+  it.each(
+    Array.from({ length: 10 }, () => [
+      getRandomNumber(wordsPerParagraphMin, 500),
+    ])
+  )('words', (quantity) => {
     expect.assertions(1);
-    expect(generateText({ quantity })).toHaveLength(quantity);
-  });
 
-  it.each(wordsUnitTestTable)('words unit', (quantity) => {
-    expect.assertions(1);
-
-    const textArray = generateText({
-      unit: 'words',
-      quantity,
-    }) as string[][][];
+    const textArray = generateText(
+      freqMapDefault,
+      {
+        unit: 'words',
+        quantity,
+      },
+      true
+    ) as string[][][];
 
     const wordsCount = textArray.reduce<number>(
       (acc, paragraph) =>
@@ -84,26 +70,34 @@ describe('generateText returns correct number of paragraphs, sentences and words
   it('sentences per paragraph', () => {
     expect.assertions(2);
 
-    const textArray = generateText({ quantity: 30 }) as string[][][];
+    const textArray = generateText(
+      freqMapDefault,
+      { quantity: 15 },
+      true
+    ) as string[][][];
 
-    const paragraphsLength = textArray.reduce<number[]>(
+    const sentencesPerParagraph = textArray.reduce<number[]>(
       (acc, paragraph) => acc.concat(paragraph.length),
       []
     );
 
-    const x = Math.min(...paragraphsLength);
-    const y = Math.max(...paragraphsLength);
+    const min = Math.min(...sentencesPerParagraph);
+    expect(min).toBeGreaterThanOrEqual(sentencesPerParagraphMin);
 
-    expect(x).toBeGreaterThanOrEqual(breakdownDefault.sentencesPerParagraphMin);
-    expect(y).toBeLessThanOrEqual(breakdownDefault.sentencesPerParagraphMax);
+    const max = Math.max(...sentencesPerParagraph);
+    expect(max).toBeLessThanOrEqual(sentencesPerParagraphMax);
   });
 
   it('words per sentence', () => {
     expect.assertions(2);
 
-    const textArray = generateText({ quantity: 10 }) as string[][][];
+    const textArray = generateText(
+      freqMapDefault,
+      { quantity: 10 },
+      true
+    ) as string[][][];
 
-    const sentencesLength = textArray.reduce<number[]>(
+    const wordsPerSentence = textArray.reduce<number[]>(
       (acc, paragraph) =>
         acc.concat(
           paragraph.reduce<number[]>(
@@ -114,47 +108,52 @@ describe('generateText returns correct number of paragraphs, sentences and words
       []
     );
 
-    const x = Math.min(...sentencesLength);
-    const y = Math.max(...sentencesLength);
+    const min = Math.min(...wordsPerSentence);
+    expect(min).toBeGreaterThanOrEqual(wordsPerSentenceMin);
 
-    expect(x).toBeGreaterThanOrEqual(breakdownDefault.wordsPerSentenceMin);
-    expect(y).toBeLessThanOrEqual(breakdownDefault.wordsPerSentenceMax);
+    const max = Math.max(...wordsPerSentence);
+    expect(max).toBeLessThanOrEqual(wordsPerSentenceMax);
   });
 });
 
-describe('generateText returns text in the chosen format', () => {
+describe('`generateText` returns text in the chosen format', () => {
   it('format: plain', () => {
     expect.assertions(1);
 
-    const text = generateText({ isTest: false }) as string;
+    const quantity = 10;
 
-    expect(text.match(/\n/g)).toHaveLength(defaults.quantity - 1);
+    const text = generateText(freqMapDefault, { quantity }) as string;
+    expect(text.match(/\n/g)).toHaveLength(quantity - 1);
   });
 
   it('format: html', () => {
     expect.assertions(2);
 
-    const text = generateText({
+    const quantity = 10;
+
+    const text = generateText(freqMapDefault, {
+      quantity,
       format: 'html',
-      isTest: false,
     }) as string;
 
-    expect(text.match(/<p>/g)).toHaveLength(defaults.quantity);
-    expect(text.match(/<\/p>/g)).toHaveLength(defaults.quantity);
+    expect(text.match(/<p>/g)).toHaveLength(quantity);
+    expect(text.match(/<\/p>/g)).toHaveLength(quantity);
   });
 });
 
-describe('generateText returns sentences punctuated and capitalized', () => {
+describe('`generateText` returns sentences punctuated and capitalized', () => {
   it('first letter capitalization', () => {
     expect.assertions(1);
 
-    const x = (generateText() as string[][][]).every((paragraph) =>
+    const allSentencesFirstLettersAreCapitalized = (
+      generateText(freqMapDefault, {}, true) as string[][][]
+    ).every((paragraph) =>
       paragraph.every(
         (sentence) => sentence[0][0] === sentence[0][0].toUpperCase()
       )
     );
 
-    expect(x).toBe(true);
+    expect(allSentencesFirstLettersAreCapitalized).toBe(true);
   });
 
   it('end of sentence punctuation', () => {
@@ -162,7 +161,7 @@ describe('generateText returns sentences punctuated and capitalized', () => {
 
     const punctuations = [
       ...new Set(
-        (generateText({ quantity: 15 }) as string[][][])
+        (generateText(freqMapDefault, { quantity: 20 }, true) as string[][][])
           .reduce((acc, paragraph) => acc.concat(paragraph))
           .map((sentence) => last(last(sentence).split('')))
       ),
@@ -176,7 +175,7 @@ describe('generateText returns sentences punctuated and capitalized', () => {
 
     const punctuations = [
       ...new Set(
-        (generateText({ quantity: 40 }) as string[][][])
+        (generateText(freqMapDefault, { quantity: 40 }, true) as string[][][])
           .map((paragraph) =>
             paragraph.map((sentence) => sentence.join(' ')).join(' ')
           )
@@ -204,7 +203,7 @@ describe('generateText returns sentences punctuated and capitalized', () => {
     const containsPunctuation = (word: string) => /[,;:]/.test(word);
 
     const wordsBetweenPunctuationAreNeitherStopwordsNorNumbers = (
-      generateText({ quantity: 40 }) as string[][][]
+      generateText(freqMapDefault, { quantity: 40 }, true) as string[][][]
     )
       .reduce((acc, paragraph) => acc.concat(paragraph))
       .every((sentence) =>
@@ -223,7 +222,7 @@ describe('generateText returns sentences punctuated and capitalized', () => {
     expect.assertions(1);
 
     const wordsBetweenPunctuationAreNotStopwords = (
-      generateText({ quantity: 30 }) as string[][][]
+      generateText(freqMapDefault, { quantity: 30 }, true) as string[][][]
     )
       .reduce((acc, paragraph) => acc.concat(paragraph))
       .every((sentence) => {
@@ -257,8 +256,12 @@ describe('generateText returns sentences punctuated and capitalized', () => {
   });
 });
 
-describe('generateText returns correct word placement', () => {
-  const textArray = generateText({ quantity: 25 }) as string[][][];
+describe('`generateText` returns correct word placement', () => {
+  const textArray = generateText(
+    freqMapDefault,
+    { quantity: 25 },
+    true
+  ) as string[][][];
 
   it("there're no more than 2 subsequent stopwords", () => {
     expect.assertions(1);

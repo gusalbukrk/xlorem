@@ -3,9 +3,9 @@ import { last } from '@xlorem/common/src/utils';
 
 /** e.g.: `{ 1: [...], 2: [...], 3: [...] }` => `[ [1, 2, 3], [1, 3, 6] ]` */
 function getWeightsAndRangesFromFreqMap(freqMap: freqMapType): number[][] {
-  // Object.keys will always return integer indices first and in ascending order
-  // https://2ality.com/2015/10/property-traversal-order-es6.html#integer-indices
-
+  // ES2015 own property order
+  // while traversing objects, integer keys are returned first and in ascending order
+  // https://2ality.com/2015/10/property-traversal-order-es6.html
   const weights = Object.keys(freqMap).map((weight) => Number(weight));
 
   const ranges = weights.reduce<number[]>(

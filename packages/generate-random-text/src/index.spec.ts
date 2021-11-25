@@ -142,7 +142,7 @@ describe('`generateText` returns text in the chosen format', () => {
 });
 
 describe('`generateText` returns sentences punctuated and capitalized', () => {
-  it('first letter capitalization', () => {
+  it('first letter in every sentence is capitalization', () => {
     expect.assertions(1);
 
     const allSentencesFirstLettersAreCapitalized = (
@@ -159,7 +159,7 @@ describe('`generateText` returns sentences punctuated and capitalized', () => {
   it('end of sentence punctuation', () => {
     expect.assertions(1);
 
-    const punctuations = [
+    const endOfSentencePunctuation = [
       ...new Set(
         (generateText(freqMapDefault, { quantity: 20 }, true) as string[][][])
           .reduce((acc, paragraph) => acc.concat(paragraph))
@@ -167,13 +167,13 @@ describe('`generateText` returns sentences punctuated and capitalized', () => {
       ),
     ].sort();
 
-    expect(punctuations).toStrictEqual(['!', '.', '?']);
+    expect(endOfSentencePunctuation).toStrictEqual(['!', '.', '?']);
   });
 
   it('mid of sentence punctuation', () => {
     expect.assertions(1);
 
-    const punctuations = [
+    const midOfSentencePunctuation = [
       ...new Set(
         (generateText(freqMapDefault, { quantity: 40 }, true) as string[][][])
           .map((paragraph) =>
@@ -184,7 +184,7 @@ describe('`generateText` returns sentences punctuated and capitalized', () => {
       ),
     ].sort();
 
-    expect(punctuations).toStrictEqual([
+    expect(midOfSentencePunctuation).toStrictEqual([
       '"',
       '(',
       ')',
@@ -197,10 +197,11 @@ describe('`generateText` returns sentences punctuated and capitalized', () => {
     ]);
   });
 
-  it("simple mid punctuation isn't placed between stopwords or numbers", () => {
+  it("non-enclosing mid punctuation isn't placed between stopwords or numbers", () => {
     expect.assertions(1);
 
-    const containsPunctuation = (word: string) => /[,;:]/.test(word);
+    const containsNonEnclosingMidOfSentencePunctuation = (word: string) =>
+      /[,;:]/.test(word);
 
     const wordsBetweenPunctuationAreNeitherStopwordsNorNumbers = (
       generateText(freqMapDefault, { quantity: 40 }, true) as string[][][]
@@ -208,8 +209,9 @@ describe('`generateText` returns sentences punctuated and capitalized', () => {
       .reduce((acc, paragraph) => acc.concat(paragraph))
       .every((sentence) =>
         sentence.every((word, index, array) =>
-          containsPunctuation(word) ||
-          (index > 0 && containsPunctuation(array[index - 1])) // current word comes after punctuation
+          containsNonEnclosingMidOfSentencePunctuation(word) ||
+          (index > 0 &&
+            containsNonEnclosingMidOfSentencePunctuation(array[index - 1])) // current word comes after punctuation
             ? !isStopword(word) && !isNumeric(word)
             : true
         )
@@ -230,18 +232,12 @@ describe('`generateText` returns sentences punctuated and capitalized', () => {
           (acc, word) => {
             if (/^[(["—]/.test(word)) {
               const previousWord = sentence[sentence.indexOf(word) - 1];
-
-              [previousWord, removePunctuation(word)].forEach(
-                (w) => !acc.includes(w) && acc.push(w)
-              );
+              return acc.concat(previousWord, removePunctuation(word));
             }
 
             if (/[)\]"—]$/.test(word)) {
               const nextWord = sentence[sentence.indexOf(word) + 1];
-
-              [removePunctuation(word), nextWord].forEach(
-                (w) => !acc.includes(w) && acc.push(w)
-              );
+              return acc.concat(removePunctuation(word), nextWord);
             }
 
             return acc;
@@ -272,7 +268,7 @@ describe('`generateText` returns correct word placement', () => {
           if (index === 0 || index === array.length - 1) return true;
 
           return array
-            .slice(index - 1, index + 2)
+            .slice(index - 1, index + 2) // [before, current, after]
             .some((word) => !isStopword(removePunctuation(word)));
         })
       )

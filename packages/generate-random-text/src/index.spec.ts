@@ -34,7 +34,7 @@ describe('`generateText` returns correct number of paragraphs, sentences and wor
     (quantity) => {
       expect.assertions(1);
 
-      const textArray = generateText(freqMapDefault, { quantity }, true);
+      const textArray = generateText(freqMapDefault, { quantity }, false);
       expect(textArray).toHaveLength(quantity);
     }
   );
@@ -54,7 +54,7 @@ describe('`generateText` returns correct number of paragraphs, sentences and wor
         unit: 'words',
         quantity,
       },
-      true
+      false
     ) as string[][][];
 
     const wordsCount = textArray.reduce<number>(
@@ -73,7 +73,7 @@ describe('`generateText` returns correct number of paragraphs, sentences and wor
     const textArray = generateText(
       freqMapDefault,
       { quantity: 15 },
-      true
+      false
     ) as string[][][];
 
     const sentencesPerParagraph = textArray.reduce<number[]>(
@@ -94,7 +94,7 @@ describe('`generateText` returns correct number of paragraphs, sentences and wor
     const textArray = generateText(
       freqMapDefault,
       { quantity: 10 },
-      true
+      false
     ) as string[][][];
 
     const wordsPerSentence = textArray.reduce<number[]>(
@@ -146,7 +146,7 @@ describe('`generateText` returns sentences punctuated and capitalized', () => {
     expect.assertions(1);
 
     const allSentencesFirstLettersAreCapitalized = (
-      generateText(freqMapDefault, {}, true) as string[][][]
+      generateText(freqMapDefault, {}, false) as string[][][]
     ).every((paragraph) =>
       paragraph.every(
         (sentence) => sentence[0][0] === sentence[0][0].toUpperCase()
@@ -161,7 +161,7 @@ describe('`generateText` returns sentences punctuated and capitalized', () => {
 
     const endOfSentencePunctuation = [
       ...new Set(
-        (generateText(freqMapDefault, { quantity: 20 }, true) as string[][][])
+        (generateText(freqMapDefault, { quantity: 20 }, false) as string[][][])
           .reduce((acc, paragraph) => acc.concat(paragraph))
           .map((sentence) => last(last(sentence).split('')))
       ),
@@ -175,7 +175,7 @@ describe('`generateText` returns sentences punctuated and capitalized', () => {
 
     const midOfSentencePunctuation = [
       ...new Set(
-        (generateText(freqMapDefault, { quantity: 40 }, true) as string[][][])
+        (generateText(freqMapDefault, { quantity: 40 }, false) as string[][][])
           .map((paragraph) =>
             paragraph.map((sentence) => sentence.join(' ')).join(' ')
           )
@@ -204,7 +204,7 @@ describe('`generateText` returns sentences punctuated and capitalized', () => {
       /[,;:]/.test(word);
 
     const wordsBetweenPunctuationAreNeitherStopwordsNorNumbers = (
-      generateText(freqMapDefault, { quantity: 40 }, true) as string[][][]
+      generateText(freqMapDefault, { quantity: 40 }, false) as string[][][]
     )
       .reduce((acc, paragraph) => acc.concat(paragraph))
       .every((sentence) =>
@@ -224,7 +224,7 @@ describe('`generateText` returns sentences punctuated and capitalized', () => {
     expect.assertions(1);
 
     const wordsBetweenPunctuationAreNotStopwords = (
-      generateText(freqMapDefault, { quantity: 30 }, true) as string[][][]
+      generateText(freqMapDefault, { quantity: 30 }, false) as string[][][]
     )
       .reduce((acc, paragraph) => acc.concat(paragraph))
       .every((sentence) => {
@@ -256,7 +256,7 @@ describe('`generateText` returns correct word placement', () => {
   const textArray = generateText(
     freqMapDefault,
     { quantity: 25 },
-    true
+    false
   ) as string[][][];
 
   it("there're no more than 2 subsequent stopwords", () => {

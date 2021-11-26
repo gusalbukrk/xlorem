@@ -33,7 +33,7 @@ function getOptionsDefault(unit: unitType = 'paragraphs'): optionsType {
 function generateText(
   freqMap: freqMapType,
   options: Partial<optionsType>,
-  isTest = false
+  stringify = true
 ): string | string[][][] {
   const { unit, quantity, format, breakdown } = {
     ...getOptionsDefault(options.unit),
@@ -44,7 +44,7 @@ function generateText(
 
   const textArray = generateTextArray(freqMap, wordsDistribution);
 
-  return isTest ? textArray : stringifyTextArray(textArray, format);
+  return stringify ? stringifyTextArray(textArray, format) : textArray;
 }
 
 export default generateText;

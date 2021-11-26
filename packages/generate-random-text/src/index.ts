@@ -17,14 +17,14 @@ type optionsType = {
   breakdown: breakdownType;
 };
 
-/**
- * Default for 'paragraphs' is 5 and for 'words' 200.
- * If neither is supplied, defaults to 5 paragraphs.
- */
 function getOptionsDefault(unit: unitType = 'paragraphs'): optionsType {
   return {
     unit,
+
+    // default for 'paragraphs' is 5 and for 'words' 200.
+    // if neither is supplied, defaults to 5 paragraphs.
     quantity: unit === 'paragraphs' ? 5 : 200,
+
     format: 'plain',
     breakdown: breakdownDefault,
   };

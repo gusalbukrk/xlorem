@@ -1,4 +1,6 @@
+import CustomError from '@xlorem/common/src/CustomError';
 import { breakdownDefault } from '@xlorem/common/src/constants';
+import { wordsQuantityDoesNotMatchBreakdown } from '@xlorem/common/src/errorMessages';
 import {
   freqMapType,
   unitType,
@@ -40,7 +42,22 @@ function generateText(
     ...options,
   };
 
+  if (
+    unit === 'words' &&
+    quantity <
+      breakdown.wordsPerSentenceMin * breakdown.sentencesPerParagraphMin
+  ) {
+    throw new CustomError(
+      wordsQuantityDoesNotMatchBreakdown(
+        quantity,
+        breakdown.wordsPerSentenceMin * breakdown.sentencesPerParagraphMin
+      ),
+      'generate-random-text'
+    );
+  }
+
   const wordsDistribution = distributeWords(unit, quantity, breakdown);
+  console.warn(wordsDistribution);
 
   const textArray = generateTextArray(freqMap, wordsDistribution);
 

@@ -39,11 +39,12 @@ describe('`generateText` returns correct number of paragraphs, sentences and wor
     }
   );
 
-  const wordsPerParagraphMin = sentencesPerParagraphMin * wordsPerSentenceMin;
-
   it.each(
     Array.from({ length: 10 }, () => [
-      getRandomNumber(wordsPerParagraphMin, 500),
+      getRandomNumber(
+        sentencesPerParagraphMin * wordsPerSentenceMin, // minimum quantity of words required, otherwise error
+        500
+      ),
     ])
   )('words', (quantity) => {
     expect.assertions(1);

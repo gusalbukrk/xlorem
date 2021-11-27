@@ -46,3 +46,9 @@ export const notEnoughWordsInFreqMap = (
   received: number
 ): string =>
   `Given \`wordsArray\` doesn't have enough words to construct \`freqMap\` containing the minimum quantity of words required. Minimum number of words required: ${minimum}. Number of words received: ${received}.`;
+
+export const wordsQuantityDoesNotMatchBreakdown = (
+  quantity: number,
+  minimum: number
+): string =>
+  `Given \`quantity\` of words (${quantity}) is lower than the number needed to generate a single paragraph (${minimum}) as defined by \`breakdown\` (\`sentencesPerParagraphMin * wordsPerSentenceMin\`).`;

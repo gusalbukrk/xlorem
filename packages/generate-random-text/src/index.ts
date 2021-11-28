@@ -42,22 +42,17 @@ function generateText(
     ...options,
   };
 
-  if (
-    unit === 'words' &&
-    quantity <
-      breakdown.wordsPerSentenceMin * breakdown.sentencesPerParagraphMin
-  ) {
+  const wordsPerParagraphMin =
+    breakdown.wordsPerSentenceMin * breakdown.sentencesPerParagraphMin;
+
+  if (unit === 'words' && quantity < wordsPerParagraphMin) {
     throw new CustomError(
-      wordsQuantityDoesNotMatchBreakdown(
-        quantity,
-        breakdown.wordsPerSentenceMin * breakdown.sentencesPerParagraphMin
-      ),
+      wordsQuantityDoesNotMatchBreakdown(quantity, wordsPerParagraphMin),
       'generate-random-text'
     );
   }
 
   const wordsDistribution = distributeWords(unit, quantity, breakdown);
-  console.warn(wordsDistribution);
 
   const textArray = generateTextArray(freqMap, wordsDistribution);
 

@@ -1,10 +1,13 @@
-import { isStopword } from './index';
+import stopwordsFreqMap from './mostCommonStopwordsFreqMap.json';
+
+import { isStopword, getRandomStopword } from './index';
 
 describe('isStopword', () => {
   it('case insensitive', () => {
-    expect.assertions(2);
+    expect.assertions(3);
 
     expect(isStopword('the')).toBe(true);
+    expect(isStopword('The')).toBe(true);
     expect(isStopword('THE')).toBe(true);
   });
 
@@ -15,5 +18,29 @@ describe('isStopword', () => {
     expect(isStopword('i')).toBe(true);
     expect(isStopword('t')).toBe(false);
     expect(isStopword('e')).toBe(false);
+  });
+});
+
+describe('getRandomStopword', () => {
+  it('all words in freqMap are returned', () => {
+    expect.assertions(1);
+
+    const stopwordsFreqMapCount = Object.keys(stopwordsFreqMap).reduce(
+      (count, key) =>
+        count + stopwordsFreqMap[key as keyof typeof stopwordsFreqMap].length,
+      0
+    );
+
+    function allWordsInFreqMapAreReturned(
+      stopwords: Set<string> = new Set()
+    ): true {
+      const stopwordsUpdated = new Set([...stopwords]).add(getRandomStopword());
+
+      return stopwordsUpdated.size === stopwordsFreqMapCount
+        ? true
+        : allWordsInFreqMapAreReturned(stopwordsUpdated);
+    }
+
+    expect(allWordsInFreqMapAreReturned()).toBe(true);
   });
 });

@@ -73,24 +73,18 @@ function distributeWords(
   const wordsPerParagraphMin = sentencesPerParagraphMin * wordsPerSentenceMin;
   const wordsPerParagraphMax = sentencesPerParagraphMax * wordsPerSentenceMax;
 
-  let paragraphsBreakdown: number[] = [];
-  if (unit === 'paragraphs') {
-    paragraphsBreakdown = Array.from({ length: quantity }).map(() =>
-      getRandomNumber(wordsPerParagraphMin, wordsPerParagraphMax)
-    );
-  } else {
-    // unit === 'words'
-    const paragraphsQuantityMin = Math.ceil(quantity / wordsPerParagraphMax);
-    const paragraphsQuantityMax = Math.floor(quantity / wordsPerParagraphMin);
-
-    paragraphsBreakdown = breakNumberIntoChunks(
-      quantity,
-      wordsPerParagraphMin,
-      wordsPerParagraphMax,
-      paragraphsQuantityMin,
-      paragraphsQuantityMax
-    );
-  }
+  const paragraphsBreakdown: number[] =
+    unit === 'paragraphs'
+      ? Array.from({ length: quantity }).map(() =>
+          getRandomNumber(wordsPerParagraphMin, wordsPerParagraphMax)
+        )
+      : breakNumberIntoChunks(
+          quantity,
+          wordsPerParagraphMin,
+          wordsPerParagraphMax,
+          Math.ceil(quantity / wordsPerParagraphMax), // paragraphsQuantityMin
+          Math.floor(quantity / wordsPerParagraphMin) // paragraphsQuantityMax
+        );
 
   const sentencesBreakdown = paragraphsBreakdown.map((wordsPerParagraph) =>
     breakNumberIntoChunks(

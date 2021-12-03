@@ -99,4 +99,6 @@ function distributeWords(
   return sentencesBreakdown;
 }
 
+export { breakNumberIntoChunks };
+
 export default distributeWords;

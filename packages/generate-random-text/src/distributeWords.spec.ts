@@ -2,7 +2,7 @@ import { getRandomNumber } from '@xlorem/common/src/utils';
 
 import { breakNumberIntoChunks } from './distributeWords';
 
-describe.each(Array.from({ length: 1000 }).map(() => getRandomNumber(10, 500)))(
+describe.each(Array.from({ length: 100 }).map(() => getRandomNumber(10, 500)))(
   'breakNumberIntoChunks',
   (number) => {
     const chunkValueMin = getRandomNumber(1, number);

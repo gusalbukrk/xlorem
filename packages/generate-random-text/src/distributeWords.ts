@@ -3,59 +3,47 @@ import { getRandomNumber } from '@xlorem/common/src/utils';
 
 function breakNumberIntoChunks(
   number: number,
-  chunkMin: number,
-  chunkMax: number,
-  chunksLengthMin: number,
-  chunksLengthMax: number
-): number[] {
-  const chunks: number[] = [];
+  chunkValueMin: number,
+  chunkValueMax: number,
+  distributionLengthMin: number,
+  distributionLengthMax: number,
+) {
+  const distributionLength = getRandomNumber(
+    distributionLengthMin,
+    distributionLengthMax
+  );
 
-  let rest = number;
+  return Array.from({ length: distributionLength }).reduce(
+    (distribution: number[]) => {
+      const sum = distribution.reduce((acc, cur) => acc + cur, 0);
+      const rest = number - sum;
+      const howManyChunksRemaining = distributionLength - distribution.length;
 
-  while (chunks.length < chunksLengthMax) {
-    // won't let random chunk be smaller than it needs to be
-    const nextChunksMaxValue = chunkMax * (chunksLengthMax - chunks.length - 1);
-    const minPossible = rest - nextChunksMaxValue; // it'll always be <= chunkMax
-    const min = Math.max(chunkMin, minPossible); // it'll be between (and inclusive) chunkMin & chunkMax
+      if (rest === 0) return distribution;
 
-    // make sure that chunks.length will be at least chunksLengthMin
-    const isChunksSmallerThanShouldBe = chunks.length < chunksLengthMin - 1;
-    const nextChunksMinValue = chunkMin * (chunksLengthMin - chunks.length - 1);
-    const maxPossible = rest - nextChunksMinValue; // it'll was be >= chunkMin
-    const max = Math.min(
-      chunkMax,
-      isChunksSmallerThanShouldBe ? maxPossible : rest
-    ); // it'll be between (and inclusive) chunkMin
-
-    let chunk = getRandomNumber(min, max);
-
-    const nextRest = rest - chunk;
-    const isNextRestTooSmallToBeAChunk = nextRest > 0 && nextRest < chunkMin;
-    const isCurrentRestTooLargerToBeAChunk = rest > chunkMax;
-
-    if (isNextRestTooSmallToBeAChunk) {
-      if (isCurrentRestTooLargerToBeAChunk) {
-        if (rest / 2 >= chunkMin) {
-          // e.g.: min = 7, max = 12, rest = 14
-          chunk = Math.floor(rest / 2);
-        } else {
-          // e.g.: min = 7, max = 12, rest = 13
-          // NOTE: with min, max like these,
-          // it's impossible to create chunk with value between min and max
-          chunk = rest; // break rule, create chunk with value higher than max
-        }
-      } else {
-        chunk = rest;
+      if (rest <= chunkValueMax && howManyChunksRemaining === 1) {
+        return [...distribution, rest];
       }
-    }
 
-    chunks.push(chunk);
-    rest -= chunk;
+      const nextMax = Math.min(
+        (howManyChunksRemaining - 1) * chunkValueMax,
+        rest
+      );
 
-    if (rest === 0) break;
-  }
+      const min = Math.max(
+        rest - nextMax, // it's always going to be between 0 and chunkValueMax
+        chunkValueMin
+      );
 
-  return chunks;
+      const max = Math.min(
+        rest - (howManyChunksRemaining - 1) * chunkValueMin,
+        chunkValueMax
+      );
+
+      return [...distribution, getRandomNumber(min, max)];
+    },
+    [] as number[]
+  );
 }
 
 function distributeWords(

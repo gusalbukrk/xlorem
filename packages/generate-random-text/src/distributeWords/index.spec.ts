@@ -1,7 +1,7 @@
 import { breakdownDefault } from '@xlorem/common/src/constants';
 import { getRandomNumber } from '@xlorem/common/src/utils';
 
-import distributeWords from './distributeWords';
+import distributeWords from '.';
 
 // TODO: fix duplication
 // each `describe` block contains 2 duplicate tests and only 1 distinct

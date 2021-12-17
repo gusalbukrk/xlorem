@@ -1,10 +1,10 @@
-import { reduce } from 'lodash-es';
-
 import add from './add';
 import mul from './mul';
 
-const addArr = (...arr: number[]): number => reduce(arr, add, 0);
+const addArr = (...arr: number[]): number =>
+  arr.reduce((acc, cur) => add(acc, cur));
 
-const mulArr = (...arr: number[]): number => reduce(arr, mul, 1);
+const mulArr = (...arr: number[]): number =>
+  arr.reduce((acc, cur) => mul(acc, cur));
 
 export { addArr as add, mulArr as mul };

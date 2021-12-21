@@ -32,6 +32,13 @@ function getOptionsDefault(unit: unitType = 'paragraphs'): optionsType {
   };
 }
 
+/**
+ * Randomly generate text using given `freqMap`.
+ * @param freqMap Frequency map.
+ * @param options Miscellaneous options. See more at {@link optionsType}.
+ * @param stringify If true, return string. Otherwise, return array.
+ * @returns Random text.
+ */
 function generateText(
   freqMap: freqMapType,
   options: Partial<optionsType>,

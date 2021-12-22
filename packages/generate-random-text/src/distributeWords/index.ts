@@ -18,7 +18,7 @@ function distributeWords(
   const wordsPerParagraphMin = sentencesPerParagraphMin * wordsPerSentenceMin;
   const wordsPerParagraphMax = sentencesPerParagraphMax * wordsPerSentenceMax;
 
-  const paragraphsBreakdown: number[] =
+  const paragraphsDistribution =
     unit === 'paragraphs'
       ? Array.from({ length: quantity }).map(() =>
           getRandomNumber(wordsPerParagraphMin, wordsPerParagraphMax)
@@ -31,23 +31,24 @@ function distributeWords(
           Math.floor(quantity / wordsPerParagraphMin) // paragraphsQuantityMax
         );
 
-  const sentencesBreakdown = paragraphsBreakdown.map((wordsPerParagraph) =>
-    breakNumberIntoChunks(
-      wordsPerParagraph,
-      wordsPerSentenceMin,
-      wordsPerSentenceMax,
-      Math.max(
-        Math.ceil(wordsPerParagraph / wordsPerSentenceMax),
-        sentencesPerParagraphMin
-      ),
-      Math.min(
-        Math.floor(wordsPerParagraph / wordsPerSentenceMin),
-        sentencesPerParagraphMax
+  const sentencesDistribution = paragraphsDistribution.map(
+    (wordsPerParagraph) =>
+      breakNumberIntoChunks(
+        wordsPerParagraph,
+        wordsPerSentenceMin,
+        wordsPerSentenceMax,
+        Math.max(
+          Math.ceil(wordsPerParagraph / wordsPerSentenceMax),
+          sentencesPerParagraphMin
+        ), // sentencesQuantityMin
+        Math.min(
+          Math.floor(wordsPerParagraph / wordsPerSentenceMin),
+          sentencesPerParagraphMax
+        ) // sentencesQuantityMax
       )
-    )
   );
 
-  return sentencesBreakdown;
+  return sentencesDistribution;
 }
 
 export default distributeWords;

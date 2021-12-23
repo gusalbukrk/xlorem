@@ -14,7 +14,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "",
   "files": [
     "src",
     "!src/**/__tests__",

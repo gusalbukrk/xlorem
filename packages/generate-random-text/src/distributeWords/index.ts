@@ -18,6 +18,7 @@ function distributeWords(
   const wordsPerParagraphMin = sentencesPerParagraphMin * wordsPerSentenceMin;
   const wordsPerParagraphMax = sentencesPerParagraphMax * wordsPerSentenceMax;
 
+  // array containing quantity of words per paragraph
   const paragraphsDistribution =
     unit === 'paragraphs'
       ? Array.from({ length: quantity }).map(() =>
@@ -31,6 +32,9 @@ function distributeWords(
           Math.floor(quantity / wordsPerParagraphMin) // paragraphsQuantityMax
         );
 
+  // array containing arrays (paragraphs)
+  // each containing arrays (sentences)
+  // each containing strings (words)
   const sentencesDistribution = paragraphsDistribution.map(
     (wordsPerParagraph) =>
       breakNumberIntoChunks(

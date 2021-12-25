@@ -8,7 +8,7 @@ import {
   breakdownType,
 } from '@xlorem/common/src/types';
 
-import distributeWords from './distributeWords';
+import distribute from './distribute';
 import generateTextArray from './generateTextArray';
 import stringifyTextArray from './stringifyTextArray';
 
@@ -59,9 +59,9 @@ function generateText(
     );
   }
 
-  const wordsDistribution = distributeWords(unit, quantity, breakdown);
+  const distribution = distribute(quantity, unit, breakdown);
 
-  const textArray = generateTextArray(freqMap, wordsDistribution);
+  const textArray = generateTextArray(freqMap, distribution);
 
   return stringify ? stringifyTextArray(textArray, format) : textArray;
 }

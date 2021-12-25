@@ -3,9 +3,9 @@ import { getRandomNumber } from '@xlorem/common/src/utils';
 
 import breakNumberIntoChunks from './breakNumberIntoChunks';
 
-function distributeWords(
-  unit: unitType,
+function distribute(
   quantity: number,
+  unit: unitType,
   breakdown: breakdownType
 ): number[][] {
   const {
@@ -18,7 +18,8 @@ function distributeWords(
   const wordsPerParagraphMin = sentencesPerParagraphMin * wordsPerSentenceMin;
   const wordsPerParagraphMax = sentencesPerParagraphMax * wordsPerSentenceMax;
 
-  // array containing quantity of words per paragraph
+  // array of numbers
+  // each number represents a paragraph (paragraph's quantity of words = number)
   const paragraphsDistribution =
     unit === 'paragraphs'
       ? Array.from({ length: quantity }).map(() =>
@@ -32,9 +33,8 @@ function distributeWords(
           Math.floor(quantity / wordsPerParagraphMin) // paragraphsQuantityMax
         );
 
-  // array containing arrays (paragraphs)
-  // each containing arrays (sentences)
-  // each containing strings (words)
+  // array containing arrays of numbers
+  // each number represents a sentence (sentence's quantity of words = number)
   const sentencesDistribution = paragraphsDistribution.map(
     (wordsPerParagraph) =>
       breakNumberIntoChunks(
@@ -55,4 +55,4 @@ function distributeWords(
   return sentencesDistribution;
 }
 
-export default distributeWords;
+export default distribute;

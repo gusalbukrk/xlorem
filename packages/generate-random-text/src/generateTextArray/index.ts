@@ -6,11 +6,11 @@ import getRandomWord from './getRandomWord';
 
 function generateTextArray(
   freqMap: freqMapType,
-  wordsDistribution: number[][]
+  distribution: number[][]
 ): string[][][] {
   const getRandomArticleWord = weightedRandomness(freqMap);
 
-  const textArray = wordsDistribution.map((paragraphBreakdown) =>
+  const textArray = distribution.map((paragraphBreakdown) =>
     paragraphBreakdown.map((sentenceIntendedLength) =>
       capitalizeAndPunctuateSentence(
         Array.from({ length: sentenceIntendedLength }).reduce<string[]>(

@@ -17,7 +17,7 @@ export type unitType = 'paragraphs' | 'words';
 
 export type formatType = 'plain' | 'html';
 
-export type breakdownType = {
+export type requirementsType = {
   sentencesPerParagraphMin: number;
   sentencesPerParagraphMax: number;
   wordsPerSentenceMin: number;

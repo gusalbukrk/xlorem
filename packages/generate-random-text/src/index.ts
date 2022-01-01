@@ -1,11 +1,11 @@
 import CustomError from '@xlorem/common/src/CustomError';
-import { breakdownDefault } from '@xlorem/common/src/constants';
-import { wordsQuantityDoesNotMatchBreakdown } from '@xlorem/common/src/errorMessages';
+import { requirementsDefault } from '@xlorem/common/src/constants';
+import { wordsQuantityDoesNotMatchRequirements } from '@xlorem/common/src/errorMessages';
 import {
   freqMapType,
   unitType,
   formatType,
-  breakdownType,
+  requirementsType,
 } from '@xlorem/common/src/types';
 
 import distribute from './distribute';
@@ -16,7 +16,7 @@ type optionsType = {
   unit: unitType;
   quantity: number;
   format: formatType;
-  breakdown: breakdownType;
+  requirements: requirementsType;
 };
 
 function getOptionsDefault(unit: unitType = 'paragraphs'): optionsType {
@@ -28,7 +28,7 @@ function getOptionsDefault(unit: unitType = 'paragraphs'): optionsType {
     quantity: unit === 'paragraphs' ? 5 : 200,
 
     format: 'plain',
-    breakdown: breakdownDefault,
+    requirements: requirementsDefault,
   };
 }
 
@@ -44,22 +44,22 @@ function generateText(
   options: Partial<optionsType>,
   stringify = true
 ): string | string[][][] {
-  const { unit, quantity, format, breakdown } = {
+  const { unit, quantity, format, requirements } = {
     ...getOptionsDefault(options.unit),
     ...options,
   };
 
   const wordsPerParagraphMin =
-    breakdown.wordsPerSentenceMin * breakdown.sentencesPerParagraphMin;
+    requirements.wordsPerSentenceMin * requirements.sentencesPerParagraphMin;
 
   if (unit === 'words' && quantity < wordsPerParagraphMin) {
     throw new CustomError(
-      wordsQuantityDoesNotMatchBreakdown(quantity, wordsPerParagraphMin),
+      wordsQuantityDoesNotMatchRequirements(quantity, wordsPerParagraphMin),
       'generate-random-text'
     );
   }
 
-  const distribution = distribute(quantity, unit, breakdown);
+  const distribution = distribute(quantity, unit, requirements);
 
   const textArray = generateTextArray(freqMap, distribution);
 

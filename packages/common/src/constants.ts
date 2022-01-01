@@ -1,4 +1,4 @@
-import { breakdownType } from './types';
+import { requirementsType } from './types';
 
 /* eslint-disable import/prefer-default-export */
 
@@ -12,7 +12,7 @@ import { breakdownType } from './types';
     - range 7 - 10 = couldn't break down 11, 12, 13
     - so on...
  */
-export const breakdownDefault: breakdownType = {
+export const requirementsDefault: requirementsType = {
   sentencesPerParagraphMin: 4,
   sentencesPerParagraphMax: 8, // max must be at least min * 2 - 1
   wordsPerSentenceMin: 7,

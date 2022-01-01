@@ -10,7 +10,7 @@ function breakNumberIntoChunks(
   // fifth parameter could be calculated with `Math.floor(firstArgument / secondArgument)`
   // while this would work when computing how many paragraphs the distribution will have
   // it wouldn't work when computing how many sentences a paragraph will have, that's because
-  // quantity of sentences must adhere to main function's `breakdown.sentencesPerParagraph{Min|Max}`
+  // quant of sentences must adhere to main function's `requirements.sentencesPerParagraph{Min|Max}`
   distributionLengthMin: number,
   distributionLengthMax: number
 ): number[] {

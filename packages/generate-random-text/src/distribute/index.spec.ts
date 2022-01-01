@@ -1,4 +1,4 @@
-import { breakdownDefault } from '@xlorem/common/src/constants';
+import { requirementsDefault } from '@xlorem/common/src/constants';
 import { getRandomNumber } from '@xlorem/common/src/utils';
 
 import distribute from '.';
@@ -9,7 +9,11 @@ import distribute from '.';
 describe.each(Array.from({ length: 20 }).map(() => getRandomNumber(1, 25)))(
   "'paragraphs' unit",
   (quantity) => {
-    const distribution = distribute(quantity, 'paragraphs', breakdownDefault);
+    const distribution = distribute(
+      quantity,
+      'paragraphs',
+      requirementsDefault
+    );
 
     it('quantity', () => {
       expect.assertions(1);
@@ -18,7 +22,7 @@ describe.each(Array.from({ length: 20 }).map(() => getRandomNumber(1, 25)))(
       expect(paragraphsQuantity).toStrictEqual(quantity);
     });
 
-    it('quantity of sentences per paragraph conforms with given `breakdown`', () => {
+    it('quantity of sentences per paragraph conforms with given `requirements`', () => {
       expect.assertions(2);
 
       const sentencesQuantityOfEachParagraph = distribution.reduce(
@@ -30,15 +34,15 @@ describe.each(Array.from({ length: 20 }).map(() => getRandomNumber(1, 25)))(
       const max = Math.max(...sentencesQuantityOfEachParagraph);
 
       expect(min).toBeGreaterThanOrEqual(
-        breakdownDefault.sentencesPerParagraphMin
+        requirementsDefault.sentencesPerParagraphMin
       );
 
       expect(max).toBeLessThanOrEqual(
-        breakdownDefault.sentencesPerParagraphMax
+        requirementsDefault.sentencesPerParagraphMax
       );
     });
 
-    it('quantity of words per sentence conforms with given `breakdown`', () => {
+    it('quantity of words per sentence conforms with given `requirements`', () => {
       expect.assertions(2);
 
       const wordsQuantityOfEachSentence = distribution.reduce(
@@ -49,8 +53,10 @@ describe.each(Array.from({ length: 20 }).map(() => getRandomNumber(1, 25)))(
       const min = Math.min(...wordsQuantityOfEachSentence);
       const max = Math.max(...wordsQuantityOfEachSentence);
 
-      expect(min).toBeGreaterThanOrEqual(breakdownDefault.wordsPerSentenceMin);
-      expect(max).toBeLessThanOrEqual(breakdownDefault.wordsPerSentenceMax);
+      expect(min).toBeGreaterThanOrEqual(
+        requirementsDefault.wordsPerSentenceMin
+      );
+      expect(max).toBeLessThanOrEqual(requirementsDefault.wordsPerSentenceMax);
     });
   }
 );
@@ -58,13 +64,13 @@ describe.each(Array.from({ length: 20 }).map(() => getRandomNumber(1, 25)))(
 describe.each(
   Array.from({ length: 20 }).map(() =>
     getRandomNumber(
-      breakdownDefault.wordsPerSentenceMin *
-        breakdownDefault.sentencesPerParagraphMin,
+      requirementsDefault.wordsPerSentenceMin *
+        requirementsDefault.sentencesPerParagraphMin,
       2000
     )
   )
 )("'words' unit", (quantity) => {
-  const distribution = distribute(quantity, 'words', breakdownDefault);
+  const distribution = distribute(quantity, 'words', requirementsDefault);
 
   it('quantity', () => {
     expect.assertions(1);
@@ -76,7 +82,7 @@ describe.each(
     expect(wordsQuantity).toStrictEqual(quantity);
   });
 
-  it('quantity of sentences per paragraph conforms with given `breakdown`', () => {
+  it('quantity of sentences per paragraph conforms with given `requirements`', () => {
     expect.assertions(2);
 
     const sentencesQuantityOfEachParagraph = distribution.reduce(
@@ -88,13 +94,15 @@ describe.each(
     const max = Math.max(...sentencesQuantityOfEachParagraph);
 
     expect(min).toBeGreaterThanOrEqual(
-      breakdownDefault.sentencesPerParagraphMin
+      requirementsDefault.sentencesPerParagraphMin
     );
 
-    expect(max).toBeLessThanOrEqual(breakdownDefault.sentencesPerParagraphMax);
+    expect(max).toBeLessThanOrEqual(
+      requirementsDefault.sentencesPerParagraphMax
+    );
   });
 
-  it('quantity of words per sentence conforms with given `breakdown`', () => {
+  it('quantity of words per sentence conforms with given `requirements`', () => {
     expect.assertions(2);
 
     const wordsQuantityOfEachSentence = distribution.reduce(
@@ -105,7 +113,7 @@ describe.each(
     const min = Math.min(...wordsQuantityOfEachSentence);
     const max = Math.max(...wordsQuantityOfEachSentence);
 
-    expect(min).toBeGreaterThanOrEqual(breakdownDefault.wordsPerSentenceMin);
-    expect(max).toBeLessThanOrEqual(breakdownDefault.wordsPerSentenceMax);
+    expect(min).toBeGreaterThanOrEqual(requirementsDefault.wordsPerSentenceMin);
+    expect(max).toBeLessThanOrEqual(requirementsDefault.wordsPerSentenceMax);
   });
 });

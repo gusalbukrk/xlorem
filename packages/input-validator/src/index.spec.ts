@@ -1,10 +1,10 @@
-import { breakdownDefault } from '@xlorem/common/src/constants';
+import { requirementsDefault } from '@xlorem/common/src/constants';
 import * as errorMessages from '@xlorem/common/src/errorMessages';
 import {
   queryOrArticleType,
   unitType,
   formatType,
-  breakdownType,
+  requirementsType,
 } from '@xlorem/common/src/types';
 import { paramsToObjParam } from '@xlorem/common/src/utils';
 
@@ -15,7 +15,7 @@ type inputValidatorInterface = {
   unit: unitType;
   quantity: number;
   format: formatType;
-  breakdown: breakdownType;
+  requirements: requirementsType;
 };
 
 const defaults: inputValidatorInterface = {
@@ -23,7 +23,7 @@ const defaults: inputValidatorInterface = {
   unit: 'paragraphs',
   quantity: 5,
   format: 'plain',
-  breakdown: breakdownDefault,
+  requirements: requirementsDefault,
 };
 
 const inputValidator = paramsToObjParam(inputValidatorBase, defaults);
@@ -82,38 +82,38 @@ describe('throw error messages correctly', () => {
     expect(y).toThrow(errorMessages.invalidFormat);
   });
 
-  it('breakdown argument', () => {
+  it('requirements argument', () => {
     expect.assertions(4);
 
     // @ts-expect-error: test
-    const w = () => inputValidator({ breakdown: {} });
+    const w = () => inputValidator({ requirements: {} });
     const x = () =>
       inputValidator({
-        breakdown: {
-          ...breakdownDefault,
+        requirements: {
+          ...requirementsDefault,
           wordsPerSentenceMin: 2,
         },
       });
     const y = () =>
       inputValidator({
-        breakdown: {
-          ...breakdownDefault,
+        requirements: {
+          ...requirementsDefault,
           sentencesPerParagraphMin: 5,
           sentencesPerParagraphMax: 5,
         },
       });
     const z = () =>
       inputValidator({
-        breakdown: {
-          ...breakdownDefault,
+        requirements: {
+          ...requirementsDefault,
           wordsPerSentenceMin: 5,
           wordsPerSentenceMax: 5,
         },
       });
 
-    expect(w).toThrow(errorMessages.invalidBreakdown);
-    expect(x).toThrow(errorMessages.breakdownValuesTooSmall);
-    expect(y).toThrow(errorMessages.invalidBreakdownSentencesPerParagraph);
-    expect(z).toThrow(errorMessages.invalidBreakdownWordsPerSentence);
+    expect(w).toThrow(errorMessages.invalidRequirements);
+    expect(x).toThrow(errorMessages.requirementsValuesTooSmall);
+    expect(y).toThrow(errorMessages.invalidRequirementsSentencesPerParagraph);
+    expect(z).toThrow(errorMessages.invalidRequirementsWordsPerSentence);
   });
 });

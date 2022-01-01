@@ -16,14 +16,14 @@ export const quantityTooSmall =
   'Expected `quantity` argument to be greater than 28 words / 1 paragraph.';
 export const invalidFormat =
   "Expected `format` argument to be 'plain' or 'html'.";
-export const invalidBreakdown =
-  'Expected `breakdown` argument to be an object ({ sentencesPerParagraphMin: number, sentencesPerParagraphMax: number, wordsPerSentenceMin: number, wordsPerSentenceMax: number; }).';
-export const breakdownValuesTooSmall =
-  'Expected all `breakdown` argument properties to be at least 3.';
-export const invalidBreakdownSentencesPerParagraph =
-  'Expected `breakdown.sentencesPerParagraphMax` argument to be at least (sentencesPerParagraphMin * 2 - 1).';
-export const invalidBreakdownWordsPerSentence =
-  'Expected `breakdown.wordsPerSentenceMax` argument to be at least (wordsPerSentenceMin * 2 - 1).';
+export const invalidRequirements =
+  'Expected `requirements` argument to be an object ({ sentencesPerParagraphMin: number, sentencesPerParagraphMax: number, wordsPerSentenceMin: number, wordsPerSentenceMax: number; }).';
+export const requirementsValuesTooSmall =
+  'Expected all `requirements` properties to be at least 3.';
+export const invalidRequirementsSentencesPerParagraph =
+  'Expected `requirements.sentencesPerParagraphMax` argument to be at least (sentencesPerParagraphMin * 2 - 1).';
+export const invalidRequirementsWordsPerSentence =
+  'Expected `requirements.wordsPerSentenceMax` argument to be at least (wordsPerSentenceMin * 2 - 1).';
 
 export const articleNotFound =
   'Wikipedia does not have an article with this exact title. Try again using a different query.';
@@ -47,8 +47,8 @@ export const notEnoughWordsInFreqMap = (
 ): string =>
   `Given \`wordsArray\` doesn't have enough words to construct \`freqMap\` containing the minimum quantity of words required. Minimum number of words required: ${minimum}. Number of words received: ${received}.`;
 
-export const wordsQuantityDoesNotMatchBreakdown = (
+export const wordsQuantityDoesNotMatchRequirements = (
   quantity: number,
   minimum: number
 ): string =>
-  `Given \`quantity\` of words (${quantity}) is lower than the number needed to generate a single paragraph (${minimum}) as defined by \`breakdown\` (\`sentencesPerParagraphMin * wordsPerSentenceMin\`).`;
+  `Given \`quantity\` of words (${quantity}) is lower than the number needed to generate a single paragraph (${minimum}) as defined by \`requirements\` (\`sentencesPerParagraphMin * wordsPerSentenceMin\`).`;

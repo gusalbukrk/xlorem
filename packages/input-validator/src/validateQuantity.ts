@@ -1,11 +1,11 @@
-import { breakdownDefault } from '@xlorem/common/src/constants';
+import { requirementsDefault } from '@xlorem/common/src/constants';
 import {
   quantityNotNumber,
   quantityTooSmall,
 } from '@xlorem/common/src/errorMessages';
 import { unitType } from '@xlorem/common/src/types';
 
-const { sentencesPerParagraphMin, wordsPerSentenceMin } = breakdownDefault;
+const { sentencesPerParagraphMin, wordsPerSentenceMin } = requirementsDefault;
 
 function getType(value: unknown) {
   return Array.isArray(value) ? 'array' : typeof value;

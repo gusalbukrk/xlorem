@@ -3,13 +3,13 @@ import {
   queryOrArticleType,
   unitType,
   formatType,
-  breakdownType,
+  requirementsType,
 } from '@xlorem/common/src/types';
 
-import validateBreakdown from './validateBreakdown';
 import validateFormat from './validateFormat';
 import validateQuantity from './validateQuantity';
 import validateQueryOrArticle from './validateQueryOrArticle';
+import validateRequirements from './validateRequirements';
 import validateUnit from './validateUnit';
 
 function inputValidator(
@@ -17,14 +17,14 @@ function inputValidator(
   unit: unitType,
   quantity: number,
   format: formatType,
-  breakdown: breakdownType
+  requirements: requirementsType
 ): void {
   const errors = ([] as string[]).concat(
     validateQueryOrArticle(queryOrArticle),
     validateUnit(unit),
     validateQuantity(quantity, unit),
     validateFormat(format),
-    validateBreakdown(breakdown)
+    validateRequirements(requirements)
   );
 
   if (errors.length > 0)

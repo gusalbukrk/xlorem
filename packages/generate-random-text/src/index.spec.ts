@@ -1,4 +1,4 @@
-import { breakdownDefault } from '@xlorem/common/src/constants';
+import { requirementsDefault } from '@xlorem/common/src/constants';
 import { freqMapType } from '@xlorem/common/src/types';
 import {
   capitalize,
@@ -16,7 +16,7 @@ const {
   sentencesPerParagraphMax,
   wordsPerSentenceMin,
   wordsPerSentenceMax,
-} = breakdownDefault;
+} = requirementsDefault;
 
 const removePunctuation = (word: string) =>
   word.replace(/[.!?,:;()[\]"—\s]/g, '');

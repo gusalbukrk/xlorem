@@ -8,7 +8,7 @@ import breakNumberIntoChunks from './breakNumberIntoChunks';
  * @param quantity Number of specified unit. See more at {@link unitType}.
  * @param unit
  * @param requirements Return must comply with the requirements defined here.
- * @returns Each nested array is a paragraph, each number is a sentence.
+ * @returns Each nested number array is a paragraph, each number is a sentence.
  */
 function distribute(
   quantity: number,

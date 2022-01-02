@@ -10,8 +10,8 @@ function generateTextArray(
 ): string[][][] {
   const getRandomArticleWord = weightedRandomness(freqMap);
 
-  const textArray = distribution.map((paragraphRequirements) =>
-    paragraphRequirements.map((sentenceIntendedLength) =>
+  const textArray = distribution.map((paragraphBreakdown) =>
+    paragraphBreakdown.map((sentenceIntendedLength) =>
       capitalizeAndPunctuateSentence(
         Array.from({ length: sentenceIntendedLength }).reduce<string[]>(
           (sentence) =>

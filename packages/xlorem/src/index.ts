@@ -5,10 +5,10 @@ import {
   formatType,
   requirementsType,
 } from '@xlorem/common/src/types';
-import generateText from 'generate-random-text';
-import generateFreqMap from 'generate-words-freqmap';
-import getWikipediaArticle from 'get-wikipedia-article';
-import tokenizeWords from 'tokenize-words';
+import generateText from 'generate-random-text/src';
+import generateFreqMap from 'generate-words-freqmap/src';
+import getWikipediaArticle from 'get-wikipedia-article/src';
+import tokenizeWords from 'tokenize-words/src';
 
 import validate from './validate';
 

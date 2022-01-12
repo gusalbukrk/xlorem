@@ -1,6 +1,6 @@
 import { requirementsDefault } from '@xlorem/common/src/constants';
 import {
-  queryOrArticleType,
+  inputType,
   unitType,
   formatType,
   requirementsType,
@@ -13,7 +13,7 @@ import tokenizeWords from 'tokenize-words/src';
 import validate from './validate';
 
 type param = {
-  queryOrArticle: queryOrArticleType;
+  input: inputType;
   unit?: unitType;
   quantity?: number;
   format?: formatType;
@@ -26,7 +26,7 @@ type output = {
 };
 
 async function xlorem({
-  queryOrArticle,
+  input,
   unit = 'paragraphs',
   quantity = unit === 'paragraphs' ? 5 : 200,
   format = 'plain',
@@ -34,16 +34,16 @@ async function xlorem({
 }: param): Promise<output> {
   const requirementsMerged = { ...requirementsDefault, ...requirements };
 
-  validate(queryOrArticle, unit, quantity, format, requirementsMerged);
+  validate(input, unit, quantity, format, requirementsMerged);
 
   const {
     title,
     body,
     related: wordsToEmphasize,
   } = (
-    typeof queryOrArticle === 'string'
-      ? await getWikipediaArticle(queryOrArticle, ['title', 'body', 'related'])
-      : { ...queryOrArticle, related: [] }
+    typeof input === 'string'
+      ? await getWikipediaArticle(input, ['title', 'body', 'related'])
+      : { ...input, related: [] }
   ) as { title: string; body: string; related: string[] };
 
   const wordsArray = tokenizeWords(body);

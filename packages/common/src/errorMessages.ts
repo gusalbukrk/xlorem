@@ -4,11 +4,11 @@
 
 // used at `xlorem/src/validate`
 export const neitherStringNorArticle =
-  'Expected `queryOrArticle` argument to be a query string or an object ({ title: string, body: string }).';
+  'Expected `input` argument to be a query string or an object ({ title: string, body: string }).';
 export const emptyQueryString =
-  'Expected non-empty query string at `queryOrArticle` argument.';
+  'Expected non-empty query string at `input` argument.';
 export const textTooShort =
-  'Expected given text (in `queryOrArticle.body` argument) to have at least 150 words.';
+  'Expected given text (in `input.body` argument) to have at least 150 words.';
 export const invalidUnit =
   "Expected `unit` argument to be 'words' or 'paragraphs'.";
 export const quantityNotNumber = 'Expected `quantity` argument to be a number.';

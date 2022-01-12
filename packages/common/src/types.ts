@@ -5,13 +5,15 @@ export type freqMapType = {
   [weight: string]: tier;
 };
 
-export type articleType = {
+/** input type */
+export type textType = {
   title: string;
   body: string;
-  wordsToEmphasize: string[];
 };
 
-export type queryOrArticleType = string | Omit<articleType, 'wordsToEmphasize'>;
+export type inputType =
+  | string // wikipedia query string
+  | textType; // text
 
 export type unitType = 'paragraphs' | 'words';
 

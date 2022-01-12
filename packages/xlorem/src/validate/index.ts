@@ -1,26 +1,26 @@
 import CustomError from '@xlorem/common/src/CustomError';
 import {
-  queryOrArticleType,
+  inputType,
   unitType,
   formatType,
   requirementsType,
 } from '@xlorem/common/src/types';
 
 import validateFormat from './validateFormat';
+import validateInput from './validateInput';
 import validateQuantity from './validateQuantity';
-import validateQueryOrArticle from './validateQueryOrArticle';
 import validateRequirements from './validateRequirements';
 import validateUnit from './validateUnit';
 
 function validate(
-  queryOrArticle: queryOrArticleType,
+  input: inputType,
   unit: unitType,
   quantity: number,
   format: formatType,
   requirements: requirementsType
 ): void {
   const errors = ([] as string[]).concat(
-    validateQueryOrArticle(queryOrArticle),
+    validateInput(input),
     validateUnit(unit),
     validateQuantity(quantity, unit),
     validateFormat(format),

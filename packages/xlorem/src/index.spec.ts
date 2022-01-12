@@ -1,20 +1,19 @@
 import 'cross-fetch/polyfill';
 
-import { queryOrArticleType } from '@xlorem/common/src/types';
+import { inputType } from '@xlorem/common/src/types';
 
 import article from './article';
 
 import xloremBase from '.';
 
-const xlorem = (input: queryOrArticleType) =>
-  xloremBase({ queryOrArticle: input });
+const xlorem = (input: inputType) => xloremBase({ input });
 
 describe('main function', () => {
   it.each([
-    { inputType: 'query', input: 'lorem ipsum' },
-    { inputType: 'text', input: article },
+    { type: 'query', input: 'lorem ipsum' },
+    { type: 'text', input: article },
   ])(
-    'returns correctly (input type: $inputType)',
+    'returns correctly (input type: $type)',
     async ({ input }) => {
       expect.assertions(3);
 

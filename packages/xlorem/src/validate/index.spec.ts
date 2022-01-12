@@ -1,7 +1,7 @@
 import { requirementsDefault } from '@xlorem/common/src/constants';
 import * as errorMessages from '@xlorem/common/src/errorMessages';
 import {
-  queryOrArticleType,
+  inputType,
   unitType,
   formatType,
   requirementsType,
@@ -11,7 +11,7 @@ import { paramsToObjParam } from '@xlorem/common/src/utils';
 import validateBase from '.';
 
 type validateInterface = {
-  queryOrArticle: queryOrArticleType;
+  input: inputType;
   unit: unitType;
   quantity: number;
   format: formatType;
@@ -19,7 +19,7 @@ type validateInterface = {
 };
 
 const defaults: validateInterface = {
-  queryOrArticle: '...',
+  input: '...',
   unit: 'paragraphs',
   quantity: 5,
   format: 'plain',
@@ -29,16 +29,16 @@ const defaults: validateInterface = {
 const validate = paramsToObjParam(validateBase, defaults);
 
 describe('throw error messages correctly', () => {
-  it('queryOrArticle argument', () => {
+  it('input argument', () => {
     expect.assertions(4);
 
     // @ts-expect-error: test
-    const w = () => validate({ queryOrArticle: [] });
+    const w = () => validate({ input: [] });
     const x = () =>
       // @ts-expect-error: test
-      validate({ queryOrArticle: { title: true, body: [] } });
-    const y = () => validate({ queryOrArticle: '' });
-    const z = () => validate({ queryOrArticle: { title: 'test', body: '' } });
+      validate({ input: { title: true, body: [] } });
+    const y = () => validate({ input: '' });
+    const z = () => validate({ input: { title: 'test', body: '' } });
 
     expect(w).toThrow(errorMessages.neitherStringNorArticle);
     expect(x).toThrow(errorMessages.neitherStringNorArticle);

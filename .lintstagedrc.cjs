@@ -9,7 +9,7 @@ module.exports = {
   // that's why you shouldn't execute any npm scripts here
   // e.g.: a script with a body `eslint . --fix` would lint all files, not only the staged
 
-  '*': 'cspell -c cspell.config.cjs',
+  '*': 'cspell -c cspell.config.cjs --no-must-find-files',
 
   '*.(js|jsx|ts|tsx|cjs|json)': 'eslint --fix --ignore-pattern "!.*"',
 

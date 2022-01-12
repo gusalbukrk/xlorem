@@ -25,9 +25,6 @@ const abspath = (relpath) => path.join(__dirname, relpath);
 const includePathOptions = {
   extensions: ['.ts'],
   include: {
-    '@xlorem/input-validator/src/': abspath(
-      'packages/input-validator/src/index.ts'
-    ),
     'generate-random-text/src/': abspath(
       'packages/generate-random-text/src/index.ts'
     ),

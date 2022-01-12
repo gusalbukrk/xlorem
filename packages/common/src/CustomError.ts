@@ -2,7 +2,6 @@ type libraryName =
   | 'generate-random-text'
   | 'generate-words-freqmap'
   | 'get-wikipedia-article'
-  | 'input-validator'
   | 'stopwords-utils'
   | 'tokenize-words'
   | 'weighted-randomness'

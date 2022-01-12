@@ -5,11 +5,12 @@ import {
   formatType,
   requirementsType,
 } from '@xlorem/common/src/types';
-import inputValidator from '@xlorem/input-validator/src';
 import generateText from 'generate-random-text';
 import generateFreqMap from 'generate-words-freqmap';
 import getWikipediaArticle from 'get-wikipedia-article';
 import tokenizeWords from 'tokenize-words';
+
+import validate from './validate';
 
 type param = {
   queryOrArticle: queryOrArticleType;
@@ -33,7 +34,7 @@ async function xlorem({
 }: param): Promise<output> {
   const requirementsMerged = { ...requirementsDefault, ...requirements };
 
-  inputValidator(queryOrArticle, unit, quantity, format, requirementsMerged);
+  validate(queryOrArticle, unit, quantity, format, requirementsMerged);
 
   const {
     title,

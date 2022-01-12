@@ -12,7 +12,7 @@ import validateQueryOrArticle from './validateQueryOrArticle';
 import validateRequirements from './validateRequirements';
 import validateUnit from './validateUnit';
 
-function inputValidator(
+function validate(
   queryOrArticle: queryOrArticleType,
   unit: unitType,
   quantity: number,
@@ -28,7 +28,7 @@ function inputValidator(
   );
 
   if (errors.length > 0)
-    throw new CustomError(`[ ${errors.join(', ')} ]`, 'input-validator');
+    throw new CustomError(`[ ${errors.join(', ')} ]`, 'xlorem');
 }
 
-export default inputValidator;
+export default validate;

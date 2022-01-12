@@ -2,7 +2,7 @@
 // tree-shaking isn't possible when exporting an object
 // https://medium.com/@rauschma/note-that-default-exporting-objects-is-usually-an-anti-pattern-if-you-want-to-export-the-cf674423ac38#.nibatprx3
 
-// used at @xlorem/input-validator
+// used at `xlorem/src/validate`
 export const neitherStringNorArticle =
   'Expected `queryOrArticle` argument to be a query string or an object ({ title: string, body: string }).';
 export const emptyQueryString =

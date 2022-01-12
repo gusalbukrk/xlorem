@@ -8,9 +8,9 @@ import {
 } from '@xlorem/common/src/types';
 import { paramsToObjParam } from '@xlorem/common/src/utils';
 
-import inputValidatorBase from '.';
+import validateBase from '.';
 
-type inputValidatorInterface = {
+type validateInterface = {
   queryOrArticle: queryOrArticleType;
   unit: unitType;
   quantity: number;
@@ -18,7 +18,7 @@ type inputValidatorInterface = {
   requirements: requirementsType;
 };
 
-const defaults: inputValidatorInterface = {
+const defaults: validateInterface = {
   queryOrArticle: '...',
   unit: 'paragraphs',
   quantity: 5,
@@ -26,20 +26,19 @@ const defaults: inputValidatorInterface = {
   requirements: requirementsDefault,
 };
 
-const inputValidator = paramsToObjParam(inputValidatorBase, defaults);
+const validate = paramsToObjParam(validateBase, defaults);
 
 describe('throw error messages correctly', () => {
   it('queryOrArticle argument', () => {
     expect.assertions(4);
 
     // @ts-expect-error: test
-    const w = () => inputValidator({ queryOrArticle: [] });
+    const w = () => validate({ queryOrArticle: [] });
     const x = () =>
       // @ts-expect-error: test
-      inputValidator({ queryOrArticle: { title: true, body: [] } });
-    const y = () => inputValidator({ queryOrArticle: '' });
-    const z = () =>
-      inputValidator({ queryOrArticle: { title: 'test', body: '' } });
+      validate({ queryOrArticle: { title: true, body: [] } });
+    const y = () => validate({ queryOrArticle: '' });
+    const z = () => validate({ queryOrArticle: { title: 'test', body: '' } });
 
     expect(w).toThrow(errorMessages.neitherStringNorArticle);
     expect(x).toThrow(errorMessages.neitherStringNorArticle);
@@ -51,9 +50,9 @@ describe('throw error messages correctly', () => {
     expect.assertions(2);
 
     // @ts-expect-error: test
-    const x = () => inputValidator({ unit: '' });
+    const x = () => validate({ unit: '' });
     // @ts-expect-error: test
-    const y = () => inputValidator({ unit: 'abcde' });
+    const y = () => validate({ unit: 'abcde' });
 
     expect(x).toThrow(errorMessages.invalidUnit);
     expect(y).toThrow(errorMessages.invalidUnit);
@@ -63,8 +62,8 @@ describe('throw error messages correctly', () => {
     expect.assertions(2);
 
     // @ts-expect-error: test
-    const x = () => inputValidator({ quantity: '...' });
-    const y = () => inputValidator({ quantity: 0 });
+    const x = () => validate({ quantity: '...' });
+    const y = () => validate({ quantity: 0 });
 
     expect(x).toThrow(errorMessages.quantityNotNumber);
     expect(y).toThrow(errorMessages.quantityTooSmall);
@@ -74,9 +73,9 @@ describe('throw error messages correctly', () => {
     expect.assertions(2);
 
     // @ts-expect-error: test
-    const x = () => inputValidator({ format: '' });
+    const x = () => validate({ format: '' });
     // @ts-expect-error: test
-    const y = () => inputValidator({ format: 'abcde' });
+    const y = () => validate({ format: 'abcde' });
 
     expect(x).toThrow(errorMessages.invalidFormat);
     expect(y).toThrow(errorMessages.invalidFormat);
@@ -86,16 +85,16 @@ describe('throw error messages correctly', () => {
     expect.assertions(4);
 
     // @ts-expect-error: test
-    const w = () => inputValidator({ requirements: {} });
+    const w = () => validate({ requirements: {} });
     const x = () =>
-      inputValidator({
+      validate({
         requirements: {
           ...requirementsDefault,
           wordsPerSentenceMin: 2,
         },
       });
     const y = () =>
-      inputValidator({
+      validate({
         requirements: {
           ...requirementsDefault,
           sentencesPerParagraphMin: 5,
@@ -103,7 +102,7 @@ describe('throw error messages correctly', () => {
         },
       });
     const z = () =>
-      inputValidator({
+      validate({
         requirements: {
           ...requirementsDefault,
           wordsPerSentenceMin: 5,

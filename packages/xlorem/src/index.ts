@@ -1,22 +1,22 @@
-import { breakdownDefault } from '@xlorem/common/src/constants';
+import { requirementsDefault } from '@xlorem/common/src/constants';
 import {
   queryOrArticleType,
   unitType,
   formatType,
-  breakdownType,
+  requirementsType,
 } from '@xlorem/common/src/types';
-import inputValidator from '@xlorem/input-validator/src/';
-import generateText from 'generate-random-text/src/';
-import generateFreqMap from 'generate-words-freqmap/src/';
-import getArticle from 'get-wikipedia-article/src/';
-import tokenizeWords from 'tokenize-words/src/';
+import inputValidator from '@xlorem/input-validator/src';
+import generateText from 'generate-random-text';
+import generateFreqMap from 'generate-words-freqmap';
+import getWikipediaArticle from 'get-wikipedia-article';
+import tokenizeWords from 'tokenize-words';
 
 type param = {
   queryOrArticle: queryOrArticleType;
   unit?: unitType;
   quantity?: number;
   format?: formatType;
-  breakdown?: Partial<breakdownType>;
+  requirements?: Partial<requirementsType>;
 };
 
 type output = {
@@ -29,48 +29,34 @@ async function xlorem({
   unit = 'paragraphs',
   quantity = unit === 'paragraphs' ? 5 : 200,
   format = 'plain',
-  breakdown = breakdownDefault,
+  requirements = requirementsDefault,
 }: param): Promise<output> {
-  const breakdownMerged = { ...breakdownDefault, ...breakdown };
+  const requirementsMerged = { ...requirementsDefault, ...requirements };
 
-  inputValidator(queryOrArticle, unit, quantity, format, breakdownMerged);
+  inputValidator(queryOrArticle, unit, quantity, format, requirementsMerged);
 
   const {
     title,
     body,
     related: wordsToEmphasize,
-  } = typeof queryOrArticle === 'string'
-    ? await getArticle(queryOrArticle, ['title', 'body', 'related'])
-    : { ...queryOrArticle, related: [] };
+  } = (
+    typeof queryOrArticle === 'string'
+      ? await getWikipediaArticle(queryOrArticle, ['title', 'body', 'related'])
+      : { ...queryOrArticle, related: [] }
+  ) as { title: string; body: string; related: string[] };
 
-  const wordsArray = tokenizeWords(body!);
+  const wordsArray = tokenizeWords(body);
 
-  const freqMap = generateFreqMap(
-    wordsArray,
-    wordsToEmphasize || [],
-    breakdownMerged.wordsPerSentenceMax
-  );
+  const freqMap = generateFreqMap(wordsArray, wordsToEmphasize);
 
-  const text = generateText(
-    freqMap,
+  const text = generateText(freqMap, {
     unit,
     quantity,
     format,
-    breakdownMerged
-  ) as string;
+    requirements: requirementsMerged,
+  }) as string;
 
-  // debug
-  // console.log({ title, body, wordsToEmphasize });
-  // console.log(wordsArray);
-  // console.log(freqMap);
-  // console.log(text);
-
-  const output = { title: title!, body: text };
-  return output;
+  return { title, body: text };
 }
 
 export default xlorem;
-
-// xlorem({ queryOrArticle: 'harry potter' })
-//   .then()
-//   .catch((e) => console.log(e));

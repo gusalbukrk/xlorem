@@ -12,12 +12,11 @@ import tokenizeWords from 'tokenize-words/src';
 
 import validate from './validate';
 
-type param = {
-  input: inputType;
-  unit?: unitType;
-  quantity?: number;
-  format?: formatType;
-  requirements?: Partial<requirementsType>;
+type optionsType = {
+  unit: unitType;
+  quantity: number;
+  format: formatType;
+  requirements: Partial<requirementsType>;
 };
 
 type output = {
@@ -25,13 +24,15 @@ type output = {
   body: string;
 };
 
-async function xlorem({
-  input,
-  unit = 'paragraphs',
-  quantity = unit === 'paragraphs' ? 5 : 200,
-  format = 'plain',
-  requirements = requirementsDefault,
-}: param): Promise<output> {
+async function xlorem(
+  input: inputType,
+  {
+    unit = 'paragraphs',
+    quantity = unit === 'paragraphs' ? 5 : 200,
+    format = 'plain',
+    requirements = requirementsDefault,
+  }: Partial<optionsType> = {}
+): Promise<output> {
   const requirementsMerged = { ...requirementsDefault, ...requirements };
 
   validate(input, unit, quantity, format, requirementsMerged);

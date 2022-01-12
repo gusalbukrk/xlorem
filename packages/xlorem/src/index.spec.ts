@@ -6,7 +6,7 @@ import article from './article';
 
 import xloremBase from '.';
 
-const xlorem = (input: inputType) => xloremBase({ input });
+const xlorem = (input: inputType) => xloremBase(input);
 
 describe('main function', () => {
   it.each([

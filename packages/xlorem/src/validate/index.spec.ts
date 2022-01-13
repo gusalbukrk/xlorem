@@ -33,10 +33,11 @@ describe('throw error messages correctly', () => {
     expect.assertions(4);
 
     // @ts-expect-error: test
-    const w = () => validate({ input: [] });
-    const x = () =>
-      // @ts-expect-error: test
-      validate({ input: { title: true, body: [] } });
+    const w = () => validate({ input: true });
+
+    // @ts-expect-error: test
+    const x = () => validate({ input: () => null });
+
     const y = () => validate({ input: '' });
     const z = () => validate({ input: { title: 'test', body: '' } });
 

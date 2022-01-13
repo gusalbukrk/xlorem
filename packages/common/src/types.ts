@@ -5,15 +5,16 @@ export type freqMapType = {
   [weight: string]: tier;
 };
 
-/** input type */
-export type textType = {
-  title: string;
-  body: string;
-};
-
+// input types
+export type queryInputType = string;
+export type textInputType = { title: string; body: string };
+export type wordsArrayInputType = { title: string; words: string[] };
+export type freqMapInputType = { title: string; map: freqMapType };
 export type inputType =
-  | string // wikipedia query string
-  | textType; // text
+  | queryInputType
+  | textInputType
+  | wordsArrayInputType
+  | freqMapInputType;
 
 export type unitType = 'paragraphs' | 'words';
 

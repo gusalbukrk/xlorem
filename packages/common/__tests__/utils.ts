@@ -7,6 +7,7 @@ import {
   escapeRegExp,
   paramsToObjParam,
   reduce,
+  isObject,
 } from '../src/utils';
 
 describe('utils functions work correctly', () => {
@@ -93,5 +94,46 @@ describe('utils functions work correctly', () => {
 
     const y = reduce(3, [mul2, add2]);
     expect(y).toBe(8);
+  });
+
+  it('isObject', () => {
+    expect.assertions(16);
+
+    // primitives
+    expect(isObject('foo')).toStrictEqual(false);
+    expect(isObject(123)).toStrictEqual(false);
+    expect(isObject(true)).toStrictEqual(false);
+
+    // nullish values
+    expect(isObject(undefined)).toStrictEqual(false);
+    expect(isObject(null)).toStrictEqual(false);
+
+    // data structures that (under the hook) are objects,
+    // but shouldn't be considered as such by the function being tested
+    expect(isObject(['foo', 'bar'])).toStrictEqual(false);
+    expect(isObject(new Set())).toStrictEqual(false);
+    expect(isObject(new Map())).toStrictEqual(false);
+
+    // functions
+    expect(isObject(() => true)).toStrictEqual(false);
+    expect(isObject(() => false)).toStrictEqual(false);
+
+    // built-ins
+    expect(isObject(Math)).toStrictEqual(false);
+    expect(isObject(new Date())).toStrictEqual(false);
+
+    class Pet {
+      name: string;
+
+      constructor(n: string) {
+        this.name = n;
+      }
+    }
+
+    // objects
+    expect(isObject({})).toStrictEqual(true);
+    expect(isObject({ foo: 'bar' })).toStrictEqual(true);
+    expect(isObject(new Object({ 1: 'foo', 2: 'bar' }))).toStrictEqual(true); // eslint-disable-line no-new-object
+    expect(isObject(new Pet('foo'))).toStrictEqual(true); // object w/ custom class
   });
 });

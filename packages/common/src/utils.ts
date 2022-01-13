@@ -49,3 +49,8 @@ export function paramsToObjParam<I, T extends unknown[], RT>(
 export function reduce<T>(input: T, functions: ((input: T) => T)[]): T {
   return functions.reduce((acc, fn) => fn(acc), input);
 }
+
+/** Check is given value is an object. */
+export function isObject(input: unknown): boolean {
+  return Object.prototype.toString.call(input) === '[object Object]';
+}

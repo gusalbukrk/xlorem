@@ -9,6 +9,7 @@ import {
   wordsArrayInputType,
   freqMapInputType,
 } from '@xlorem/common/src/types';
+import { isObject } from '@xlorem/common/src/utils';
 
 function validateInput(input: inputType): string[] {
   const errors: string[] = [];
@@ -25,10 +26,7 @@ function validateInput(input: inputType): string[] {
 
   const { map } = input as freqMapInputType;
   const isFreqMap =
-    // first 3 check if it's an object
-    typeof map === 'object' &&
-    map !== null &&
-    !Array.isArray(map) &&
+    isObject(map) &&
     Object.keys(map).every((prop) => /^\d+$/.test(prop)) &&
     Object.values(map).every((arr) => Array.isArray(arr));
 

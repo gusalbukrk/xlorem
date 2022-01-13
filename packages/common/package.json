@@ -1,8 +1,9 @@
 {
+  "private": true,
   "name": "@xlorem/common",
   "author": "gusalbukrk",
   "version": "0.0.0",
-  "description": "Common files for xlorem.",
+  "description": "Monorepo common files.",
   "license": "MIT",
   "keywords": [
     "xlorem"
@@ -11,14 +12,6 @@
   "engines": {
     "node": ">=14.0.0"
   },
-  "publishConfig": {
-    "access": "public"
-  },
-  "files": [
-    "src",
-    "!src/**/__tests__",
-    "!src/**/*.{test,spec}.{js,jsx,ts,tsx}"
-  ],
   "scripts": {
     "lint": "eslint src/ --fix; cspell \"**\" -c ../../cspell.config.cjs --no-progress",
     "test": "jest --passWithNoTests"

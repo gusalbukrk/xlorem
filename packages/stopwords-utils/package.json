@@ -1,7 +1,7 @@
 {
   "name": "stopwords-utils",
   "author": "gusalbukrk",
-  "version": "0.0.0",
+  "version": "0.0.1-alpha.0",
   "description": "Utilities for working with English stopwords.",
   "license": "MIT",
   "keywords": [],

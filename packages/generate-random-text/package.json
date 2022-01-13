@@ -1,7 +1,7 @@
 {
   "name": "generate-random-text",
   "author": "gusalbukrk",
-  "version": "0.0.0",
+  "version": "0.0.1-alpha.0",
   "description": "Randomly generate text using given frequency map.",
   "license": "MIT",
   "keywords": [

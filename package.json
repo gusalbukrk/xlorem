@@ -1,5 +1,5 @@
 {
-  "name": "@xlorem/root",
+  "name": "@xlorem/monorepo",
   "private": true,
   "type": "module",
   "engines": {

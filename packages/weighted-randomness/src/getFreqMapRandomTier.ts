@@ -1,5 +1,5 @@
-import { freqMapType } from '@xlorem/common/src/types';
-import { last, getRandomNumber } from '@xlorem/common/src/utils';
+import { freqMapType } from 'xlorem-common/src/types';
+import { last, getRandomNumber } from 'xlorem-common/src/utils';
 
 function getRangeRespectiveFreqMapWeight(
   range: number,

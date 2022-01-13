@@ -21,7 +21,7 @@ const abspath = (relpath) => path.join(__dirname, relpath);
 // `Plugin node-resolve: Could not resolve import … in … using exports defined in … package.json`
 // possible fix is to delete any export key (main, exports) in the imported module `package.json`
 // which shouldn't be done in most packages because it would make importing less practical
-// @xlorem/common is not declare in here because its package.json doesn't contain any export key
+// xlorem-common is not declare in here because its package.json doesn't contain any export key
 const includePathOptions = {
   extensions: ['.ts'],
   include: {

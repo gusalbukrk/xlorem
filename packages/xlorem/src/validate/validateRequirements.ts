@@ -3,8 +3,8 @@ import {
   requirementsValuesTooSmall,
   invalidRequirementsSentencesPerParagraph,
   invalidRequirementsWordsPerSentence,
-} from '@xlorem/common/src/errorMessages';
-import { requirementsType } from '@xlorem/common/src/types';
+} from 'xlorem-common/src/errorMessages';
+import { requirementsType } from 'xlorem-common/src/types';
 
 function validateRequirements(requirements: requirementsType): string[] {
   const errors: string[] = [];

@@ -3,7 +3,7 @@ import 'cross-fetch/polyfill';
 import {
   articleNotFound,
   articleIsDisambiguation,
-} from '@xlorem/common/src/errorMessages';
+} from 'xlorem-common/src/errorMessages';
 
 import { includeType } from './common/types';
 

@@ -1,12 +1,12 @@
-import { freqMapType } from '@xlorem/common/src/types';
+import { isStopword } from 'stopwords-utils/src/';
+import weightedRandomness from 'weighted-randomness/src/';
+import { freqMapType } from 'xlorem-common/src/types';
 import {
   capitalize,
   getRandomArrayElement,
   last,
   isNumeric,
-} from '@xlorem/common/src/utils';
-import { isStopword } from 'stopwords-utils/src/';
-import weightedRandomness from 'weighted-randomness/src/';
+} from 'xlorem-common/src/utils';
 
 function capitalizeSentence(sentenceArray: string[]) {
   return [capitalize(sentenceArray[0]), ...sentenceArray.slice(1)];

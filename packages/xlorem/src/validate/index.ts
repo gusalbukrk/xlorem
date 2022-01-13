@@ -1,10 +1,10 @@
-import CustomError from '@xlorem/common/src/CustomError';
+import CustomError from 'xlorem-common/src/CustomError';
 import {
   inputType,
   unitType,
   formatType,
   requirementsType,
-} from '@xlorem/common/src/types';
+} from 'xlorem-common/src/types';
 
 import validateFormat from './validateFormat';
 import validateInput from './validateInput';

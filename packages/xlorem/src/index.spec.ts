@@ -1,6 +1,6 @@
 import 'cross-fetch/polyfill';
 
-import { inputType } from '@xlorem/common/src/types';
+import { inputType } from 'xlorem-common/src/types';
 
 import article from './article';
 

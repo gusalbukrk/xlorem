@@ -1,5 +1,5 @@
-import CustomError from '@xlorem/common/src/CustomError';
-import { articleIsDisambiguation } from '@xlorem/common/src/errorMessages';
+import CustomError from 'xlorem-common/src/CustomError';
+import { articleIsDisambiguation } from 'xlorem-common/src/errorMessages';
 
 import {
   articleType,

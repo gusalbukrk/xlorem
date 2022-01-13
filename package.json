@@ -91,7 +91,7 @@
     "webpack-merge": "^5.7.3"
   },
   "dependencies": {
-    "@xlorem/common": "file:packages/common",
+    "xlorem-common": "file:packages/common",
     "eslint-plugin-jest-formatting": "^3.0.0",
     "generate-random-text": "file:packages/generate-random-text",
     "generate-words-freqmap": "file:packages/generate-words-freqmap",

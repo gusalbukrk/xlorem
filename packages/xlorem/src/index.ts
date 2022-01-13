@@ -1,4 +1,8 @@
-import { requirementsDefault } from '@xlorem/common/src/constants';
+import generateTextBase from 'generate-random-text/src';
+import generateFreqMap from 'generate-words-freqmap/src';
+import getWikipediaArticle from 'get-wikipedia-article/src';
+import tokenizeWords from 'tokenize-words/src';
+import { requirementsDefault } from 'xlorem-common/src/constants';
 import {
   inputType,
   queryInputType,
@@ -8,11 +12,7 @@ import {
   formatType,
   requirementsType,
   freqMapType,
-} from '@xlorem/common/src/types';
-import generateTextBase from 'generate-random-text/src';
-import generateFreqMap from 'generate-words-freqmap/src';
-import getWikipediaArticle from 'get-wikipedia-article/src';
-import tokenizeWords from 'tokenize-words/src';
+} from 'xlorem-common/src/types';
 
 import validate from './validate';
 

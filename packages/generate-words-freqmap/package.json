@@ -37,6 +37,6 @@
     "tokenize-words": "file:../tokenize-words"
   },
   "dependencies": {
-    "@xlorem/common": "file:../common"
+    "xlorem-common": "file:../common"
   }
 }

@@ -1,4 +1,4 @@
-import { freqMapType } from '@xlorem/common/src/types';
+import { freqMapType } from 'xlorem-common/src/types';
 
 import { freqMapWordAsKeyType } from './common/types';
 

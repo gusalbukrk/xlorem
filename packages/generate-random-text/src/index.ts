@@ -1,12 +1,12 @@
-import CustomError from '@xlorem/common/src/CustomError';
-import { requirementsDefault } from '@xlorem/common/src/constants';
-import { wordsQuantityDoesNotMatchRequirements } from '@xlorem/common/src/errorMessages';
+import CustomError from 'xlorem-common/src/CustomError';
+import { requirementsDefault } from 'xlorem-common/src/constants';
+import { wordsQuantityDoesNotMatchRequirements } from 'xlorem-common/src/errorMessages';
 import {
   freqMapType,
   unitType,
   formatType,
   requirementsType,
-} from '@xlorem/common/src/types';
+} from 'xlorem-common/src/types';
 
 import distribute from './distribute';
 import generateTextArray from './generateTextArray';

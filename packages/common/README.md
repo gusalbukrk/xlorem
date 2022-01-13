@@ -1,1 +1,1 @@
-# @xlorem/common
+# xlorem-common

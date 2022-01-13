@@ -1,4 +1,4 @@
-import { getRandomNumber } from '@xlorem/common/src/utils';
+import { getRandomNumber } from 'xlorem-common/src/utils';
 
 import breakNumberIntoChunks from './breakNumberIntoChunks';
 

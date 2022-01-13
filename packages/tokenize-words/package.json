@@ -36,7 +36,7 @@
     "test": "jest --passWithNoTests"
   },
   "dependencies": {
-    "@xlorem/common": "file:../common",
+    "xlorem-common": "file:../common",
     "stopwords-utils": "file:../stopwords-utils"
   }
 }

@@ -2,14 +2,14 @@ import {
   neitherStringNorArticle,
   emptyQueryString,
   textTooShort,
-} from '@xlorem/common/src/errorMessages';
+} from 'xlorem-common/src/errorMessages';
 import {
   inputType,
   textInputType,
   wordsArrayInputType,
   freqMapInputType,
-} from '@xlorem/common/src/types';
-import { isObject } from '@xlorem/common/src/utils';
+} from 'xlorem-common/src/types';
+import { isObject } from 'xlorem-common/src/utils';
 
 function validateInput(input: inputType): string[] {
   const errors: string[] = [];

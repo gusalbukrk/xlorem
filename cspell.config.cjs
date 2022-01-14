@@ -60,7 +60,7 @@ module.exports = {
       words: ['xxyyzz'], // this string is used to trigger `articleNotFound` error
     },
     {
-      filename: 'packages/xlorem/README.md',
+      filename: './README.md',
       words: [
         'baconipsum',
         'hipsum',

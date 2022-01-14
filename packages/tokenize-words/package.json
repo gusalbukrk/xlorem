@@ -6,7 +6,11 @@
   "license": "MIT",
   "keywords": [
     "tokenizer",
-    "nlp"
+    "tokenization",
+    "segmentation",
+    "word segmentation",
+    "NLP",
+    "natural language processing"
   ],
   "type": "module",
   "types": "dist/index.d.ts",

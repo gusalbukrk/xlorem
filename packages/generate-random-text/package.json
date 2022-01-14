@@ -5,7 +5,10 @@
   "description": "Randomly generate text using given frequency map.",
   "license": "MIT",
   "keywords": [
-    "random"
+    "random",
+    "generator",
+    "text",
+    "frequency map"
   ],
   "type": "module",
   "types": "dist/index.d.ts",

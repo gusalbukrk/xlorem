@@ -6,7 +6,8 @@
   "license": "MIT",
   "keywords": [
     "random",
-    "weighted"
+    "weighted",
+    "weights"
   ],
   "type": "module",
   "types": "dist/index.d.ts",

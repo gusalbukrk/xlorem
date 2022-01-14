@@ -5,7 +5,10 @@
   "description": "Fetch Wikipedia article resources.",
   "license": "MIT",
   "keywords": [
-    "wikipedia"
+    "wikipedia",
+    "api",
+    "search",
+    "article"
   ],
   "type": "module",
   "types": "dist/index.d.ts",

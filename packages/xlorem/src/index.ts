@@ -40,6 +40,12 @@ type output = {
   body: string;
 };
 
+/**
+ * Generate any filler text you want.
+ * @param input Filler text will be generated from this parameter.
+ * @param options Miscellaneous options.
+ * @returns Text object containing title and body.
+ */
 async function xlorem(
   input: inputType,
   {

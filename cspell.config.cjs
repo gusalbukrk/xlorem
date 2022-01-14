@@ -1,5 +1,12 @@
 module.exports = {
-  words: ['xlorem', 'gusalbukrk', 'stopword', 'stopwords', 'freqmap'],
+  words: [
+    'xlorem',
+    'gusalbukrk',
+    'stopword',
+    'stopwords',
+    'freqmap',
+    'subpackages',
+  ],
 
   ignoreWords: ['postbuild', 'postpublish', 'monospace'],
 
@@ -51,6 +58,20 @@ module.exports = {
     {
       filename: 'packages/get-wikipedia-article/src/index.spec.ts',
       words: ['xxyyzz'], // this string is used to trigger `articleNotFound` error
+    },
+    {
+      filename: 'packages/xlorem/README.md',
+      words: [
+        'baconipsum',
+        'hipsum',
+        'Hermione',
+        'Weasley',
+        'Grafica',
+        'Veneta',
+        'pentalogy',
+        'wizarding',
+        'Snape',
+      ],
     },
   ],
 };

@@ -1,7 +1,7 @@
 {
   "name": "xlorem",
   "author": "gusalbukrk",
-  "version": "0.0.1-alpha.0",
+  "version": "0.0.2-alpha.0",
   "description": "Filler text generator.",
   "license": "MIT",
   "keywords": [
@@ -42,12 +42,12 @@
     "test": "jest  --passWithNoTests"
   },
   "dependencies": {
-    "xlorem-common": "file:../common",
     "cross-fetch": "^3.1.4",
     "generate-random-text": "file:../generate-random-text",
     "generate-words-freqmap": "file:../generate-words-freqmap",
     "get-wikipedia-article": "file:../get-wikipedia-article",
     "stopwords-utils": "file:../stopwords-utils",
-    "tokenize-words": "file:../tokenize-words"
+    "tokenize-words": "file:../tokenize-words",
+    "xlorem-common": "file:../common"
   }
 }

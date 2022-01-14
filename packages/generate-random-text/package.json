@@ -1,7 +1,7 @@
 {
   "name": "generate-random-text",
   "author": "gusalbukrk",
-  "version": "0.0.1-alpha.0",
+  "version": "0.0.2-alpha.0",
   "description": "Randomly generate text using given frequency map.",
   "license": "MIT",
   "keywords": [
@@ -35,8 +35,8 @@
     "test": "jest --passWithNoTests"
   },
   "dependencies": {
-    "xlorem-common": "file:../common",
     "stopwords-utils": "file:../stopwords-utils",
-    "weighted-randomness": "file:../weighted-randomness"
+    "weighted-randomness": "file:../weighted-randomness",
+    "xlorem-common": "file:../common"
   }
 }

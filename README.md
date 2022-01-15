@@ -9,6 +9,9 @@
 
 - `npm i xlorem`
 
+- `xlorem` is a **hybrid package**, which means it supports both ES Modules and CommonJS. Everything works out-of-the-box with no extra configuration needed. ESM module will load when you use `import` and CJS module, when you use `require`.
+- Additionally, there's a UMD variant you can use for client-side code that won't be compiled. In this case, the best option is to use a CDN. In a HTML file, add a `script` pointing to the following URL: https://unpkg.com/xlorem/dist/bundle.umd.js.
+
 ## Usage
 
 `xlorem` function takes 2 arguments: `input` and `options`.
@@ -26,6 +29,8 @@ import xlorem from 'xlorem';
 (async function () {
   const input = 'harry potter';
   const filler = await xlorem(input); // generate filler from Wikipedia article (in English)
+
+  console.log(filler);
 })();
 ```
 
@@ -41,6 +46,8 @@ const input = {
 
 (async function () {
   const filler = await xlorem(input); // generate filler from text
+
+  console.log(filler);
 })();
 ```
 
@@ -72,6 +79,8 @@ const input = {
 
 (async function () {
   const filler = await xlorem(input); // generate filler from string array
+
+  console.log(filler);
 })();
 ```
 
@@ -86,15 +95,17 @@ const input = {
     1: ['fantasy', 'death'],
     2: ['novels', 'Voldemort', 'franchise'],
     3: ['wizard', 'movies', 'Snape'],
-    5: ['series', 'Hermione', 'Ronny', 'Hogwarts']
+    5: ['series', 'Hermione', 'Ronny', 'Hogwarts'],
     8: ['books'],
     10: ['Harry', 'Potter'],
   },
 };
 
-(async function() {
+(async function () {
   const filler = await xlorem(input); // generate filler from frequency map
-})()
+
+  console.log(filler);
+})();
 ```
 
 #### `options` (second parameter)
@@ -103,7 +114,7 @@ const input = {
 import xlorem from 'xlorem';
 
 (async function () {
-  const query = 'harry potter';
+  const input = 'harry potter';
 
   const options = {
     unit: 'paragraphs', // 'paragraphs' or 'words'
@@ -117,7 +128,9 @@ import xlorem from 'xlorem';
     },
   };
 
-  const filler = await xlorem(query, options);
+  const filler = await xlorem(input, options);
+
+  console.log(filler);
 })();
 ```
 

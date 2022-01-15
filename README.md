@@ -1,10 +1,9 @@
 # xlorem
 
-> generate any filler text you want
+> feature-rich filler text generator
 
-- `xlorem` is a feature-rich filler text generator.
-- It's biggest advantage is that's not a simple "Lorem ipsum" generator (there's plenty of those already). Neither, it's a generator for a specific subject with pre-defined words, like [baconipsum](baconipsum.com) & [hipsum](hipsum.co) (again, there's plenty of those already).
-- Instead, it generates a custom filler text from a given input.
+- `xlorem` biggest advantage is that it's not a simple "Lorem ipsum" generator (there's plenty of those already). Neither, it's a custom generator with a pre-defined group of related words, like [baconipsum](baconipsum.com) & [hipsum](hipsum.co) (again, there's plenty of those already).
+- Instead, it **generates a custom filler text from a given input**. Input can be a text, string array, frequency map or wikipedia query string.
 
 ## Install
 

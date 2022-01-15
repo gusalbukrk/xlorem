@@ -41,7 +41,7 @@ type output = {
 };
 
 /**
- * Generate any filler text you want.
+ * Feature-rich filler text generator.
  * @param input Filler text will be generated from this parameter.
  * @param options Miscellaneous options.
  * @returns Text object containing title and body.

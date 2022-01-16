@@ -1,3 +1,8 @@
+/**
+ * @file Node CLI script to bootstrap a new package at `packages/`.
+ * @example `npm run create packageName template`.
+ */
+
 import fs from 'fs';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';

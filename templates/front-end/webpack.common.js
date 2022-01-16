@@ -4,7 +4,10 @@ import StylelintPlugin from 'stylelint-webpack-plugin';
 
 export default {
   entry: {
-    main: './src/index.js',
+    main: './src/index.tsx',
+  },
+  resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
   },
   module: {
     rules: [

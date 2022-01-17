@@ -1,0 +1,27 @@
+{
+  "name": "site",
+  "author": "gusalbukrk",
+  "version": "0.0.0",
+  "description": "",
+  "license": "MIT",
+  "keywords": [],
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "scripts": {
+    "build": "tsc && webpack --node-env production --config webpack.prod.js",
+    "lint": "eslint src/ --fix; cspell \"**\" -c ../../cspell.config.cjs --no-progress",
+    "start": "webpack serve --node-env development --config webpack.dev.js",
+    "test": "jest --passWithNoTests"
+  },
+  "dependencies": {
+    "core-js": "^3.12.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "styled-components": "^5.2.3",
+    "xlorem": "file:../xlorem"
+  }
+}

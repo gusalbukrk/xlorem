@@ -1,16 +1,21 @@
 $spacing: 1rem;
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Open Sans', serif;
   margin: 0 auto;
-  max-width: 500px;
+  max-width: 550px;
   padding: $spacing;
-  padding-top: 0;
+  padding-top: 2rem;
 }
 
 h1 {
   font-family: 'Source Code Pro', monospace;
   font-size: 3rem;
+  margin-bottom: 1rem;
   text-align: center;
 
   span {
@@ -22,7 +27,8 @@ form {
   border: none;
   display: flex;
   flex-direction: column;
-  grid-gap: 0.5rem;
+  grid-gap: 0.666rem;
+  margin-bottom: 2rem;
 
   input,
   fieldset,
@@ -36,7 +42,7 @@ form {
   }
 
   #first-row {
-    height: 2rem;
+    height: 2.5rem;
 
     div#outer-input,
     div#outer-quantity {
@@ -77,6 +83,7 @@ form {
       display: flex;
       flex-grow: 1;
       gap: 1rem;
+      padding: 0.666rem;
 
       legend {
         padding: 0 0.5rem;

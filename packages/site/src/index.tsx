@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import Form from './components/Form';
 
+import './reset.css';
 import './index.scss';
 
 function App() {

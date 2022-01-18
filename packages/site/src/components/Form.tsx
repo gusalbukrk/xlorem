@@ -19,15 +19,13 @@ function Form(): JSX.Element {
       format: format as 'plain' | 'html',
     });
 
-    const newOutput = {
+    setOutputBase({
       title: filler.title,
       body:
         format === 'plain'
           ? filler.body.replace(/\n/g, '\n\n')
           : filler.body.replace(/<\/p>(?!$)/g, '</p>\n\n'),
-    };
-
-    setOutputBase(newOutput);
+    });
   };
 
   const submit = async (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
@@ -41,78 +39,90 @@ function Form(): JSX.Element {
 
   return (
     <form>
-      {/* input */}
-      <section>
-        <input
-          type="text"
-          id="input"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-        />
-        <label htmlFor="input">input: </label>
-      </section>
+      <div className="row" id="first-row">
+        {/* input */}
+        <div id="outer-input">
+          <input
+            type="text"
+            id="input"
+            placeholder={`input (e.g. "harry potter")`}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+          />
+        </div>
 
-      {/* options.quantity */}
-      <section>
-        <input
-          type="number"
-          name="quantity"
-          id="quantity"
-          value={quantity}
-          onChange={(e) => setQuantity(Number(e.target.value))}
-        />
-        <label htmlFor="quantity">quantity: </label>
-      </section>
+        {/* options.quantity */}
+        <div id="outer-quantity">
+          <input
+            type="number"
+            name="quantity"
+            id="quantity"
+            value={quantity}
+            onChange={(e) => setQuantity(Number(e.target.value))}
+          />
+        </div>
+      </div>
 
-      {/* options.unit */}
-      <fieldset id="unit">
-        <legend>unit</legend>
+      <div className="row" id="second-row">
+        {/* options.unit */}
+        <fieldset>
+          <legend>unit</legend>
 
-        <input
-          type="radio"
-          name="unit"
-          id="unit-p"
-          value="paragraphs"
-          checked={unit === 'paragraphs'}
-          onChange={() => setUnit('paragraphs')}
-        />
-        <label htmlFor="unit-p">paragraphs</label>
+          <div className="option">
+            <input
+              type="radio"
+              name="unit"
+              id="unit-p"
+              value="paragraphs"
+              checked={unit === 'paragraphs'}
+              onChange={() => setUnit('paragraphs')}
+            />
+            <label htmlFor="unit-p">paragraphs</label>
+          </div>
 
-        <input
-          type="radio"
-          name="unit"
-          id="unit-w"
-          value="words"
-          checked={unit === 'words'}
-          onChange={() => setUnit('words')}
-        />
-        <label htmlFor="unit-w">words</label>
-      </fieldset>
+          <div className="option">
+            <input
+              type="radio"
+              name="unit"
+              id="unit-w"
+              value="words"
+              checked={unit === 'words'}
+              onChange={() => setUnit('words')}
+            />
+            <label htmlFor="unit-w">words</label>
+          </div>
+        </fieldset>
 
-      {/* options.format */}
-      <fieldset id="format">
-        <legend>format</legend>
+        {/* options.format */}
+        <fieldset>
+          <legend>format</legend>
 
-        <input
-          type="radio"
-          name="format"
-          id="format-p"
-          value="plain"
-          checked={format === 'plain'}
-          onChange={() => setFormat('plain')}
-        />
-        <label htmlFor="format-p">plain</label>
+          <div className="option">
+            <input
+              type="radio"
+              name="format"
+              id="format-p"
+              value="plain"
+              checked={format === 'plain'}
+              onChange={() => setFormat('plain')}
+            />
+            <label htmlFor="format-p">plain</label>
+          </div>
 
-        <input
-          type="radio"
-          name="format"
-          id="format-h"
-          value="html"
-          checked={format === 'html'}
-          onChange={() => setFormat('html')}
-        />
-        <label htmlFor="format-h">html</label>
-      </fieldset>
+          <div className="option">
+            <input
+              type="radio"
+              name="format"
+              id="format-h"
+              value="html"
+              checked={format === 'html'}
+              onChange={() => setFormat('html')}
+            />
+            <label htmlFor="format-h">html</label>
+          </div>
+        </fieldset>
+        {/* </div> */}
+      </div>
 
       {/* output */}
       <textarea id="output" rows={10} cols={50} value={output.body} readOnly />

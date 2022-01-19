@@ -112,5 +112,15 @@ form {
     padding: 0.25rem 0.5rem;
     text-transform: uppercase;
     width: fit-content;
+
+    &:hover {
+      border-color: red;
+    }
+
+    &:disabled {
+      border-color: gray;
+      color: gray;
+      cursor: wait;
+    }
   }
 }

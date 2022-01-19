@@ -28,13 +28,32 @@ function Form(): JSX.Element {
     });
   };
 
-  const submit = async (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
+  const submitRef = React.useRef<HTMLInputElement>(null);
+
+  const handleSubmit = async (
+    e: React.MouseEvent<HTMLInputElement, MouseEvent>
+  ) => {
     e.preventDefault();
+
+    const submitElement = submitRef.current as HTMLInputElement;
+
+    submitElement.disabled = true;
 
     const textarea = document.getElementById('output');
     (textarea as HTMLTextAreaElement).value = 'Loading...';
 
     await setOutput();
+
+    // 1 or 2 seconds after the submit button is clicked
+    // site becomes unresponsive and after 1 or 2 seconds comes back to normal
+    // if submit is clicked while site is unresponsive
+    // click(s) will take effect when site become responsive
+    // thus, restarting the fetch process
+    // solution: wait a bit to enable submit, so
+    // when delayed clicks come in, submit would still be disabled
+    setTimeout(() => {
+      submitElement.disabled = false;
+    }, 0);
   };
 
   return (
@@ -121,14 +140,18 @@ function Form(): JSX.Element {
             <label htmlFor="format-h">html</label>
           </div>
         </fieldset>
-        {/* </div> */}
       </div>
 
       {/* output */}
       <textarea id="output" rows={10} cols={50} value={output.body} readOnly />
       <label htmlFor="output"></label>
 
-      <input type="submit" onClick={submit} value="Generate" />
+      <input
+        ref={submitRef}
+        type="submit"
+        onClick={handleSubmit}
+        value="Generate"
+      />
     </form>
   );
 }

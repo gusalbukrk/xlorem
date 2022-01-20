@@ -32,7 +32,8 @@ form {
 
   input,
   fieldset,
-  textarea {
+  textarea,
+  button {
     border: 3px solid grey;
   }
 
@@ -103,24 +104,40 @@ form {
     resize: vertical;
   }
 
-  input[type='submit'] {
-    align-self: end;
-    color: red;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: bold;
-    padding: 0.25rem 0.5rem;
-    text-transform: uppercase;
-    width: fit-content;
+  div#outer-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: end;
 
-    &:hover {
-      border-color: red;
+    input[type='submit'] {
+      order: 2;
     }
 
-    &:disabled {
-      border-color: gray;
-      color: gray;
-      cursor: wait;
+    button {
+      display: none;
+      order: 1;
+    }
+
+    input[type='submit'],
+    button {
+      align-self: end;
+      color: red;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: bold;
+      padding: 0.25rem 0.5rem;
+      text-transform: uppercase;
+      width: fit-content;
+
+      &:hover {
+        border-color: red;
+      }
+
+      &:disabled {
+        border-color: gray;
+        color: gray;
+        cursor: wait;
+      }
     }
   }
 }

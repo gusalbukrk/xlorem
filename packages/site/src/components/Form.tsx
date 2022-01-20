@@ -29,18 +29,23 @@ function Form(): JSX.Element {
   };
 
   const submitRef = React.useRef<HTMLInputElement>(null);
+  const submitElement = submitRef.current as HTMLInputElement;
+
+  const textareaRef = React.useRef<HTMLTextAreaElement>(null);
+  const textareaElement = textareaRef.current as HTMLTextAreaElement;
+
+  const copyButtonRef = React.useRef<HTMLButtonElement>(null);
+  const copyButtonElement = copyButtonRef.current as HTMLButtonElement;
 
   const handleSubmit = async (
     e: React.MouseEvent<HTMLInputElement, MouseEvent>
   ) => {
     e.preventDefault();
 
-    const submitElement = submitRef.current as HTMLInputElement;
-
     submitElement.disabled = true;
+    copyButtonElement.style.display = 'none';
 
-    const textarea = document.getElementById('output');
-    (textarea as HTMLTextAreaElement).value = 'Loading...';
+    textareaElement.value = 'Loading...';
 
     await setOutput();
 
@@ -54,6 +59,26 @@ function Form(): JSX.Element {
     setTimeout(() => {
       submitElement.disabled = false;
     }, 0);
+
+    copyButtonElement.style.display = 'inline-block';
+  };
+
+  const handleCopyButton = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.preventDefault();
+
+    try {
+      await navigator.clipboard.writeText(output.body);
+
+      copyButtonElement.innerText = 'Copied';
+
+      setTimeout(() => {
+        copyButtonElement.innerText = 'Copy';
+      }, 3000);
+    } catch (error) {
+      console.error('Could copy filler text to clipboard.'); // eslint-disable-line no-console
+    }
   };
 
   return (
@@ -143,15 +168,28 @@ function Form(): JSX.Element {
       </div>
 
       {/* output */}
-      <textarea id="output" rows={10} cols={50} value={output.body} readOnly />
-      <label htmlFor="output"></label>
-
-      <input
-        ref={submitRef}
-        type="submit"
-        onClick={handleSubmit}
-        value="Generate"
+      <textarea
+        ref={textareaRef}
+        id="output"
+        rows={12}
+        cols={50}
+        value={output.body}
+        readOnly
       />
+
+      {/** when you have multiple buttons inside form, only the first one is invoked at `enter` key press */}
+      <div id="outer-buttons">
+        <input
+          ref={submitRef}
+          type="submit"
+          onClick={handleSubmit}
+          value="Generate"
+        />
+
+        <button ref={copyButtonRef} onClick={handleCopyButton}>
+          Copy
+        </button>
+      </div>
     </form>
   );
 }

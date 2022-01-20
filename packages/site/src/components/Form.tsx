@@ -1,3 +1,5 @@
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import xlorem from 'xlorem';
 
@@ -31,8 +33,8 @@ function Form(): JSX.Element {
   const submitRef = React.useRef<HTMLInputElement>(null);
   const submitElement = submitRef.current as HTMLInputElement;
 
-  const textareaRef = React.useRef<HTMLTextAreaElement>(null);
-  const textareaElement = textareaRef.current as HTMLTextAreaElement;
+  const outerLoadingIconRef = React.useRef<HTMLDivElement>(null);
+  const outerLoadingIconElement = outerLoadingIconRef.current as HTMLDivElement;
 
   const copyButtonRef = React.useRef<HTMLButtonElement>(null);
   const copyButtonElement = copyButtonRef.current as HTMLButtonElement;
@@ -45,22 +47,27 @@ function Form(): JSX.Element {
     submitElement.disabled = true;
     copyButtonElement.style.display = 'none';
 
-    textareaElement.value = 'Loading...';
+    outerLoadingIconElement.style.display = 'flex';
 
     await setOutput();
 
-    // 1 or 2 seconds after the submit button is clicked
-    // site becomes unresponsive and after 1 or 2 seconds comes back to normal
-    // if submit is clicked while site is unresponsive
-    // click(s) will take effect when site become responsive
-    // thus, restarting the fetch process
-    // solution: wait a bit to enable submit, so
-    // when delayed clicks come in, submit would still be disabled
+    // spinner animation is freezing while fetching
+    // it looks weird to suddenly go from freezed spinner to output filled with text
+    // solution: after fetch is done and animation unfreezes, keep the spinner visible for a bit
     setTimeout(() => {
-      submitElement.disabled = false;
-    }, 0);
+      outerLoadingIconElement.style.display = 'none';
 
-    copyButtonElement.style.display = 'inline-block';
+      copyButtonElement.style.display = 'inline-block';
+
+      // 1 or 2 seconds after the submit button is clicked
+      // site becomes unresponsive and after 1 or 2 seconds comes back to normal
+      // if submit is clicked while site is unresponsive
+      // click(s) will take effect when site become responsive
+      // thus, restarting the fetch process
+      // solution: wait a bit to enable submit (use `setTimeout` [it can be just with 0 seconds), so
+      // when delayed clicks come in, submit would still be disabled
+      submitElement.disabled = false;
+    }, 1500);
   };
 
   const handleCopyButton = async (
@@ -77,7 +84,7 @@ function Form(): JSX.Element {
         copyButtonElement.innerText = 'Copy';
       }, 3000);
     } catch (error) {
-      console.error('Could copy filler text to clipboard.'); // eslint-disable-line no-console
+      console.error("Could'n copy filler text to clipboard."); // eslint-disable-line no-console
     }
   };
 
@@ -168,14 +175,19 @@ function Form(): JSX.Element {
       </div>
 
       {/* output */}
-      <textarea
-        ref={textareaRef}
-        id="output"
-        rows={12}
-        cols={50}
-        value={output.body}
-        readOnly
-      />
+      <div id="outer-textarea">
+        <textarea
+          id="output"
+          rows={12}
+          cols={50}
+          value={output.body}
+          readOnly
+        />
+
+        <div ref={outerLoadingIconRef} id="outer-loading-icon">
+          <FontAwesomeIcon id="loading-icon" icon={faSpinner} spin />
+        </div>
+      </div>
 
       {/** when you have multiple buttons inside form, only the first one is invoked at `enter` key press */}
       <div id="outer-buttons">

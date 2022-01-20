@@ -6,6 +6,8 @@ module.exports = {
     'stopwords',
     'freqmap',
     'subpackages',
+    'fontawesome',
+    'fortawesome',
   ],
 
   ignoreWords: ['postbuild', 'postpublish', 'monospace'],

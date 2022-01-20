@@ -1,4 +1,5 @@
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faCopy, faFileAlt } from '@fortawesome/free-regular-svg-icons';
+import { faCheck, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import xlorem from 'xlorem';
@@ -30,8 +31,8 @@ function Form(): JSX.Element {
     });
   };
 
-  const submitRef = React.useRef<HTMLInputElement>(null);
-  const submitElement = submitRef.current as HTMLInputElement;
+  const submitRef = React.useRef<HTMLButtonElement>(null);
+  const submitElement = submitRef.current as HTMLButtonElement;
 
   const outerLoadingIconRef = React.useRef<HTMLDivElement>(null);
   const outerLoadingIconElement = outerLoadingIconRef.current as HTMLDivElement;
@@ -39,13 +40,17 @@ function Form(): JSX.Element {
   const copyButtonRef = React.useRef<HTMLButtonElement>(null);
   const copyButtonElement = copyButtonRef.current as HTMLButtonElement;
 
+  const [justCopied, setJustCopied] = React.useState(false); // has output been copied in the past few seconds
+
   const handleSubmit = async (
-    e: React.MouseEvent<HTMLInputElement, MouseEvent>
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
 
     submitElement.disabled = true;
+
     copyButtonElement.style.display = 'none';
+    setJustCopied(false);
 
     outerLoadingIconElement.style.display = 'flex';
 
@@ -75,14 +80,16 @@ function Form(): JSX.Element {
   ) => {
     e.preventDefault();
 
+    if (justCopied) return;
+
     try {
       await navigator.clipboard.writeText(output.body);
 
-      copyButtonElement.innerText = 'Copied';
+      setJustCopied(true);
 
       setTimeout(() => {
-        copyButtonElement.innerText = 'Copy';
-      }, 3000);
+        setJustCopied(false);
+      }, 5000);
     } catch (error) {
       console.error("Could'n copy filler text to clipboard."); // eslint-disable-line no-console
     }
@@ -191,15 +198,17 @@ function Form(): JSX.Element {
 
       {/** when you have multiple buttons inside form, only the first one is invoked at `enter` key press */}
       <div id="outer-buttons">
-        <input
-          ref={submitRef}
-          type="submit"
-          onClick={handleSubmit}
-          value="Generate"
-        />
+        <button id="generate-button" ref={submitRef} onClick={handleSubmit}>
+          Generate
+          <FontAwesomeIcon id="generate-icon" icon={faFileAlt} />
+        </button>
 
-        <button ref={copyButtonRef} onClick={handleCopyButton}>
-          Copy
+        <button id="copy-button" ref={copyButtonRef} onClick={handleCopyButton}>
+          {justCopied ? 'Copied' : 'Copy'}
+          <FontAwesomeIcon
+            id="copy-icon"
+            icon={justCopied ? faCheck : faCopy}
+          />
         </button>
       </div>
     </form>

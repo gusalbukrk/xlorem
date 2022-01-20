@@ -1,4 +1,12 @@
-$spacing: 1rem;
+$red: red;
+$lighter-gray: #e6e6e6;
+$light-gray: lightgray;
+$gray: gray;
+$dark-gray: #323232;
+
+.d-none {
+  display: none !important;
+}
 
 * {
   box-sizing: border-box;
@@ -8,7 +16,7 @@ body {
   font-family: 'Open Sans', serif;
   margin: 0 auto;
   max-width: 550px;
-  padding: $spacing;
+  padding: 1rem;
   padding-top: 2rem;
 }
 
@@ -19,7 +27,7 @@ h1 {
   text-align: center;
 
   span {
-    color: red;
+    color: $red;
   }
 }
 
@@ -34,19 +42,16 @@ form {
   fieldset,
   textarea,
   button {
-    border: 3px solid grey;
+    border: 3px solid $gray;
   }
 
-  .row {
+  section#row-one {
     display: flex;
     gap: 0.5rem;
-  }
-
-  #first-row {
     height: 2.5rem;
 
-    div#outer-input,
-    div#outer-quantity {
+    article#outer-input,
+    article#outer-quantity {
       display: flex;
 
       label {
@@ -60,7 +65,7 @@ form {
       }
     }
 
-    div#outer-input {
+    article#outer-input {
       width: 80%;
 
       input {
@@ -68,7 +73,7 @@ form {
       }
     }
 
-    div#outer-quantity {
+    article#outer-quantity {
       width: 20%;
 
       input {
@@ -77,8 +82,10 @@ form {
     }
   }
 
-  #second-row {
+  section#row-two {
+    display: flex;
     flex-wrap: wrap;
+    gap: 0.5rem;
 
     fieldset {
       display: flex;
@@ -90,7 +97,7 @@ form {
         padding: 0 0.5rem;
       }
 
-      div.option {
+      article.option {
         align-items: center;
         display: flex;
         flex: 1 1 0;
@@ -99,8 +106,8 @@ form {
     }
   }
 
-  div#outer-textarea {
-    border: 3px solid gray;
+  section#row-three {
+    border: 3px solid $gray;
     position: relative;
 
     textarea {
@@ -110,12 +117,11 @@ form {
       width: 100%;
     }
 
-    div#outer-loading-icon {
+    article#loading-overlay {
       align-items: center;
-      background-color: lightgray;
+      background-color: $light-gray;
       cursor: wait;
       display: flex;
-      display: none;
       height: 100%;
       justify-content: center;
       left: 0;
@@ -124,30 +130,29 @@ form {
       width: 100%;
 
       #loading-icon {
-        color: #323232;
+        color: $dark-gray;
         font-size: 1.666rem;
       }
     }
   }
 
-  div#outer-buttons {
+  section#row-four {
     display: flex;
     gap: 1rem;
     justify-content: end;
 
-    button#generate-button {
+    button#button-generate {
       order: 2;
     }
 
-    button#copy-button {
-      display: none;
+    button#button-copy {
       order: 1;
     }
 
     button {
       align-self: end;
       background-color: transparent;
-      color: red;
+      color: $red;
       cursor: pointer;
       flex-basis: 140px;
       font-size: 1rem;
@@ -157,24 +162,24 @@ form {
 
       #copy-icon,
       #generate-icon {
-        color: red;
+        color: $red;
         font-size: 1.2rem;
         margin-left: 0.5rem;
       }
 
       &:hover {
-        background-color: #e6e6e6;
-        border-color: red;
+        background-color: $lighter-gray;
+        border-color: $red;
       }
 
       &:disabled {
-        border-color: gray;
-        color: gray;
+        border-color: $gray;
+        color: $gray;
         cursor: wait;
 
         #copy-icon,
         #generate-icon {
-          color: gray;
+          color: $gray;
         }
       }
     }

@@ -31,28 +31,29 @@ function Form(): JSX.Element {
     });
   };
 
-  const submitRef = React.useRef<HTMLButtonElement>(null);
-  const submitElement = submitRef.current as HTMLButtonElement;
+  const [userHasJustCopiedOutput, setUserHasJustCopiedOutput] =
+    React.useState(false); // has output been copied in the past few seconds
 
-  const outerLoadingIconRef = React.useRef<HTMLDivElement>(null);
-  const outerLoadingIconElement = outerLoadingIconRef.current as HTMLDivElement;
+  const generateButtonRef = React.useRef<HTMLButtonElement>(null);
+  const generateButtonElement = generateButtonRef.current as HTMLButtonElement;
+
+  const loadingOverlayRef = React.useRef<HTMLDivElement>(null);
+  const loadingOverlayElement = loadingOverlayRef.current as HTMLDivElement;
 
   const copyButtonRef = React.useRef<HTMLButtonElement>(null);
   const copyButtonElement = copyButtonRef.current as HTMLButtonElement;
 
-  const [justCopied, setJustCopied] = React.useState(false); // has output been copied in the past few seconds
-
-  const handleSubmit = async (
+  const handleGenerateButton = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
 
-    submitElement.disabled = true;
+    generateButtonElement.disabled = true;
 
-    copyButtonElement.style.display = 'none';
-    setJustCopied(false);
+    copyButtonElement.classList.add('d-none');
+    setUserHasJustCopiedOutput(false);
 
-    outerLoadingIconElement.style.display = 'flex';
+    loadingOverlayElement.classList.remove('d-none');
 
     await setOutput();
 
@@ -60,18 +61,18 @@ function Form(): JSX.Element {
     // it looks weird to suddenly go from freezed spinner to output filled with text
     // solution: after fetch is done and animation unfreezes, keep the spinner visible for a bit
     setTimeout(() => {
-      outerLoadingIconElement.style.display = 'none';
+      loadingOverlayElement.classList.add('d-none');
 
-      copyButtonElement.style.display = 'inline-block';
+      copyButtonElement.classList.remove('d-none');
 
-      // 1 or 2 seconds after the submit button is clicked
+      // 1 or 2 seconds after the generate button is clicked
       // site becomes unresponsive and after 1 or 2 seconds comes back to normal
-      // if submit is clicked while site is unresponsive
-      // click(s) will take effect when site become responsive
+      // if generate button is clicked while site is unresponsive
+      // click(s) will take effect when site becomes responsive
       // thus, restarting the fetch process
-      // solution: wait a bit to enable submit (use `setTimeout` [it can be just with 0 seconds), so
-      // when delayed clicks come in, submit would still be disabled
-      submitElement.disabled = false;
+      // solution: wait a bit to enable generate button (use `setTimeout` [it can be just 0 seconds])
+      // thus, when delayed clicks come in, generate button would still be disabled
+      generateButtonElement.disabled = false;
     }, 1500);
   };
 
@@ -80,26 +81,26 @@ function Form(): JSX.Element {
   ) => {
     e.preventDefault();
 
-    if (justCopied) return;
+    if (userHasJustCopiedOutput) return;
 
     try {
       await navigator.clipboard.writeText(output.body);
 
-      setJustCopied(true);
+      setUserHasJustCopiedOutput(true);
 
       setTimeout(() => {
-        setJustCopied(false);
+        setUserHasJustCopiedOutput(false);
       }, 5000);
     } catch (error) {
-      console.error("Could'n copy filler text to clipboard."); // eslint-disable-line no-console
+      console.error("ERROR: Couldn't copy filler text to clipboard."); // eslint-disable-line no-console
     }
   };
 
   return (
     <form>
-      <div className="row" id="first-row">
+      <section id="row-one">
         {/* input */}
-        <div id="outer-input">
+        <article id="outer-input">
           <input
             type="text"
             id="input"
@@ -107,10 +108,10 @@ function Form(): JSX.Element {
             value={input}
             onChange={(e) => setInput(e.target.value)}
           />
-        </div>
+        </article>
 
         {/* options.quantity */}
-        <div id="outer-quantity">
+        <article id="outer-quantity">
           <input
             type="number"
             name="quantity"
@@ -118,15 +119,15 @@ function Form(): JSX.Element {
             value={quantity}
             onChange={(e) => setQuantity(Number(e.target.value))}
           />
-        </div>
-      </div>
+        </article>
+      </section>
 
-      <div className="row" id="second-row">
+      <section id="row-two">
         {/* options.unit */}
         <fieldset>
           <legend>unit</legend>
 
-          <div className="option">
+          <article className="option">
             <input
               type="radio"
               name="unit"
@@ -136,9 +137,9 @@ function Form(): JSX.Element {
               onChange={() => setUnit('paragraphs')}
             />
             <label htmlFor="unit-p">paragraphs</label>
-          </div>
+          </article>
 
-          <div className="option">
+          <article className="option">
             <input
               type="radio"
               name="unit"
@@ -148,14 +149,14 @@ function Form(): JSX.Element {
               onChange={() => setUnit('words')}
             />
             <label htmlFor="unit-w">words</label>
-          </div>
+          </article>
         </fieldset>
 
         {/* options.format */}
         <fieldset>
           <legend>format</legend>
 
-          <div className="option">
+          <article className="option">
             <input
               type="radio"
               name="format"
@@ -165,9 +166,9 @@ function Form(): JSX.Element {
               onChange={() => setFormat('plain')}
             />
             <label htmlFor="format-p">plain</label>
-          </div>
+          </article>
 
-          <div className="option">
+          <article className="option">
             <input
               type="radio"
               name="format"
@@ -177,12 +178,12 @@ function Form(): JSX.Element {
               onChange={() => setFormat('html')}
             />
             <label htmlFor="format-h">html</label>
-          </div>
+          </article>
         </fieldset>
-      </div>
+      </section>
 
-      {/* output */}
-      <div id="outer-textarea">
+      <section id="row-three">
+        {/* output */}
         <textarea
           id="output"
           rows={12}
@@ -191,26 +192,39 @@ function Form(): JSX.Element {
           readOnly
         />
 
-        <div ref={outerLoadingIconRef} id="outer-loading-icon">
+        <article
+          id="loading-overlay"
+          className="d-none"
+          ref={loadingOverlayRef}
+        >
           <FontAwesomeIcon id="loading-icon" icon={faSpinner} spin />
-        </div>
-      </div>
+        </article>
+      </section>
 
       {/** when you have multiple buttons inside form, only the first one is invoked at `enter` key press */}
-      <div id="outer-buttons">
-        <button id="generate-button" ref={submitRef} onClick={handleSubmit}>
+      <section id="row-four">
+        <button
+          id="button-generate"
+          ref={generateButtonRef}
+          onClick={handleGenerateButton}
+        >
           Generate
           <FontAwesomeIcon id="generate-icon" icon={faFileAlt} />
         </button>
 
-        <button id="copy-button" ref={copyButtonRef} onClick={handleCopyButton}>
-          {justCopied ? 'Copied' : 'Copy'}
+        <button
+          id="button-copy"
+          className="d-none"
+          ref={copyButtonRef}
+          onClick={handleCopyButton}
+        >
+          {userHasJustCopiedOutput ? 'Copied' : 'Copy'}
           <FontAwesomeIcon
             id="copy-icon"
-            icon={justCopied ? faCheck : faCopy}
+            icon={userHasJustCopiedOutput ? faCheck : faCopy}
           />
         </button>
-      </div>
+      </section>
     </form>
   );
 }

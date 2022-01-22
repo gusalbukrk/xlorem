@@ -1,6 +1,6 @@
 import del from 'rollup-plugin-delete';
 
-import config from '../../rollup.config';
+import config from '../../rollup.config'; // eslint-disable-line import/no-relative-packages
 
 // edit what should be deleted after building types
 config[1].plugins[1] = del({

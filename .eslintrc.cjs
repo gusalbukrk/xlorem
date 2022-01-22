@@ -147,5 +147,11 @@ module.exports = {
         'jest/require-hook': 'error',
       },
     },
+    {
+      files: ['jest.config.js'],
+      rules: {
+        'import/no-relative-packages': 'off',
+      },
+    },
   ],
 };

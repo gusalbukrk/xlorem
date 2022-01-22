@@ -62,6 +62,8 @@ module.exports = {
         'newlines-between': 'always',
       },
     ],
+
+    'jest/require-hook': 'off',
   },
 
   settings: {
@@ -101,7 +103,8 @@ module.exports = {
         // fix 'import/extensions' error
         'import/extensions': ['error', 'never', { json: 'always' }],
 
-        // fix 'no-extraneous-dependencies' error in test files
+        // otherwise, will get `import/no-extraneous-dependencies` error
+        // if devDependency is imported in a test file
         'import/no-extraneous-dependencies': [
           'error',
           {
@@ -126,6 +129,22 @@ module.exports = {
         // https://github.com/mysticatea/eslint-plugin-node/issues/199
         // if this happen, edit `package.json`'s `files` field to not use braces in globs
         'node/no-unpublished-import': ['off'],
+      },
+    },
+    {
+      files: ['dist/index.d.ts'],
+      rules: {
+        'no-restricted-exports': 'off',
+      },
+    },
+    {
+      files: ['**/__tests__/**', '**/*{.,_}{test,spec}.{js,jsx,ts,tsx}'],
+      rules: {
+        // usually there's no need to use `overrides` to ensure that
+        // jest-only rules are applied only to test files, however
+        // `require-hook` rule is aggressive and can result in false positives in non-test files
+        // https://github.com/jest-community/eslint-plugin-jest/issues/934#issuecomment-944026446
+        'jest/require-hook': 'error',
       },
     },
   ],

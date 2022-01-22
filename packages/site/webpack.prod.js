@@ -58,6 +58,7 @@ export default merge(common, {
     new BundleAnalyzerPlugin({
       analyzerMode: 'static',
       openAnalyzer: false,
+      logLevel: 'warn',
     }),
   ],
   optimization: {

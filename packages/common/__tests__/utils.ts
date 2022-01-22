@@ -100,27 +100,27 @@ describe('utils functions work correctly', () => {
     expect.assertions(16);
 
     // primitives
-    expect(isObject('foo')).toStrictEqual(false);
-    expect(isObject(123)).toStrictEqual(false);
-    expect(isObject(true)).toStrictEqual(false);
+    expect(isObject('foo')).toBe(false);
+    expect(isObject(123)).toBe(false);
+    expect(isObject(true)).toBe(false);
 
     // nullish values
-    expect(isObject(undefined)).toStrictEqual(false);
-    expect(isObject(null)).toStrictEqual(false);
+    expect(isObject(undefined)).toBe(false);
+    expect(isObject(null)).toBe(false);
 
     // data structures that (under the hook) are objects,
     // but shouldn't be considered as such by the function being tested
-    expect(isObject(['foo', 'bar'])).toStrictEqual(false);
-    expect(isObject(new Set())).toStrictEqual(false);
-    expect(isObject(new Map())).toStrictEqual(false);
+    expect(isObject(['foo', 'bar'])).toBe(false);
+    expect(isObject(new Set())).toBe(false);
+    expect(isObject(new Map())).toBe(false);
 
     // functions
-    expect(isObject(() => true)).toStrictEqual(false);
-    expect(isObject(() => false)).toStrictEqual(false);
+    expect(isObject(() => true)).toBe(false);
+    expect(isObject(() => false)).toBe(false);
 
     // built-ins
-    expect(isObject(Math)).toStrictEqual(false);
-    expect(isObject(new Date())).toStrictEqual(false);
+    expect(isObject(Math)).toBe(false);
+    expect(isObject(new Date())).toBe(false);
 
     class Pet {
       name: string;
@@ -131,9 +131,9 @@ describe('utils functions work correctly', () => {
     }
 
     // objects
-    expect(isObject({})).toStrictEqual(true);
-    expect(isObject({ foo: 'bar' })).toStrictEqual(true);
-    expect(isObject(new Object({ 1: 'foo', 2: 'bar' }))).toStrictEqual(true); // eslint-disable-line no-new-object
-    expect(isObject(new Pet('foo'))).toStrictEqual(true); // object w/ custom class
+    expect(isObject({})).toBe(true);
+    expect(isObject({ foo: 'bar' })).toBe(true);
+    expect(isObject(new Object({ 1: 'foo', 2: 'bar' }))).toBe(true); // eslint-disable-line no-new-object
+    expect(isObject(new Pet('foo'))).toBe(true); // object w/ custom class
   });
 });

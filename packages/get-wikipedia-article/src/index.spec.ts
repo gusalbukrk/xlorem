@@ -16,7 +16,7 @@ import getWikipediaArticleBase from '.';
 async function getWikipediaArticle(
   ...args: Parameters<typeof getWikipediaArticleBase>
 ): ReturnType<typeof getWikipediaArticleBase> {
-  await new Promise((resolve) => setTimeout(resolve, 1000)); // delay
+  await new Promise((resolve) => setTimeout(resolve, 1000)); // eslint-disable-line no-promise-executor-return
   return getWikipediaArticleBase(...args);
 }
 

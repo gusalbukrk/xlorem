@@ -33,7 +33,7 @@ const optionsDefaults: optionsType = {
  */
 async function getWikipediaArticle(
   query: string,
-  include: includeType = includeDefault,
+  include: includeType = includeDefault, // eslint-disable-line default-param-last
   optionsArg?: Partial<optionsType>
 ): Promise<articleType> {
   if (include.length === 0) include.push(...includeDefault);

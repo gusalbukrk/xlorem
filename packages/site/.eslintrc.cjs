@@ -52,6 +52,8 @@ module.exports = {
       'error',
       'always', // should be `always` when `"type": "module"`
     ],
+
+    'jest/require-hook': 'off',
   },
 
   settings: {
@@ -105,6 +107,16 @@ module.exports = {
 
         // fix 'missing file extension' error
         'import/extensions': ['error', 'never'],
+      },
+    },
+    {
+      files: ['**/__tests__/**', '**/*{.,_}{test,spec}.{js,jsx,ts,tsx}'],
+      rules: {
+        // usually there's no need to use `overrides` to ensure that
+        // jest-only rules are applied only to test files, however
+        // `require-hook` rule is aggressive and can result in false positives in non-test files
+        // https://github.com/jest-community/eslint-plugin-jest/issues/934#issuecomment-944026446
+        'jest/require-hook': 'error',
       },
     },
   ],

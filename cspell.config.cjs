@@ -5,6 +5,7 @@ module.exports = {
     'stopword',
     'stopwords',
     'freqmap',
+    'subpackage',
     'subpackages',
     'fontawesome',
     'fortawesome',

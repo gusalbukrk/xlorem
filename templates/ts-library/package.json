@@ -22,7 +22,7 @@
     "!src/**/*.spec.[jt]sx"
   ],
   "scripts": {
-    "lint": "eslint src/ --fix; cspell \"**\" -c ../../cspell.config.cjs --no-progress",
+    "lint": "eslint src/ --fix && cspell \"**\" -c ../../cspell.config.cjs --no-progress",
     "test": "jest --passWithNoTests"
   },
   "dependencies": {}

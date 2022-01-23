@@ -70,7 +70,7 @@ function Form(): JSX.Element {
       // if generate button is clicked while site is unresponsive
       // click(s) will take effect when site becomes responsive
       // thus, restarting the fetch process
-      // solution: wait a bit to enable generate button (use `setTimeout` [it can be just 0 seconds])
+      // solution: wait a bit to enable generate button (use `setTimeout`, it can be just 0 seconds)
       // thus, when delayed clicks come in, generate button would still be disabled
       generateButtonElement.disabled = false;
     }, 1500);
@@ -201,7 +201,8 @@ function Form(): JSX.Element {
         </article>
       </section>
 
-      {/** when you have multiple buttons inside form, only the first one is invoked at `enter` key press */}
+      {/** when you have multiple buttons inside form,
+       * only the first one is invoked at `enter` key press */}
       <section id="row-four">
         <button
           id="button-generate"

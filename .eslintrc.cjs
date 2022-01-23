@@ -29,6 +29,7 @@ module.exports = {
 
   rules: {
     'prettier/prettier': 'error',
+
     'json/*': ['error', 'allowComments'],
 
     'max-len': [

@@ -8,5 +8,7 @@
     // but 'esModuleInterop' is best suited for Node (e.g. jest)
     // https://github.com/typescript-cheatsheets/react#import-react
     "esModuleInterop": true
-  }
+  },
+
+  "include": ["src/**/*", "__tests__/**/*", "dist/index.d.ts"]
 }

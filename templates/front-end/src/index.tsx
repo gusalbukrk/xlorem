@@ -7,8 +7,6 @@ import './index.scss';
 import Header from './components/Header';
 import Subheader from './components/Subheader';
 
-console.log('from index');
-
 function App() {
   return (
     <>

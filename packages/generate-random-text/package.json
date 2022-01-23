@@ -23,8 +23,12 @@
   "files": [
     "dist",
     "src",
-    "!src/**/__tests__",
-    "!src/**/*.{test,spec}.{js,jsx,ts,tsx}"
+    "!src/**/__tests__/",
+    "!src/**/__spec__/",
+    "!src/**/*.test.[jt]s",
+    "!src/**/*.test.[jt]sx",
+    "!src/**/*.spec.[jt]s",
+    "!src/**/*.spec.[jt]sx"
   ],
   "scripts": {
     "build": "rollup -c ../../rollup.config.js",

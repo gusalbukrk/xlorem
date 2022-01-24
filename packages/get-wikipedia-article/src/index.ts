@@ -18,10 +18,6 @@ import queryPointsToADisambiguationPage from './queryPointsToADisambiguationPage
 
 const includeDefault: includeType = ['title', 'body'];
 
-const optionsDefaults: optionsType = {
-  bodyFormat: 'plain',
-};
-
 /**
  * Fetch Wikipedia article's resources (e.g. title, body, links...).
  * @param query Search string.
@@ -33,11 +29,10 @@ const optionsDefaults: optionsType = {
  */
 async function getWikipediaArticle(
   query: string,
-  include: includeType = includeDefault, // eslint-disable-line default-param-last
-  optionsArg?: Partial<optionsType>
+  include: includeType = includeDefault,
+  { bodyFormat = 'plain' }: Partial<optionsType> = {}
 ): Promise<articleType> {
   if (include.length === 0) include.push(...includeDefault);
-  const options = { ...optionsDefaults, ...optionsArg };
 
   const article: articleType = {};
 
@@ -70,14 +65,14 @@ async function getWikipediaArticle(
 
   // fetch body
   if (include.includes('body')) {
-    article.body = await getArticleBody(titleQuery, options.bodyFormat);
+    article.body = await getArticleBody(titleQuery, bodyFormat);
   }
 
   // fetch summary
   if (include.includes('summary')) {
     article.summary = article.body
-      ? extractSummaryFromBody(article.body, options.bodyFormat)
-      : await getArticleSummary(titleQuery, options.bodyFormat);
+      ? extractSummaryFromBody(article.body, bodyFormat)
+      : await getArticleSummary(titleQuery, bodyFormat);
   }
 
   // fetch categories

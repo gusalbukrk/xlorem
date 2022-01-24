@@ -5,12 +5,13 @@ import {
   invalidRequirementsWordsPerSentence,
 } from 'xlorem-common/src/errorMessages';
 import { requirementsType } from 'xlorem-common/src/types';
+import { isObject } from 'xlorem-common/src/utils';
 
 function validateRequirements(requirements: requirementsType): string[] {
   const errors: string[] = [];
 
   const isRequirementsObjectValid =
-    typeof requirements === 'object' &&
+    isObject(requirements) &&
     Object.keys(requirements).length === 4 &&
     typeof requirements.sentencesPerParagraphMin === 'number' &&
     typeof requirements.sentencesPerParagraphMax === 'number' &&

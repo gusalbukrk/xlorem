@@ -50,7 +50,7 @@ export function reduce<T>(input: T, functions: ((input: T) => T)[]): T {
   return functions.reduce((acc, fn) => fn(acc), input);
 }
 
-/** Check is given value is an object. */
-export function isObject(input: unknown): boolean {
+/** Check if argument is an object. */
+export function isObject(input: unknown): input is Record<string, unknown> {
   return Object.prototype.toString.call(input) === '[object Object]';
 }

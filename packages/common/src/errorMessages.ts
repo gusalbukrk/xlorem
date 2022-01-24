@@ -3,8 +3,8 @@
 // https://medium.com/@rauschma/note-that-default-exporting-objects-is-usually-an-anti-pattern-if-you-want-to-export-the-cf674423ac38#.nibatprx3
 
 // used at `xlorem/src/validate`
-export const neitherStringNorArticle =
-  'Expected `input` argument to be a query string or an object ({ title: string, body: string }).';
+export const invalidInput =
+  'Expected `input` argument to be one of the valid types (query string, text, words array or frequency map).';
 export const emptyQueryString =
   'Expected non-empty query string at `input` argument.';
 export const textTooShort =

@@ -41,8 +41,8 @@ describe('throw error messages correctly', () => {
     const y = () => validate({ input: '' });
     const z = () => validate({ input: { title: 'test', body: '' } });
 
-    expect(w).toThrow(errorMessages.neitherStringNorArticle);
-    expect(x).toThrow(errorMessages.neitherStringNorArticle);
+    expect(w).toThrow(errorMessages.invalidInput);
+    expect(x).toThrow(errorMessages.invalidInput);
     expect(y).toThrow(errorMessages.emptyQueryString);
     expect(z).toThrow(errorMessages.textTooShort);
   });

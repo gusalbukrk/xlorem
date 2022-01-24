@@ -1,5 +1,5 @@
 import {
-  neitherStringNorArticle,
+  invalidInput,
   emptyQueryString,
   textTooShort,
 } from 'xlorem-common/src/errorMessages';
@@ -64,7 +64,7 @@ function validateInput(input: inputType): string[] {
   if (
     !(isQueryString || isText || isWordsArray || isFreqMap) // invalid input
   ) {
-    errors.push(neitherStringNorArticle);
+    errors.push(invalidInput);
   } else {
     // additional errors for specific input types
 

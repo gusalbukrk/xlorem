@@ -35,9 +35,6 @@
     "prepublishOnly": "npm run build",
     "test": "jest --passWithNoTests"
   },
-  "devDependencies": {
-    "tokenize-words": "file:../tokenize-words"
-  },
   "dependencies": {
     "xlorem-common": "file:../common"
   }

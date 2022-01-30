@@ -1,7 +1,0 @@
-{
-  "extends": "../../tsconfig.jest.json",
-
-  // `include` must be here instead of monorepo root because ts resolves
-  //  path relatively to the source config rather than the inhering config
-  "include": ["src/**/*", "__tests__/**/*", "dist/index.d.ts"]
-}

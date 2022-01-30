@@ -2,7 +2,7 @@ const path = require('path');
 
 const config = require('../../.eslintrc.cjs');
 
-config.overrides[0].parserOptions.project = './tsconfig.jest.json';
+config.overrides[0].parserOptions.project = './tsconfig.json';
 
 // when importing a dependency that isn't in subpackage's `package.json`
 // will get 2 errors: `node/no-extraneous-import` & `import/no-extraneous-dependencies`

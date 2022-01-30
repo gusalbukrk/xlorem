@@ -10,8 +10,6 @@ config.parserOptions.babelOptions.configFile = path.join(
   '.babelrc.cjs'
 );
 
-config.overrides[0].parserOptions.project = './tsconfig.jest.json';
-
 module.exports = {
   ...config, // root, ignorePatterns, env, parserOptions, plugins
 

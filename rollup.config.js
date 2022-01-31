@@ -71,17 +71,17 @@ export default [
     ],
     output: [
       {
-        file: 'dist/bundle.esm.js',
+        file: 'dist/bundle.js',
         format: 'esm',
       },
       {
-        file: 'dist/bundle.cjs.js',
+        file: 'dist/bundle.cjs',
         format: 'cjs',
         exports: 'auto',
       },
       {
         name: 'xlorem',
-        file: 'dist/bundle.umd.js',
+        file: 'dist/umd.js',
         format: 'umd',
         plugins: [terser()],
       },

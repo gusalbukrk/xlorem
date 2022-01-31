@@ -11,13 +11,13 @@
   ],
   "type": "module",
   "types": "dist/index.d.ts",
-  "main": "dist/bundle.cjs.js",
+  "main": "dist/bundle.cjs",
   "engines": {
     "node": ">=14.0.0"
   },
   "exports": {
-    "import": "./dist/bundle.esm.js",
-    "require": "./dist/bundle.cjs.js"
+    "import": "./dist/bundle.js",
+    "require": "./dist/bundle.cjs"
   },
   "files": [
     "dist",

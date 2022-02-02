@@ -5839,6 +5839,18 @@ gauge@~2.7.3:
     strip-ansi "^3.0.1"
     wide-align "^1.1.0"
 
+"generate-random-text@link:packages/generate-random-text":
+  version "0.0.3-alpha.0"
+  dependencies:
+    stopwords-utils "link:packages/stopwords-utils"
+    weighted-randomness "link:packages/weighted-randomness"
+    xlorem-common "link:packages/common"
+
+"generate-words-freqmap@link:packages/generate-words-freqmap":
+  version "0.0.3-alpha.0"
+  dependencies:
+    xlorem-common "link:packages/common"
+
 generic-names@^1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/generic-names/-/generic-names-1.0.3.tgz#2d786a121aee508876796939e8e3bff836c20917"
@@ -5907,6 +5919,12 @@ get-symbol-description@^1.0.0:
   dependencies:
     call-bind "^1.0.2"
     get-intrinsic "^1.1.1"
+
+"get-wikipedia-article@link:packages/get-wikipedia-article":
+  version "0.0.3-alpha.0"
+  dependencies:
+    cross-fetch "^3.1.5"
+    xlorem-common "link:packages/common"
 
 getpass@^0.1.1:
   version "0.1.7"
@@ -10468,6 +10486,11 @@ stack-utils@^2.0.3:
   resolved "https://registry.yarnpkg.com/statuses/-/statuses-1.5.0.tgz#161c7dac177659fd9811f43771fa99381478628c"
   integrity sha1-Fhx9rBd2Wf2YEfQ3cfqZOBR4Yow=
 
+"stopwords-utils@link:packages/stopwords-utils":
+  version "0.0.3-alpha.0"
+  dependencies:
+    weighted-randomness "link:packages/weighted-randomness"
+
 strict-uri-encode@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/strict-uri-encode/-/strict-uri-encode-2.0.0.tgz#b9c7330c7042862f6b142dc274bbcc5866ce3546"
@@ -11013,6 +11036,12 @@ toidentifier@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/toidentifier/-/toidentifier-1.0.1.tgz#3be34321a88a820ed1bd80dfaa33e479fbb8dd35"
   integrity sha512-o5sSPKEkg/DIQNmH43V0/uerLrpzVedkUh8tGNvaeXpfpuwjKenlSox/2O/BTlZUtEe+JG7s5YhEz608PlAHRA==
+
+"tokenize-words@link:packages/tokenize-words":
+  version "0.0.3-alpha.0"
+  dependencies:
+    stopwords-utils "link:packages/stopwords-utils"
+    xlorem-common "link:packages/common"
 
 totalist@^1.0.0:
   version "1.1.0"
@@ -11637,6 +11666,11 @@ websocket-extensions@>=0.1.1:
   resolved "https://registry.yarnpkg.com/websocket-extensions/-/websocket-extensions-0.1.4.tgz#7f8473bc839dfd87608adb95d7eb075211578a42"
   integrity sha512-OqedPIGOfsDlo31UNwYbCFMSaO9m9G/0faIHj5/dZFDMFqPTcx6UwqyOy3COEaEOg/9VsGIpdqn62W5KhoKSpg==
 
+"weighted-randomness@link:packages/weighted-randomness":
+  version "0.0.3-alpha.0"
+  dependencies:
+    xlorem-common "link:packages/common"
+
 whatwg-encoding@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/whatwg-encoding/-/whatwg-encoding-1.0.5.tgz#5abacf777c32166a51d085d6b4f3e7d27113ddb0"
@@ -11812,6 +11846,19 @@ xdg-basedir@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/xdg-basedir/-/xdg-basedir-4.0.0.tgz#4bc8d9984403696225ef83a1573cbbcb4e79db13"
   integrity sha512-PSNhEJDejZYV7h50BohL09Er9VaIefr2LMAf3OEmpCkjOi34eYyQYAXUTjEQtZJTKcF0E2UKTh+osDLsgNim9Q==
+
+"xlorem-common@link:packages/common":
+  version "0.0.3-alpha.0"
+
+"xlorem@link:packages/xlorem":
+  version "0.0.3-alpha.0"
+  dependencies:
+    generate-random-text "link:packages/generate-random-text"
+    generate-words-freqmap "link:packages/generate-words-freqmap"
+    get-wikipedia-article "link:packages/get-wikipedia-article"
+    stopwords-utils "link:packages/stopwords-utils"
+    tokenize-words "link:packages/tokenize-words"
+    xlorem-common "link:packages/common"
 
 xml-name-validator@^3.0.0:
   version "3.0.0"

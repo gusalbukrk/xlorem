@@ -38,6 +38,6 @@
     "test": "jest --passWithNoTests"
   },
   "dependencies": {
-    "xlorem-common": "0.0.3-alpha.0"
+    "xlorem-common": "link:../common"
   }
 }

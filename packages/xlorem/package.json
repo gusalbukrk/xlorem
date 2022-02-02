@@ -44,11 +44,11 @@
     "test": "jest  --passWithNoTests"
   },
   "dependencies": {
-    "generate-random-text": "0.0.3-alpha.0",
-    "generate-words-freqmap": "0.0.3-alpha.0",
-    "get-wikipedia-article": "0.0.3-alpha.0",
-    "stopwords-utils": "0.0.3-alpha.0",
-    "tokenize-words": "0.0.3-alpha.0",
-    "xlorem-common": "0.0.3-alpha.0"
+    "generate-random-text": "link:../generate-random-text",
+    "generate-words-freqmap": "link:../generate-words-freqmap",
+    "get-wikipedia-article": "link:../get-wikipedia-article",
+    "stopwords-utils": "link:../stopwords-utils",
+    "tokenize-words": "link:../tokenize-words",
+    "xlorem-common": "link:../common"
   }
 }

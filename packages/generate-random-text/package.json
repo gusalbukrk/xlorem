@@ -39,8 +39,8 @@
     "test": "jest --passWithNoTests"
   },
   "dependencies": {
-    "stopwords-utils": "0.0.3-alpha.0",
-    "weighted-randomness": "0.0.3-alpha.0",
-    "xlorem-common": "0.0.3-alpha.0"
+    "stopwords-utils": "link:../stopwords-utils",
+    "weighted-randomness": "link:../weighted-randomness",
+    "xlorem-common": "link:../common"
   }
 }

@@ -19,6 +19,7 @@
     "!src/**/*.spec.[jt]sx"
   ],
   "scripts": {
+    "build": "echo 'no `build` script at `xlorem-common`' && exit 0",
     "lint": "eslint src/ --fix && cspell \"**\" -c ../../cspell.config.cjs --no-progress",
     "test": "jest --passWithNoTests"
   }

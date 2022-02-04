@@ -1,6 +1,6 @@
 /**
  * @file Node CLI script to bootstrap a new package at `packages/`.
- * @example `npm run create packageName template`.
+ * @example `yarn create packageName template`.
  */
 
 import fs from 'fs';

@@ -6,7 +6,7 @@ module.exports = {
   // `'*': 'your-cmd'` = execute `your-cmd` with all currently staged files passed as arguments
   // i.e.: `your-cmd file1 file2 ...`
   //
-  // that's why you shouldn't execute any npm scripts here
+  // that's why you shouldn't execute any scripts here
   // e.g.: a script with a body `eslint . --fix` would lint all files, not only the staged
 
   '*': 'cspell -c cspell.config.cjs --no-must-find-files',

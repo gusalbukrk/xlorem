@@ -2,7 +2,7 @@
 
 ## error
 
-- `npm run build` error
+- `yarn build` error
   - `Parsing error: "parserOptions.project" has been set for @typescript-eslint/parser. The file does not match your project config: ... . The file must be included in at least one of the projects provided`
   - error in following packages: `generate-random-text`, `stopwords-utils`, `tokenize-words`, `xlorem`
     - what these packages with error have in common, is that they import subpackages

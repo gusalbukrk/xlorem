@@ -15,7 +15,7 @@
     "clean:build": "rimraf packages/*/dist",
     "create": "node templates/create.js",
     "cspell": "cspell \"{**,**/.*,**/.*/**}\" -c cspell.config.cjs --no-progress",
-    "lint": "npm run cspell && npm run lint:config && prettier **/*.{md,json} --write --loglevel warn && npm run lint:src",
+    "lint": "yarn cspell && yarn lint:config && prettier **/*.{md,json} --write --loglevel warn && yarn lint:src",
     "lint:config": "eslint . --fix --ext .js,.cjs,.json --ignore-pattern '!.*' --ignore-pattern 'src/'",
     "lint:src": "lerna run lint",
     "prepare": "husky install",

@@ -9,6 +9,7 @@ module.exports = {
     'subpackages',
     'fontawesome',
     'fortawesome',
+    'changesets',
   ],
 
   ignoreWords: ['postbuild', 'postpublish', 'monospace'],

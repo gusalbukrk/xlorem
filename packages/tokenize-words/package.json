@@ -41,7 +41,7 @@
     "test": "jest --passWithNoTests"
   },
   "dependencies": {
-    "stopwords-utils": "file:../stopwords-utils",
-    "xlorem-common": "file:../common"
+    "stopwords-utils": "workspace:*",
+    "xlorem-common": "workspace:*"
   }
 }

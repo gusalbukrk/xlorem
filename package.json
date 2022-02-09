@@ -96,16 +96,5 @@
     "webpack-cli": "^4.6.0",
     "webpack-dev-server": "^4.0.0",
     "webpack-merge": "^5.7.3"
-  },
-  "dependencies": {
-    "generate-random-text": "file:packages/generate-random-text",
-    "generate-words-freqmap": "file:packages/generate-words-freqmap",
-    "get-wikipedia-article": "file:packages/get-wikipedia-article",
-    "site": "file:packages/site",
-    "stopwords-utils": "file:packages/stopwords-utils",
-    "tokenize-words": "file:packages/tokenize-words",
-    "weighted-randomness": "file:packages/weighted-randomness",
-    "xlorem": "file:packages/xlorem",
-    "xlorem-common": "file:packages/common"
   }
 }

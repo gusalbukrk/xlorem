@@ -35,7 +35,10 @@
     "prepublishOnly": "pnpm build",
     "test": "jest --passWithNoTests"
   },
+  "devDependencies": {
+    "tokenize-words": "workspace:*"
+  },
   "dependencies": {
-    "xlorem-common": "file:../common"
+    "xlorem-common": "workspace:*"
   }
 }

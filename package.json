@@ -3,7 +3,9 @@
   "private": true,
   "type": "module",
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=14.0.0",
+    "npm": "use `pnpm` instead",
+    "yarn": "use `pnpm` instead"
   },
   "scripts": {
     "build": "lerna run build",

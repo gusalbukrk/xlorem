@@ -9,6 +9,7 @@ module.exports = {
     'subpackages',
     'fontawesome',
     'fortawesome',
+    'pnpm',
   ],
 
   ignoreWords: ['postbuild', 'postpublish', 'monospace'],
@@ -19,6 +20,7 @@ module.exports = {
     '.gitignore',
     '.git/',
     '.husky/_/',
+    'pnpm-lock.yaml',
   ],
 
   overrides: [

@@ -1,3 +1,4 @@
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faCopy, faFileAlt } from '@fortawesome/free-regular-svg-icons';
 import { faCheck, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -197,7 +198,11 @@ function Form(): JSX.Element {
           className="d-none"
           ref={loadingOverlayRef}
         >
-          <FontAwesomeIcon id="loading-icon" icon={faSpinner} spin />
+          <FontAwesomeIcon
+            id="loading-icon"
+            icon={faSpinner as IconProp}
+            spin
+          />
         </article>
       </section>
 
@@ -210,7 +215,7 @@ function Form(): JSX.Element {
           onClick={handleGenerateButton}
         >
           Generate
-          <FontAwesomeIcon id="generate-icon" icon={faFileAlt} />
+          <FontAwesomeIcon id="generate-icon" icon={faFileAlt as IconProp} />
         </button>
 
         <button
@@ -222,7 +227,7 @@ function Form(): JSX.Element {
           {userHasJustCopiedOutput ? 'Copied' : 'Copy'}
           <FontAwesomeIcon
             id="copy-icon"
-            icon={userHasJustCopiedOutput ? faCheck : faCopy}
+            icon={(userHasJustCopiedOutput ? faCheck : faCopy) as IconProp}
           />
         </button>
       </section>

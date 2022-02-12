@@ -24,7 +24,6 @@ module.exports = {
   overrides: [
     {
       filename: [
-        '.babelrc.cjs',
         'babel.config.cjs',
         '.eslintrc.cjs',
         'package.json',

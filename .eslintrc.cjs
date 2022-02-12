@@ -14,7 +14,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2021,
     sourceType: 'module',
-    babelOptions: { configFile: './.babelrc.cjs' },
+    babelOptions: { configFile: './babel.config.cjs' },
   },
 
   extends: [
@@ -146,6 +146,8 @@ module.exports = {
         // `require-hook` rule is aggressive and can result in false positives in non-test files
         // https://github.com/jest-community/eslint-plugin-jest/issues/934#issuecomment-944026446
         'jest/require-hook': 'error',
+
+        'jest/no-conditional-in-test': 'off',
       },
     },
     {

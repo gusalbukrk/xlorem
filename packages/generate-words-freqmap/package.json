@@ -32,10 +32,13 @@
     "lint": "eslint src/ --fix && cspell \"**\" -c ../../cspell.config.cjs --no-progress",
     "postbuild": "eslint dist/index.d.ts --fix --no-ignore && replace-in-file --configFile=../../.replace-in-file.cjs",
     "postpublish": "../../node_modules/rimraf/bin.js dist/",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "pnpm build",
     "test": "jest --passWithNoTests"
   },
+  "devDependencies": {
+    "tokenize-words": "link:../tokenize-words"
+  },
   "dependencies": {
-    "xlorem-common": "file:../common"
+    "xlorem-common": "workspace:*"
   }
 }

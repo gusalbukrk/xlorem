@@ -20,6 +20,7 @@ module.exports = {
     '.gitignore',
     '.git/',
     '.husky/_/',
+    'pnpm-lock.yaml',
   ],
 
   overrides: [

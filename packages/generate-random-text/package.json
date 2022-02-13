@@ -35,12 +35,12 @@
     "lint": "eslint src/ --fix && cspell \"**\" -c ../../cspell.config.cjs --no-progress",
     "postbuild": "eslint dist/index.d.ts --fix --no-ignore && replace-in-file --configFile=../../.replace-in-file.cjs",
     "postpublish": "../../node_modules/rimraf/bin.js dist/",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "pnpm build",
     "test": "jest --passWithNoTests"
   },
   "dependencies": {
-    "stopwords-utils": "file:../stopwords-utils",
-    "weighted-randomness": "file:../weighted-randomness",
-    "xlorem-common": "file:../common"
+    "stopwords-utils": "workspace:*",
+    "weighted-randomness": "workspace:*",
+    "xlorem-common": "workspace:*"
   }
 }

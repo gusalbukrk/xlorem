@@ -35,11 +35,11 @@
     "lint": "eslint src/ --fix && cspell \"**\" -c ../../cspell.config.cjs --no-progress",
     "postbuild": "eslint dist/index.d.ts --fix --no-ignore && replace-in-file --configFile=../../.replace-in-file.cjs",
     "postpublish": "../../node_modules/rimraf/bin.js dist/",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "yarn build",
     "test": "jest --passWithNoTests"
   },
   "dependencies": {
     "cross-fetch": "^3.1.5",
-    "xlorem-common": "file:../common"
+    "xlorem-common": "link:../common"
   }
 }

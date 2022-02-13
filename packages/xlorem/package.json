@@ -40,15 +40,15 @@
     "lint": "eslint src/ --fix && cspell \"**\" -c ../../cspell.config.cjs --no-progress",
     "postbuild": "eslint dist/index.d.ts --fix --no-ignore && replace-in-file --configFile=../../.replace-in-file.cjs",
     "postpublish": "../../node_modules/rimraf/bin.js dist/",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "yarn build",
     "test": "jest  --passWithNoTests"
   },
   "dependencies": {
-    "generate-random-text": "file:../generate-random-text",
-    "generate-words-freqmap": "file:../generate-words-freqmap",
-    "get-wikipedia-article": "file:../get-wikipedia-article",
-    "stopwords-utils": "file:../stopwords-utils",
-    "tokenize-words": "file:../tokenize-words",
-    "xlorem-common": "file:../common"
+    "generate-random-text": "link:../generate-random-text",
+    "generate-words-freqmap": "link:../generate-words-freqmap",
+    "get-wikipedia-article": "link:../get-wikipedia-article",
+    "stopwords-utils": "link:../stopwords-utils",
+    "tokenize-words": "link:../tokenize-words",
+    "xlorem-common": "link:../common"
   }
 }

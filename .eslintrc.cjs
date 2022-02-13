@@ -122,7 +122,7 @@ module.exports = {
     {
       files: ['./*.{js,cjs}'], // root config files
       rules: {
-        // goal of this rule is to prevent MODULE_NOT_FOUND errors after `npm publish`
+        // goal of this rule is to prevent MODULE_NOT_FOUND errors after `yarn publish`
         // production files can import only other production files & dependencies/peerDependencies
         // production files = all in `files` field at `package.json`; anything not in `.npmignore`
         // you can only import `devDependencies` in files that won't be published

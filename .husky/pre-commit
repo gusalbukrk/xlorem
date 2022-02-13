@@ -3,4 +3,4 @@
 
 npx lint-staged
 
-npm test -- -- -- --selectProjects=jest --onlyChanged
+yarn test -- -- --selectProjects=jest --onlyChanged

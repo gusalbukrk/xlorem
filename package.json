@@ -11,16 +11,16 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "lerna run build",
+    "build": "yarn workspaces run build",
     "clean:bootstrap": "rimraf node_modules/ packages/*/node_modules/",
     "clean:build": "rimraf packages/*/dist",
     "create": "node templates/create.js",
     "cspell": "cspell \"{**,**/.*,**/.*/**}\" -c cspell.config.cjs --no-progress",
     "lint": "yarn cspell && yarn lint:config && prettier **/*.{md,json} --write --loglevel warn && yarn lint:src",
     "lint:config": "eslint . --fix --ext .js,.cjs,.json --ignore-pattern '!.*' --ignore-pattern 'src/'",
-    "lint:src": "lerna run lint",
+    "lint:src": "yarn workspaces run lint",
     "prepare": "husky install",
-    "test": "lerna run test"
+    "test": "yarn workspaces run test"
   },
   "devDependencies": {
     "@babel/core": "^7.14.0",
@@ -68,7 +68,6 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.0.0",
     "jest-runner-eslint": "^1.0.0",
-    "lerna": "^4.0.0",
     "lint-staged": "^12.2.2",
     "mini-css-extract-plugin": "^2.2.0",
     "prettier": "^2.3.0",

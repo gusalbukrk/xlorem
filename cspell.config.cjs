@@ -10,6 +10,7 @@ module.exports = {
     'fontawesome',
     'fortawesome',
     'pnpm',
+    'changesets',
   ],
 
   ignoreWords: ['postbuild', 'postpublish', 'monospace'],

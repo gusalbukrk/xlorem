@@ -212,7 +212,8 @@ function Form(): JSX.Element {
         <button
           id="button-generate"
           ref={generateButtonRef}
-          onClick={handleGenerateButton}
+          // https://github.com/typescript-eslint/typescript-eslint/issues/4619
+          onClick={handleGenerateButton} // eslint-disable-line @typescript-eslint/no-misused-promises
         >
           Generate
           <FontAwesomeIcon id="generate-icon" icon={faFileAlt as IconProp} />
@@ -222,7 +223,7 @@ function Form(): JSX.Element {
           id="button-copy"
           className="d-none"
           ref={copyButtonRef}
-          onClick={handleCopyButton}
+          onClick={handleCopyButton} // eslint-disable-line @typescript-eslint/no-misused-promises
         >
           {userHasJustCopiedOutput ? 'Copied' : 'Copy'}
           <FontAwesomeIcon

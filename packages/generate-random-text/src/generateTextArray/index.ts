@@ -1,4 +1,4 @@
-import weightedRandomness from 'weighted-randomness/src/';
+import weightedRandomness from 'weighted-randomness/src';
 import { freqMapType } from 'xlorem-common/src/types';
 
 import capitalizeAndPunctuateSentence from './capitalizeAndPunctuateSentence';

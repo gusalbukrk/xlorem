@@ -1,7 +1,7 @@
-import generateTextBase from 'generate-random-text/src/';
-import generateFreqMap from 'generate-words-freqmap/src/';
-import getWikipediaArticle from 'get-wikipedia-article/src/';
-import tokenizeWords from 'tokenize-words/src/';
+import generateTextBase from 'generate-random-text/src';
+import generateFreqMap from 'generate-words-freqmap/src';
+import getWikipediaArticle from 'get-wikipedia-article/src';
+import tokenizeWords from 'tokenize-words/src';
 import { requirementsDefault } from 'xlorem-common/src/constants';
 import {
   inputType,

@@ -1,4 +1,4 @@
-import { isStopword } from 'stopwords-utils/src/';
+import { isStopword } from 'stopwords-utils/src';
 
 function preserveCommaOrColonIfSurroundedByNumbers(
   _: string,

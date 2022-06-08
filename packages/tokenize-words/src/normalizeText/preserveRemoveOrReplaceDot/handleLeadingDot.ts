@@ -1,4 +1,4 @@
-import { isStopword } from 'stopwords-utils/src/';
+import { isStopword } from 'stopwords-utils/src';
 import { escapeRegExp } from 'xlorem-common/src/utils';
 
 import { getCorrectWordCase } from '../../common/utils';

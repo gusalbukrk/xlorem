@@ -1,5 +1,5 @@
-import { isStopword } from 'stopwords-utils/src/';
-import weightedRandomness from 'weighted-randomness/src/';
+import { isStopword } from 'stopwords-utils/src';
+import weightedRandomness from 'weighted-randomness/src';
 import { freqMapType } from 'xlorem-common/src/types';
 import {
   capitalize,

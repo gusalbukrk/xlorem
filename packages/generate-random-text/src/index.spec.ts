@@ -1,4 +1,4 @@
-import { isStopword } from 'stopwords-utils/src/';
+import { isStopword } from 'stopwords-utils/src';
 import { requirementsDefault } from 'xlorem-common/src/constants';
 import { freqMapType } from 'xlorem-common/src/types';
 import {

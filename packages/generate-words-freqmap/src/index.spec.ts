@@ -1,4 +1,4 @@
-import tokenizeWords from 'tokenize-words/src/';
+import tokenizeWords from 'tokenize-words/src';
 
 import generateFreqMap from '.';
 

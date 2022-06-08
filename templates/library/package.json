@@ -15,8 +15,11 @@
     "access": "public"
   },
   "exports": {
-    "import": "./dist/bundle.js",
-    "require": "./dist/bundle.cjs"
+    ".": {
+      "import": "./dist/bundle.js",
+      "require": "./dist/bundle.cjs"
+    },
+    "./src": "./src/index.ts"
   },
   "files": [
     "dist",

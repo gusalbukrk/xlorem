@@ -1,4 +1,4 @@
-import weightedRandomness from 'weighted-randomness/src/';
+import weightedRandomness from 'weighted-randomness/src';
 
 import mostCommonStopwordsFreqMap from './mostCommonStopwordsFreqMap.json';
 import stopwords from './stopwords.json';

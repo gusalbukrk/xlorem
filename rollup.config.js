@@ -22,6 +22,12 @@ export default [
       eslint({
         fix: true,
         throwOnError: true,
+
+        // after update @rollup/plugin-commonjs to v22
+        // every time `build` script is run
+        // a file `src/index.ts?commonjs-entry` is created
+        // following line will stop this from happening
+        exclude: ['node_modules/**', 'src/index.ts?commonjs-entry'],
       }),
       json({
         compact: true,

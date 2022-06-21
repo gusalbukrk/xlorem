@@ -1,7 +1,7 @@
-import CustomError from 'xlorem-common/src/CustomError';
-import { notEnoughWordsInWordsArray } from 'xlorem-common/src/errorMessages';
+import CustomError from 'xlorem-common/CustomError';
+import { notEnoughWordsInWordsArray } from 'xlorem-common/errorMessages';
 
-import normalizeText from './normalizeText';
+import normalizeText from './normalizeText/index.js';
 
 type optionsType = {
   lengthMin: number;

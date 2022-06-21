@@ -1,7 +1,7 @@
-import { unitType, requirementsType } from 'xlorem-common/src/types';
-import { getRandomNumber } from 'xlorem-common/src/utils';
+import { unitType, requirementsType } from 'xlorem-common/types';
+import { getRandomNumber } from 'xlorem-common/utils';
 
-import breakNumberIntoChunks from './breakNumberIntoChunks';
+import breakNumberIntoChunks from './breakNumberIntoChunks.js';
 
 /**
  *

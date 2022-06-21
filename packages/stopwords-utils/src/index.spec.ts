@@ -1,6 +1,6 @@
 import stopwordsFreqMap from './mostCommonStopwordsFreqMap.json';
 
-import { isStopword, getRandomStopword } from './index';
+import { isStopword, getRandomStopword } from './index.js';
 
 describe('isStopword', () => {
   it('case insensitive', () => {

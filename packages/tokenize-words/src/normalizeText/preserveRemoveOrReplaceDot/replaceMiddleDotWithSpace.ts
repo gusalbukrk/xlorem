@@ -1,6 +1,6 @@
 import { isStopword } from 'stopwords-utils/src';
 
-import { getCorrectWordCase } from '../../common/utils';
+import { getCorrectWordCase } from '../../common/utils.js';
 
 /**
  * Handles something like 'word.Word', which is very common in Wikipedia API's response.

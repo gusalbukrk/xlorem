@@ -1,4 +1,4 @@
-import { formatType } from 'xlorem-common/src/types';
+import { formatType } from 'xlorem-common/types';
 
 const stringifyParagraph = (paragraph: string[][]) =>
   paragraph.map((sentence) => sentence.join(' ')).join(' ');

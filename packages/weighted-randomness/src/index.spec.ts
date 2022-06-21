@@ -1,5 +1,5 @@
-import { getRangeRespectiveFreqMapWeight } from './getFreqMapRandomTier';
-import getWeightsAndRangesFromFreqMap from './getWeightsAndRangesFromFreqMap';
+import { getRangeRespectiveFreqMapWeight } from './getFreqMapRandomTier.js';
+import getWeightsAndRangesFromFreqMap from './getWeightsAndRangesFromFreqMap.js';
 
 // testing helper functions, main function can't be tested because its randomness
 describe('weightedRandomness helper functions', () => {

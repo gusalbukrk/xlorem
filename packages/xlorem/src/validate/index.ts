@@ -1,16 +1,16 @@
-import CustomError from 'xlorem-common/src/CustomError';
+import CustomError from 'xlorem-common/CustomError';
 import {
   inputType,
   unitType,
   formatType,
   requirementsType,
-} from 'xlorem-common/src/types';
+} from 'xlorem-common/types';
 
-import validateFormat from './validateFormat';
-import validateInput from './validateInput';
-import validateQuantity from './validateQuantity';
-import validateRequirements from './validateRequirements';
-import validateUnit from './validateUnit';
+import validateFormat from './validateFormat.js';
+import validateInput from './validateInput.js';
+import validateQuantity from './validateQuantity.js';
+import validateRequirements from './validateRequirements.js';
+import validateUnit from './validateUnit.js';
 
 function validate(
   input: inputType,

@@ -1,4 +1,4 @@
-import { getCorrectWordCase } from '../common/utils';
+import { getCorrectWordCase } from '../common/utils.js';
 
 /**
  * Preserve capitalization in words preceded by dot or convert to lowercase.

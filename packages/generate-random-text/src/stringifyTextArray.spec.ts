@@ -1,4 +1,4 @@
-import stringifyTextArray from './stringifyTextArray';
+import stringifyTextArray from './stringifyTextArray.js';
 
 describe('stringifyTextArray', () => {
   const array = [[['foo'], ['bar', 'baz']], [['qux', 'quux']]];

@@ -1,9 +1,9 @@
-import { reduce } from 'xlorem-common/src/utils';
+import { reduce } from 'xlorem-common/utils';
 
-import handleCapitalizedLetterPrecededByDotOrStringBeginning from './handleCapitalizedLetterPrecededByDotOrStringBeginning';
-import preserveRemoveOrReplaceDot from './preserveRemoveOrReplaceDot';
-import removeUselessStuff from './removeUselessStuff';
-import removeWordsNotContainingAlphanumericChar from './removeWordsNotContainingAlphanumericChar';
+import handleCapitalizedLetterPrecededByDotOrStringBeginning from './handleCapitalizedLetterPrecededByDotOrStringBeginning.js';
+import preserveRemoveOrReplaceDot from './preserveRemoveOrReplaceDot/index.js';
+import removeUselessStuff from './removeUselessStuff.js';
+import removeWordsNotContainingAlphanumericChar from './removeWordsNotContainingAlphanumericChar.js';
 
 function normalizeText(text: string): string {
   const normalized = reduce(text, [

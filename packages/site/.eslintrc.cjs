@@ -70,6 +70,21 @@ module.exports = {
     ],
 
     'jest/require-hook': 'off',
+
+    // `eslint-plugin-import` depends on `resolve` which doesn't yet support ESM
+    // https://github.com/import-js/eslint-plugin-import/issues/2480
+    // https://github.com/import-js/eslint-plugin-import/issues/2357
+    // https://github.com/import-js/eslint-plugin-import/issues/2446
+    // https://github.com/browserify/resolve/issues/222
+    'import/no-unresolved': [
+      'error',
+      {
+        ignore: [
+          '^xlorem-common/(constants|CustomError|errorMessages|types|utils)',
+          '.js$',
+        ],
+      },
+    ],
   },
 
   settings: {

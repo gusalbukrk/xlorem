@@ -1,4 +1,4 @@
-import { optionsType } from './common/types';
+import { optionsType } from './common/types.js';
 
 /**
  * Summary is the initial chunk of text, everything before the first subtitle.

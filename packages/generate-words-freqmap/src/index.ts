@@ -1,12 +1,12 @@
-import CustomError from 'xlorem-common/src/CustomError';
-import { notEnoughWordsInFreqMap } from 'xlorem-common/src/errorMessages';
-import { freqMapType } from 'xlorem-common/src/types';
+import CustomError from 'xlorem-common/CustomError';
+import { notEnoughWordsInFreqMap } from 'xlorem-common/errorMessages';
+import { freqMapType } from 'xlorem-common/types';
 
-import emphasize from './emphasize';
-import generateFreqMapWeightAsKey from './generateFreqMapWeightAsKey';
-import generateFreqMapWordAsKey from './generateFreqMapWordAsKey';
-import getFreqMapWordsQuantity from './getFreqMapWordsQuantity';
-import shortenFreqMap from './shortenFreqMap';
+import emphasize from './emphasize.js';
+import generateFreqMapWeightAsKey from './generateFreqMapWeightAsKey.js';
+import generateFreqMapWordAsKey from './generateFreqMapWordAsKey.js';
+import getFreqMapWordsQuantity from './getFreqMapWordsQuantity.js';
+import shortenFreqMap from './shortenFreqMap.js';
 
 /**
  * @property emphasizeBy `wordsToEmphasize` will have their weight multiplied by this number.

@@ -1,20 +1,20 @@
-import CustomError from 'xlorem-common/src/CustomError';
-import { articleIsDisambiguation } from 'xlorem-common/src/errorMessages';
+import CustomError from 'xlorem-common/CustomError';
+import { articleIsDisambiguation } from 'xlorem-common/errorMessages';
 
 import {
   articleType,
   includeType,
   optionsType,
   termsType,
-} from './common/types';
-import extractSummaryFromBody from './extractSummaryFromBody';
-import getArticleBody from './getArticleBody';
-import getArticleCategories from './getArticleCategories';
-import getArticleLinks from './getArticleLinks';
-import getArticleSummary from './getArticleSummary';
-import getArticleTerms from './getArticleTerms';
-import getMatchingArticlesTitles from './getMatchingArticlesTitles';
-import queryPointsToADisambiguationPage from './queryPointsToADisambiguationPage';
+} from './common/types.js';
+import extractSummaryFromBody from './extractSummaryFromBody.js';
+import getArticleBody from './getArticleBody.js';
+import getArticleCategories from './getArticleCategories.js';
+import getArticleLinks from './getArticleLinks.js';
+import getArticleSummary from './getArticleSummary.js';
+import getArticleTerms from './getArticleTerms.js';
+import getMatchingArticlesTitles from './getMatchingArticlesTitles.js';
+import queryPointsToADisambiguationPage from './queryPointsToADisambiguationPage.js';
 
 const includeDefault: includeType = ['title', 'body'];
 

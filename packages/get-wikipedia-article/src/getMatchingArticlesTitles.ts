@@ -1,7 +1,7 @@
-import CustomError from 'xlorem-common/src/CustomError';
-import { articleNotFound } from 'xlorem-common/src/errorMessages';
+import CustomError from 'xlorem-common/CustomError';
+import { articleNotFound } from 'xlorem-common/errorMessages';
 
-import { generateRequestURL } from './common/utils';
+import { generateRequestURL } from './common/utils.js';
 
 /**
  * Fetch Wikipedia article(s) title(s) that match query.

@@ -1,4 +1,4 @@
-import { queriesType } from './types';
+import { queriesType } from './types.js';
 
 /**
  * Join Wikipedia API base URL and `queries`.

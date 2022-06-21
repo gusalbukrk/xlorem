@@ -8,7 +8,7 @@ import {
   paramsToObjParam,
   reduce,
   isObject,
-} from '../src/utils';
+} from '../src/utils.js';
 
 describe('utils functions work correctly', () => {
   it('capitalize', () => {

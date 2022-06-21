@@ -1,7 +1,7 @@
 import { isStopword } from 'stopwords-utils/src';
-import { escapeRegExp } from 'xlorem-common/src/utils';
+import { escapeRegExp } from 'xlorem-common/utils';
 
-import { getCorrectWordCase } from '../../common/utils';
+import { getCorrectWordCase } from '../../common/utils.js';
 
 /**
  * Preserve dot if word containing leading dot occurs more than once.

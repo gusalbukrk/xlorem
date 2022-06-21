@@ -65,6 +65,31 @@ module.exports = {
     ],
 
     'jest/require-hook': 'off',
+
+    // `eslint-plugin-node` doesn't support ESM yet and may be dead (last release: 2020)
+    // "ECMAScript ES6 does not define the lookup logic and Node does not support modules yet"
+    'node/no-missing-import': [
+      'off',
+      {
+        // allowModules: [ 'xlorem-common' ],
+        // no way to ignore `"./index.js" is not found  node/no-missing-import`
+      },
+    ],
+
+    // `eslint-plugin-import` depends on `resolve` which doesn't yet support ESM
+    // https://github.com/import-js/eslint-plugin-import/issues/2480
+    // https://github.com/import-js/eslint-plugin-import/issues/2357
+    // https://github.com/import-js/eslint-plugin-import/issues/2446
+    // https://github.com/browserify/resolve/issues/222
+    'import/no-unresolved': [
+      'error',
+      {
+        ignore: [
+          '^xlorem-common/(constants|CustomError|errorMessages|types|utils)',
+          '.js$',
+        ],
+      },
+    ],
   },
 
   settings: {

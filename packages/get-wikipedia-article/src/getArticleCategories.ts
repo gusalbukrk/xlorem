@@ -1,4 +1,4 @@
-import { fetchResource } from './common/utils';
+import { fetchResource } from './common/utils.js';
 
 type response = {
   categories: [{ title: string }];

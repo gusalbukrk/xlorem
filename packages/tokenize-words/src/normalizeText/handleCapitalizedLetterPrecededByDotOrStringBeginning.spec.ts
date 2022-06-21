@@ -1,4 +1,4 @@
-import handleCapitalizedLetter from './handleCapitalizedLetterPrecededByDotOrStringBeginning';
+import handleCapitalizedLetter from './handleCapitalizedLetterPrecededByDotOrStringBeginning.js';
 
 describe('handleCapitalizedLetterPrecededByDotOrStringBeginning', () => {
   it('preserve if acronym', () => {

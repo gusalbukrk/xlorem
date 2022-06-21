@@ -1,15 +1,15 @@
 import { isStopword } from 'stopwords-utils/src';
-import { requirementsDefault } from 'xlorem-common/src/constants';
-import { freqMapType } from 'xlorem-common/src/types';
+import { requirementsDefault } from 'xlorem-common/constants';
+import { freqMapType } from 'xlorem-common/types';
 import {
   capitalize,
   isLowercase,
   isNumeric,
   getRandomNumber,
   last,
-} from 'xlorem-common/src/utils';
+} from 'xlorem-common/utils';
 
-import generateText from '.';
+import generateText from './index.js';
 
 const {
   sentencesPerParagraphMin,

@@ -1,8 +1,8 @@
-import { isNumeric } from 'xlorem-common/src/utils';
+import { isNumeric } from 'xlorem-common/utils';
 
-import handleLeadingDot from './handleLeadingDot';
-import handleTrailingDot from './handleTrailingDot';
-import replaceMiddleDotWithSpace from './replaceMiddleDotWithSpace';
+import handleLeadingDot from './handleLeadingDot.js';
+import handleTrailingDot from './handleTrailingDot.js';
+import replaceMiddleDotWithSpace from './replaceMiddleDotWithSpace.js';
 
 function replacer(wordContainingDot: string, offset: number, whole: string) {
   if (/^[.]+$/.test(wordContainingDot)) return '';

@@ -1,4 +1,4 @@
-import preserveRemoveOrReplaceDot from '.';
+import preserveRemoveOrReplaceDot from './index.js';
 
 describe('preserveRemoveOrReplaceDot', () => {
   it('preserve dot if numeric value', () => {

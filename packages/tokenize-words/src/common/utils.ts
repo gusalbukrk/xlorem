@@ -1,4 +1,4 @@
-import { escapeRegExp } from 'xlorem-common/src/utils';
+import { escapeRegExp } from 'xlorem-common/utils';
 
 const escapeAndMakeDotOptional = (str: string) =>
   escapeRegExp(str).replace('\\.', '\\.?');

@@ -1,10 +1,18 @@
 {
   "compilerOptions": {
     "target": "es2020",
-    "moduleResolution": "node",
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "strict": true,
-    "declaration": true
+    "declaration": true,
+
+    // this config is needed to support `package.json`'s `exports` field
+    // https://devblogs.microsoft.com/typescript/announcing-typescript-4-7-beta/#package-json-exports-imports-and-self-referencing
+    // https://github.com/microsoft/TypeScript/issues/33079#issuecomment-1043271180
+    //
+    // when using this config, import files need full extensions
+    // https://github.com/TypeStrong/ts-node/issues/1777#issuecomment-1140593361
+    // https://devblogs.microsoft.com/typescript/announcing-typescript-4-7/#type-in-package-json-and-new-extensions
+    "moduleResolution": "Node16"
   }
 }

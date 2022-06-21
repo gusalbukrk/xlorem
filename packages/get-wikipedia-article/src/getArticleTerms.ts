@@ -1,5 +1,5 @@
-import { termsType } from './common/types';
-import { fetchResource } from './common/utils';
+import { termsType } from './common/types.js';
+import { fetchResource } from './common/utils.js';
 
 type response = {
   terms: termsType;

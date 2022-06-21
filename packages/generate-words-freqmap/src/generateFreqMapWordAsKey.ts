@@ -1,4 +1,4 @@
-import { freqMapWordAsKeyType } from './common/types';
+import { freqMapWordAsKeyType } from './common/types.js';
 
 /** **freqMapWordAsKey** example: `{ foo: 1, bar: 3 }` */
 function generateFreqMapWordAsKey(wordsArray: string[]): freqMapWordAsKeyType {

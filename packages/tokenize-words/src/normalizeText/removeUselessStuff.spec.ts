@@ -1,4 +1,4 @@
-import removeUselessStuff from './removeUselessStuff';
+import removeUselessStuff from './removeUselessStuff.js';
 
 // trim and collapse whitespace
 const trim = (str: string, replaceBy = ' ') =>

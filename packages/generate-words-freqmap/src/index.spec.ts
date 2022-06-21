@@ -1,6 +1,6 @@
 import tokenizeWords from 'tokenize-words/src';
 
-import generateFreqMap from '.';
+import generateFreqMap from './index.js';
 
 describe('generateFreqMap returns correctly', () => {
   const wordsArray = tokenizeWords(`

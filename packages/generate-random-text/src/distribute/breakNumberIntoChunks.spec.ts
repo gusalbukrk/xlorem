@@ -1,6 +1,6 @@
-import { getRandomNumber } from 'xlorem-common/src/utils';
+import { getRandomNumber } from 'xlorem-common/utils';
 
-import breakNumberIntoChunks from './breakNumberIntoChunks';
+import breakNumberIntoChunks from './breakNumberIntoChunks.js';
 
 describe.each(Array.from({ length: 100 }).map(() => getRandomNumber(10, 500)))(
   'breakNumberIntoChunks',

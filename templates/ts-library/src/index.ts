@@ -1,5 +1,5 @@
-import add from './add';
-import mul from './mul';
+import add from './add.js';
+import mul from './mul.js';
 
 const addArr = (...arr: number[]): number =>
   arr.reduce((acc, cur) => add(acc, cur));

@@ -1,10 +1,10 @@
 import 'cross-fetch/polyfill';
 
-import { inputType } from 'xlorem-common/src/types';
+import { inputType } from 'xlorem-common/types';
 
-import article from './article';
+import article from './article.js';
 
-import xloremBase from '.';
+import xloremBase from './index.js';
 
 const xlorem = (input: inputType) => xloremBase(input);
 

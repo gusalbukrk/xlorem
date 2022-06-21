@@ -3,11 +3,11 @@ import 'cross-fetch/polyfill';
 import {
   articleNotFound,
   articleIsDisambiguation,
-} from 'xlorem-common/src/errorMessages';
+} from 'xlorem-common/errorMessages';
 
-import { includeType } from './common/types';
+import { includeType } from './common/types.js';
 
-import getWikipediaArticleBase from '.';
+import getWikipediaArticleBase from './index.js';
 
 // NOTE: having many api calls in tests will make the api trigger `429 Too many requests` error
 // in the console, the error will show up as:

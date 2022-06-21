@@ -1,9 +1,9 @@
-import { requirementsDefault } from 'xlorem-common/src/constants';
+import { requirementsDefault } from 'xlorem-common/constants';
 import {
   quantityNotNumber,
   quantityTooSmall,
-} from 'xlorem-common/src/errorMessages';
-import { unitType } from 'xlorem-common/src/types';
+} from 'xlorem-common/errorMessages';
+import { unitType } from 'xlorem-common/types';
 
 const { sentencesPerParagraphMin, wordsPerSentenceMin } = requirementsDefault;
 

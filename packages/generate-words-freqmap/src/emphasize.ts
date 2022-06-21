@@ -1,4 +1,4 @@
-import { freqMapWordAsKeyType } from './common/types';
+import { freqMapWordAsKeyType } from './common/types.js';
 
 /**
  * Every freqMap's word in `wordsToEmphasize` will have their weight multiplied by `emphasizeBy`.

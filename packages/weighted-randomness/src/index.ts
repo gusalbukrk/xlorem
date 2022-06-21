@@ -1,8 +1,8 @@
-import { freqMapType } from 'xlorem-common/src/types';
-import { getRandomArrayElement } from 'xlorem-common/src/utils';
+import { freqMapType } from 'xlorem-common/types';
+import { getRandomArrayElement } from 'xlorem-common/utils';
 
-import getFreqMapRandomTier from './getFreqMapRandomTier';
-import getWeightsAndRangesFromFreqMap from './getWeightsAndRangesFromFreqMap';
+import getFreqMapRandomTier from './getFreqMapRandomTier.js';
+import getWeightsAndRangesFromFreqMap from './getWeightsAndRangesFromFreqMap.js';
 
 /** Generate a weighted random function from `freqMap`. */
 function weightedRandomness(freqMap: freqMapType): () => string {

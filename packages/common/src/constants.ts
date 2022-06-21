@@ -1,4 +1,4 @@
-import { requirementsType } from './types';
+import { requirementsType } from './types.js';
 
 /* eslint-disable import/prefer-default-export */
 

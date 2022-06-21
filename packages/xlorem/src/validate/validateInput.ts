@@ -2,15 +2,15 @@ import {
   invalidInput,
   emptyQueryString,
   textTooShort,
-} from 'xlorem-common/src/errorMessages';
+} from 'xlorem-common/errorMessages';
 import {
   inputType,
   queryInputType,
   textInputType,
   wordsArrayInputType,
   freqMapInputType,
-} from 'xlorem-common/src/types';
-import { isObject } from 'xlorem-common/src/utils';
+} from 'xlorem-common/types';
+import { isObject } from 'xlorem-common/utils';
 
 function isInputQueryString(input: inputType): input is queryInputType {
   return typeof input === 'string';

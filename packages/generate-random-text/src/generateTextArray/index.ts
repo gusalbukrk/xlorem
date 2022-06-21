@@ -1,8 +1,8 @@
 import weightedRandomness from 'weighted-randomness/src';
-import { freqMapType } from 'xlorem-common/src/types';
+import { freqMapType } from 'xlorem-common/types';
 
-import capitalizeAndPunctuateSentence from './capitalizeAndPunctuateSentence';
-import getRandomWord from './getRandomWord';
+import capitalizeAndPunctuateSentence from './capitalizeAndPunctuateSentence.js';
+import getRandomWord from './getRandomWord.js';
 
 function generateTextArray(
   freqMap: freqMapType,

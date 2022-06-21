@@ -1,4 +1,4 @@
-import add from './mul';
+import add from './mul.js';
 
 describe('calc', () => {
   it('mul', () => {

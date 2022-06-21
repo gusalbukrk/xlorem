@@ -1,5 +1,5 @@
-import { queriesType } from './common/types';
-import { fetchResource } from './common/utils';
+import { queriesType } from './common/types.js';
+import { fetchResource } from './common/utils.js';
 
 type response = {
   links: { title: string }[];

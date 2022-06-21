@@ -1,4 +1,4 @@
-import { getCorrectWordCase } from './utils';
+import { getCorrectWordCase } from './utils.js';
 
 describe('getCorrectWordCase', () => {
   it('preserve capitalization if capitalized word exists in text not being preceded by dot', () => {

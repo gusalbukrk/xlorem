@@ -1,7 +1,7 @@
-import { requirementsDefault } from 'xlorem-common/src/constants';
-import { getRandomNumber } from 'xlorem-common/src/utils';
+import { requirementsDefault } from 'xlorem-common/constants';
+import { getRandomNumber } from 'xlorem-common/utils';
 
-import distribute from '.';
+import distribute from './index.js';
 
 // TODO: fix duplication
 // each `describe` block contains 2 duplicate tests and only 1 distinct

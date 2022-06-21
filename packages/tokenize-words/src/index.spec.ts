@@ -1,4 +1,4 @@
-import tokenizeWords from '.';
+import tokenizeWords from './index.js';
 
 describe('tokenizeWords (main function)', () => {
   it('`notEnoughWordsInWordsArray` error', () => {

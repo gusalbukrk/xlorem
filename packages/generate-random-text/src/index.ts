@@ -1,16 +1,16 @@
-import CustomError from 'xlorem-common/src/CustomError';
-import { requirementsDefault } from 'xlorem-common/src/constants';
-import { wordsQuantityDoesNotMatchRequirements } from 'xlorem-common/src/errorMessages';
+import CustomError from 'xlorem-common/CustomError';
+import { requirementsDefault } from 'xlorem-common/constants';
+import { wordsQuantityDoesNotMatchRequirements } from 'xlorem-common/errorMessages';
 import {
   freqMapType,
   unitType,
   formatType,
   requirementsType,
-} from 'xlorem-common/src/types';
+} from 'xlorem-common/types';
 
-import distribute from './distribute';
-import generateTextArray from './generateTextArray';
-import stringifyTextArray from './stringifyTextArray';
+import distribute from './distribute/index.js';
+import generateTextArray from './generateTextArray/index.js';
+import stringifyTextArray from './stringifyTextArray.js';
 
 type optionsType = {
   unit: unitType;

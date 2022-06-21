@@ -1,6 +1,6 @@
-import { freqMapType } from 'xlorem-common/src/types';
+import { freqMapType } from 'xlorem-common/types';
 
-import { freqMapWordAsKeyType } from './common/types';
+import { freqMapWordAsKeyType } from './common/types.js';
 
 /** **freqMapWeightAsKey** example: `{ 1: ['foo', 'bar'], 3: ['baz'] }` */
 function generateFreqMapWeightAsKey(

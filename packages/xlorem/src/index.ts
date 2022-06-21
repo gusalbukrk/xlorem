@@ -2,7 +2,7 @@ import generateTextBase from 'generate-random-text/src';
 import generateFreqMap from 'generate-words-freqmap/src';
 import getWikipediaArticle from 'get-wikipedia-article/src';
 import tokenizeWords from 'tokenize-words/src';
-import { requirementsDefault } from 'xlorem-common/src/constants';
+import { requirementsDefault } from 'xlorem-common/constants';
 import {
   inputType,
   queryInputType,
@@ -12,9 +12,9 @@ import {
   formatType,
   requirementsType,
   freqMapType,
-} from 'xlorem-common/src/types';
+} from 'xlorem-common/types';
 
-import validate from './validate';
+import validate from './validate/index.js';
 
 function isInputQuery(input: inputType): input is queryInputType {
   return typeof input === 'string';

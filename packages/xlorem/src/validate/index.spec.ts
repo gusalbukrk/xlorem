@@ -1,14 +1,14 @@
-import { requirementsDefault } from 'xlorem-common/src/constants';
-import * as errorMessages from 'xlorem-common/src/errorMessages';
+import { requirementsDefault } from 'xlorem-common/constants';
+import * as errorMessages from 'xlorem-common/errorMessages';
 import {
   inputType,
   unitType,
   formatType,
   requirementsType,
-} from 'xlorem-common/src/types';
-import { paramsToObjParam } from 'xlorem-common/src/utils';
+} from 'xlorem-common/types';
+import { paramsToObjParam } from 'xlorem-common/utils';
 
-import validateBase from '.';
+import validateBase from './index.js';
 
 type validateInterface = {
   input: inputType;

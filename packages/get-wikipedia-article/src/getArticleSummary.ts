@@ -1,5 +1,5 @@
-import { optionsType } from './common/types';
-import { fetchResource } from './common/utils';
+import { optionsType } from './common/types.js';
+import { fetchResource } from './common/utils.js';
 
 type response = {
   extract: string;

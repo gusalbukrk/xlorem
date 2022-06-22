@@ -98,6 +98,7 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
+    "api": "file:packages/api",
     "generate-random-text": "file:packages/generate-random-text",
     "generate-words-freqmap": "file:packages/generate-words-freqmap",
     "get-wikipedia-article": "file:packages/get-wikipedia-article",

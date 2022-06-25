@@ -99,6 +99,7 @@
   },
   "dependencies": {
     "api": "file:packages/api",
+    "cli": "file:packages/cli",
     "generate-random-text": "file:packages/generate-random-text",
     "generate-words-freqmap": "file:packages/generate-words-freqmap",
     "get-wikipedia-article": "file:packages/get-wikipedia-article",

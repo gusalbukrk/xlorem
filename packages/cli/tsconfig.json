@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.json",
+
+  // make sure that index declaration file is placed at
+  // `dist/types/index.d.ts` and then bundled to `dist/index.d.ts`
+  "include": ["src/**/*", "__tests__/**/*", "dist/index.d.ts"],
+
+  "compilerOptions": {
+    "declarationDir": "dist/types"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "name": "xlorem-cli",
+  "author": "gusalbukrk",
+  "version": "0.0.0",
+  "description": "",
+  "license": "MIT",
+  "keywords": [],
+  "type": "module",
+  "types": "dist/index.d.ts",
+  "main": "dist/bundle.cjs",
+  "bin": "dist/bundle.js",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/bundle.js",
+      "require": "./dist/bundle.cjs"
+    },
+    "./src": "./src/index.ts"
+  },
+  "files": [
+    "dist",
+    "src",
+    "!src/**/__tests__/",
+    "!src/**/__spec__/",
+    "!src/**/*.test.[jt]s",
+    "!src/**/*.test.[jt]sx",
+    "!src/**/*.spec.[jt]s",
+    "!src/**/*.spec.[jt]sx"
+  ],
+  "scripts": {
+    "build": "rollup -c ./rollup.config.js",
+    "lint": "eslint src/ --fix && cspell \"**\" -c ../../cspell.config.cjs --no-progress",
+    "postbuild": "replace-in-file --configFile=./.replace-in-file.cjs",
+    "postpublish": "../../node_modules/rimraf/bin.js dist/",
+    "prepublishOnly": "npm run build",
+    "test": "jest --passWithNoTests"
+  },
+  "dependencies": {
+    "@types/inquirer": "^8.2.1",
+    "chalk": "^5.0.1",
+    "commander": "^9.3.0",
+    "cross-fetch": "^3.1.5",
+    "inquirer": "^9.0.0",
+    "xlorem": "file:../xlorem"
+  }
+}

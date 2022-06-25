@@ -15,6 +15,7 @@ module.exports = {
   ignoreWords: ['postbuild', 'postpublish', 'monospace'],
 
   ignorePaths: [
+    'node_modules',
     'dist/',
     'cspell.config.cjs', // otherwise, would've to be included in every `overrides.filename`
     '.gitignore',

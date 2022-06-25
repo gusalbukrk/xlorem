@@ -25,4 +25,15 @@ config.overrides.push({
   },
 });
 
+// otherwise, would error at endpoints' second argument
+// `Promise returned in function argument where a void return was expected`
+config.overrides[0].rules['@typescript-eslint/no-misused-promises'] = [
+  'error',
+  {
+    checksVoidReturn: {
+      arguments: false,
+    },
+  },
+];
+
 module.exports = config;

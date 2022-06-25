@@ -41,6 +41,8 @@
   },
   "dependencies": {
     "cross-fetch": "^3.1.5",
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "xlorem": "file:../xlorem",
+    "xlorem-common": "file:../common"
   }
 }

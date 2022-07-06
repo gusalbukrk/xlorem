@@ -22,11 +22,13 @@ type optionsType = {
 app.use(express.json()); // parse application/json
 app.use(express.urlencoded({ extended: true })); // parse application/x-www-form-urlencoded
 
-// app.get('/', async (req, res) => {
-//   res.status(200).json('welcome to xlorem');
-// });
+app.use(express.static('../site/dist/'));
 
-app.get('/', async (req, res) => {
+app.get('/', (req, res) => {
+  res.sendFile('index.html');
+});
+
+app.get('/api/', async (req, res) => {
   // endpoint will receive requests of 2 types:
   // - requests with query parameters, e.g. `?query=harry potter&format=html`
   // - requests with bodies containing json or urlencoded data
@@ -45,7 +47,7 @@ app.get('/', async (req, res) => {
 });
 
 app.get(
-  '/:query/:unit?/:quantity?/:format?',
+  '/api/:query/:unit?/:quantity?/:format?',
   async (req: { params: optionsType }, res) => {
     if (req.params.quantity)
       req.params.quantity = parseInt(

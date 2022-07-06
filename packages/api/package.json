@@ -32,7 +32,7 @@
     "!src/**/*.spec.[jt]sx"
   ],
   "scripts": {
-    "build": "rollup -c ./rollup.config.js",
+    "build": "rollup -c ./rollup.config.js && cd ../site && npm run build",
     "lint": "eslint src/ --fix && cspell \"**\" -c ../../cspell.config.cjs --no-progress",
     "postbuild": "eslint dist/index.d.ts --fix --no-ignore --no-error-on-unmatched-pattern",
     "postpublish": "../../node_modules/rimraf/bin.js dist/",

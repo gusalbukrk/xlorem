@@ -1,7 +1,9 @@
 # xlorem
 
 > feature-rich filler text generator  
-> try it out online at https://gusalbukrk.com/xlorem
+> try it out online at https://xlorem.gusalbukrk.com/  
+> also available as an API at https://xlorem.gusalbukrk.com/api?query=harry%20potter  
+> and CLI https://www.npmjs.com/package/xlorem-cli
 
 - `xlorem` biggest advantage is that it's not a simple "Lorem ipsum" generator (there's plenty of those already). Neither, it's a custom generator with a pre-defined group of related words, like [baconipsum](baconipsum.com) & [hipsum](hipsum.co) (again, there's plenty of those already).
 - Instead, it **generates a custom filler text from a given input**. Input can be a text, string array, frequency map or wikipedia query string.
